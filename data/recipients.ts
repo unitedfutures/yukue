@@ -100,7 +100,7 @@ const localAllocFutsuu: RecipientGroup = {
 //    出典: JICA・外務省「ODA白書 令和5年版」
 // ─────────────────────────────────────────────────────
 const odaBilateral: RecipientGroup = {
-  itemId: "oda-oda-nichi",
+  itemId: "oda-oda-kuni",
   label: "二国間ODA 国・地域別供与額",
   year: 2023,
   total: 3700,
@@ -689,6 +689,249 @@ const eduScienceRiken: RecipientGroup = {
 };
 
 // ─────────────────────────────────────────────────────
+// 25. 国立大学法人 運営費交付金 大学別
+//     出典: 文部科学省「国立大学法人等の令和7年度予算について」
+// ─────────────────────────────────────────────────────
+const eduDaigakuKokuritu: RecipientGroup = {
+  itemId: "edu-daigaku-kokuritu",
+  label: "国立大学法人 運営費交付金 大学別",
+  year: 2025,
+  total: 10900,
+  unit: "億円",
+  sourceNote: "出典: 文部科学省「令和7年度国立大学法人運営費交付金配分額」（概算）",
+  sourceUrl: "https://www.mext.go.jp/a_menu/koutou/houjin/index.htm",
+  recipients: [
+    { name: "東京大学", amount: 830, note: "理工・医・人文・農学等 全分野。附属病院収入も大学収入の柱", region: "関東" },
+    { name: "京都大学", amount: 620, note: "基礎科学・医学・人文学。ノーベル賞受賞者数は国内トップ", region: "近畿" },
+    { name: "大阪大学", amount: 542, note: "医学・工学・理学。蛋白研・核物理研等の大型研究施設を保有", region: "近畿" },
+    { name: "東北大学", amount: 428, note: "材料科学・電子工学で世界的評価。金属材料研究所等", region: "東北" },
+    { name: "九州大学", amount: 362, note: "農学・医学・工学。伊都キャンパスに移転完了", region: "九州・沖縄" },
+    { name: "名古屋大学", amount: 348, note: "素粒子物理・医学。ノーベル物理学賞3名輩出", region: "中部" },
+    { name: "北海道大学", amount: 312, note: "農学・獣医・環境科学。広大な農場・演習林を保有", region: "北海道" },
+    { name: "東京工業大学", amount: 298, note: "理工学専門。Society5.0対応の教育改革を推進", region: "関東" },
+    { name: "筑波大学", amount: 198, note: "体育・医学・情報・芸術等の複合大学", region: "関東" },
+    { name: "広島大学", amount: 185, note: "医学・教育学・農学。東広島キャンパスに集約", region: "中国" },
+    { name: "神戸大学", amount: 175, note: "医学・農学・経済学・海洋政策科学", region: "近畿" },
+    { name: "千葉大学", amount: 158, note: "医学・工学・薬学・園芸学", region: "関東" },
+    { name: "岡山大学", amount: 148, note: "医歯学・農学・理学", region: "中国" },
+    { name: "長崎大学", amount: 128, note: "医学・熱帯医学・水産学。感染症研究で国際的評価", region: "九州・沖縄" },
+    { name: "熊本大学", amount: 122, note: "医学・理学・工学。水俣病研究でも著名", region: "九州・沖縄" },
+    { name: "新潟大学", amount: 118, note: "医歯学・農学・法学", region: "中部" },
+    { name: "金沢大学", amount: 115, note: "医学・理工学・人文社会学", region: "中部" },
+    { name: "鹿児島大学", amount: 112, note: "医学・農学・水産学・獣医学", region: "九州・沖縄" },
+    { name: "信州大学", amount: 108, note: "繊維・医学・農学・工学・理学", region: "中部" },
+    { name: "岐阜大学", amount: 98, note: "農学・医学・工学・応用生物科学", region: "中部" },
+    { name: "その他（約66大学）", amount: 5494, note: "旭川医大・弘前大・宇都宮大・埼玉大など地方国立大学" },
+  ],
+};
+
+// ─────────────────────────────────────────────────────
+// 26. 私立大学等経常費補助 大学別（上位）
+//     出典: 日本私立学校振興・共済事業団
+// ─────────────────────────────────────────────────────
+const eduDaigakuShiritsu: RecipientGroup = {
+  itemId: "edu-daigaku-shiritsu",
+  label: "私立大学等経常費補助 大学別（上位）",
+  year: 2025,
+  total: 3200,
+  unit: "億円",
+  sourceNote: "出典: 日本私立学校振興・共済事業団「令和6年度経常費補助金配分額」（概算）",
+  sourceUrl: "https://www.shigaku.go.jp/s_subsidy.htm",
+  recipients: [
+    { name: "慶應義塾大学", amount: 125, note: "医・理工・経済・文・法等 多学部総合大学", region: "関東" },
+    { name: "早稲田大学", amount: 122, note: "政経・法・商・理工・文学等 学生数日本最大級", region: "関東" },
+    { name: "日本大学", amount: 118, note: "医・歯・法・商・工・農等 在学生数8万人超", region: "関東" },
+    { name: "近畿大学", amount: 88, note: "医・農・理工・薬・経済等。クロマグロ完全養殖で著名", region: "近畿" },
+    { name: "東洋大学", amount: 82, note: "法・経・情報連携・工・理工等 総合大学", region: "関東" },
+    { name: "明治大学", amount: 79, note: "法・商・政経・理工・農学等", region: "関東" },
+    { name: "立命館大学", amount: 76, note: "法・文・産業社会・理工・薬・スポーツ等", region: "近畿" },
+    { name: "同志社大学", amount: 68, note: "神・文・社会・法・経済・商・政策等", region: "近畿" },
+    { name: "法政大学", amount: 65, note: "法・文・経済・社会・工・デザイン等", region: "関東" },
+    { name: "中央大学", amount: 62, note: "法・経済・商・理工・文・国際情報等", region: "関東" },
+    { name: "関西大学", amount: 60, note: "法・文・経・社会安全・システム理工等", region: "近畿" },
+    { name: "関西学院大学", amount: 55, note: "神・文・社会・法・経・理工・教育等", region: "近畿" },
+    { name: "立教大学", amount: 53, note: "文・経・法・社会・観光・コミュニティ等", region: "関東" },
+    { name: "青山学院大学", amount: 51, note: "文・教育・経・法・理工・国際政治経済等", region: "関東" },
+    { name: "東海大学", amount: 48, note: "工・医・文・法・体育・政治経済等", region: "関東" },
+    { name: "その他（約625大学・短大）", amount: 2048, note: "全国の私立大学・短期大学・高専" },
+  ],
+};
+
+// ─────────────────────────────────────────────────────
+// 27. 在日米軍駐留経費負担（思いやり予算）内訳
+//     出典: 防衛省「特別協定に基づく在日米軍駐留経費負担」
+// ─────────────────────────────────────────────────────
+const defenseUsfj: RecipientGroup = {
+  itemId: "defense-usfj",
+  label: "在日米軍駐留経費負担（思いやり予算）内訳",
+  year: 2025,
+  total: 2680,
+  unit: "億円",
+  sourceNote: "出典: 防衛省「令和7年度特別協定に基づく在日米軍駐留経費負担予算」",
+  sourceUrl: "https://www.mod.go.jp/j/approach/zaibeigun/us_japan_deference/index.html",
+  recipients: [
+    { name: "提供施設整備費（FCLP・格納庫・宿舎等の建設・改修）", amount: 1060, note: "米軍基地内の施設整備。日本側が施工し米側に無償提供" },
+    { name: "労務費（基地従業員の給与・社会保険料）", amount: 870, note: "在日米軍基地で働く日本人従業員約2.5万人の給与を日本が負担" },
+    { name: "光熱水料（電気・ガス・水道）", amount: 450, note: "基地内の電気・ガス・水道・熱供給費用" },
+    { name: "訓練移転費（騒音対策のための訓練移転）", amount: 190, note: "住宅密集地周辺の航空機訓練を地方移転するための経費" },
+    { name: "その他（共同使用費・連絡調整等）", amount: 110, note: "共同使用施設の維持・日米間の連絡調整等" },
+  ],
+};
+
+// ─────────────────────────────────────────────────────
+// 28. 基地対策費・SACO・同盟強靭化予算
+//     出典: 防衛省「基地対策費等」
+// ─────────────────────────────────────────────────────
+const defenseKichi: RecipientGroup = {
+  itemId: "defense-kichi",
+  label: "基地対策費・SACO・同盟強靭化予算内訳",
+  year: 2025,
+  total: 1850,
+  unit: "億円",
+  sourceNote: "出典: 防衛省「令和7年度予算の概要」基地対策等",
+  sourceUrl: "https://www.mod.go.jp/j/budget/index.html",
+  recipients: [
+    { name: "騒音対策費（防音工事・移転補償）", amount: 680, note: "基地周辺住民への防音工事・テレビ受信障害対策等" },
+    { name: "SACO（沖縄特別行動委員会）関連経費", amount: 420, note: "沖縄の基地負担軽減に向けた移設・返還関連経費" },
+    { name: "同盟強靭化予算（米軍再編経費）", amount: 380, note: "グアム移転・パレスチナ等への部隊移転協力費" },
+    { name: "基地周辺整備（民生安定施設等）", amount: 240, note: "基地周辺地域の道路・公園・学校等の整備補助" },
+    { name: "地方公共団体支援（交付金・補助金）", amount: 130, note: "基地所在市区町村への調整交付金等" },
+  ],
+};
+
+// ─────────────────────────────────────────────────────
+// 29. 二国間ODA 国別援助額（旧oda-oda-nichi）
+//     出典: 外務省「ODA白書」
+// ─────────────────────────────────────────────────────
+// ※ odaBilateral の itemId を "oda-oda-kuni" に変更済み
+
+// ─────────────────────────────────────────────────────
+// 30. JICA スキーム別事業費
+//     出典: JICA「事業実績」
+// ─────────────────────────────────────────────────────
+const odaJica: RecipientGroup = {
+  itemId: "oda-oda-jica",
+  label: "JICA スキーム別事業費",
+  year: 2024,
+  total: 6800,
+  unit: "億円",
+  sourceNote: "出典: JICA「2024年度事業実績（円借款・無償・技協合計）」",
+  sourceUrl: "https://www.jica.go.jp/about/profile/publication/annual/index.html",
+  recipients: [
+    { name: "有償資金協力（円借款）", amount: 3580, note: "インフラ整備・産業開発向け低利長期融資。インド・バングラ・インドネシア等が主要対象", region: "その他" },
+    { name: "無償資金協力", amount: 1620, note: "返済不要の資金援助。保健・教育・食料安全保障・緊急人道支援", region: "その他" },
+    { name: "技術協力（専門家派遣・研修受入）", amount: 1200, note: "日本の専門家を途上国へ派遣・途上国の人材を日本で研修", region: "その他" },
+    { name: "JICA運営費・管理費", amount: 280, note: "JICA機関運営・人件費・広報・調査費等", region: "その他" },
+    { name: "中小企業・SDGsビジネス支援", amount: 120, note: "日本企業と途上国をつなぐ開発課題解決型ビジネス支援", region: "その他" },
+  ],
+};
+
+// ─────────────────────────────────────────────────────
+// 31. 国民健康保険 療養給付費等交付金 都道府県別
+//     出典: 厚生労働省「国民健康保険の統計」
+// ─────────────────────────────────────────────────────
+const medicalKokuhoKyufu: RecipientGroup = {
+  itemId: "social-medical-kokaho-kyufu",
+  label: "国民健康保険 療養給付費等交付金 都道府県別",
+  year: 2025,
+  total: 15800,
+  unit: "億円",
+  sourceNote: "出典: 厚生労働省「令和7年度国民健康保険関係予算」（概算）",
+  sourceUrl: "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/kokuho/index.html",
+  recipients: [
+    { name: "東京都", amount: 1520, note: "都内市区町村への交付。国保加入者は主に自営業・年金受給者", region: "関東" },
+    { name: "大阪府", amount: 1340, region: "近畿" },
+    { name: "神奈川県", amount: 1020, region: "関東" },
+    { name: "愛知県", amount: 980, region: "中部" },
+    { name: "埼玉県", amount: 860, region: "関東" },
+    { name: "千葉県", amount: 790, region: "関東" },
+    { name: "北海道", amount: 780, region: "北海道" },
+    { name: "兵庫県", amount: 750, region: "近畿" },
+    { name: "福岡県", amount: 720, region: "九州・沖縄" },
+    { name: "静岡県", amount: 480, region: "中部" },
+    { name: "広島県", amount: 420, region: "中国" },
+    { name: "茨城県", amount: 390, region: "関東" },
+    { name: "新潟県", amount: 370, region: "中部" },
+    { name: "京都府", amount: 360, region: "近畿" },
+    { name: "長野県", amount: 345, region: "中部" },
+    { name: "宮城県", amount: 320, region: "東北" },
+    { name: "岡山県", amount: 300, region: "中国" },
+    { name: "岐阜県", amount: 290, region: "中部" },
+    { name: "熊本県", amount: 275, region: "九州・沖縄" },
+    { name: "鹿児島県", amount: 265, region: "九州・沖縄" },
+    { name: "その他（27都道府県）", amount: 3225 },
+  ].sort((a, b) => b.amount - a.amount),
+};
+
+// ─────────────────────────────────────────────────────
+// 32. 農業補助金 品目・用途別
+//     出典: 農林水産省「農業経営安定対策予算」
+// ─────────────────────────────────────────────────────
+const foodKomeKeiei: RecipientGroup = {
+  itemId: "food-kome-keiei",
+  label: "農業経営安定対策 品目・用途別",
+  year: 2025,
+  total: 3600,
+  unit: "億円",
+  sourceNote: "出典: 農林水産省「令和7年度農業経営安定対策関連予算」",
+  sourceUrl: "https://www.maff.go.jp/j/kobetu_ninaite/n_seisaku/index.html",
+  recipients: [
+    { name: "水田活用の直接支払交付金（麦・大豆・飼料作物等）", amount: 1500, note: "水田を活用した麦・大豆・飼料用米・野菜等の生産を支援。10a当たり最大3.5万円" },
+    { name: "農業収入保険（農林中金が窓口）", amount: 580, note: "自然災害・価格下落等による収入減少を補填。保険料の一部を国が補助" },
+    { name: "戦略作物助成（加工米・飼料用米等）", amount: 480, note: "コメの需給調整のため、主食用米から加工米・飼料用米への転換を支援" },
+    { name: "経営安定対策（麦・大豆・てんさい・でんぷん原料）", amount: 420, note: "輸入品との価格差を補填する差額交付金。農家の経営を下支え" },
+    { name: "中山間地域等直接支払交付金", amount: 340, note: "条件不利地（傾斜地等）での農業継続を支援。5年協定ごとに交付" },
+    { name: "多面的機能支払（農地維持・資源向上）", amount: 280, note: "農地・農業用水等の保全管理。地域共同活動を支援" },
+  ],
+};
+
+// ─────────────────────────────────────────────────────
+// 33. 国債保有者別 利払い概算額
+//     出典: 日本銀行「資金循環統計」
+// ─────────────────────────────────────────────────────
+const bondHolders: RecipientGroup = {
+  itemId: "bond-interest-naiku",
+  label: "国内国債 保有者別 利払い概算額",
+  year: 2025,
+  total: 96400,
+  unit: "億円",
+  sourceNote: "出典: 日本銀行「資金循環統計（2024年度末）」をもとに利払い額を試算",
+  sourceUrl: "https://www.boj.or.jp/statistics/sj/index.htm",
+  recipients: [
+    { name: "日本銀行（量的緩和による保有）", amount: 41200, note: "異次元緩和政策で国債残高の約43%を保有。最大の国債保有者。量的引き締めで徐々に圧縮中" },
+    { name: "海外投資家（外国人保有）", amount: 13600, note: "外国中央銀行・ヘッジファンド・年金等。保有比率は約14%。円高・利上げ局面で増加傾向" },
+    { name: "生命保険会社", amount: 11600, note: "長期運用の保険数理上、超長期国債（20年・30年債）を中心に保有。保有比率約12%" },
+    { name: "銀行・信金・労金等（市中銀行）", amount: 9700, note: "普通銀行・信用金庫・労働金庫等。日銀の利上げで保有益が変動するリスクを抱える" },
+    { name: "年金基金・共済（GPIF等）", amount: 8700, note: "年金積立金管理運用独立行政法人（GPIF）等。国内債券として長期安定保有" },
+    { name: "ゆうちょ銀行・かんぽ生命", amount: 4800, note: "民営化後も国債中心の運用。近年は外国債券への分散が進む" },
+    { name: "個人・その他", amount: 6800, note: "個人向け国債（変動10年・固定5年・固定3年）の購入者。元本保証・最低金利保証あり" },
+  ],
+};
+
+// ─────────────────────────────────────────────────────
+// 34. FIT/FIP 電源種別 受取額
+//     出典: 資源エネルギー庁「再エネ賦課金・交付状況」
+// ─────────────────────────────────────────────────────
+const energyFit: RecipientGroup = {
+  itemId: "energy-saisei-fitto",
+  label: "FIT/FIP 電源種別 交付額",
+  year: 2024,
+  total: 42000,
+  unit: "億円",
+  sourceNote: "出典: 資源エネルギー庁「再生可能エネルギー電気の調達に係る特定契約の状況」（FY2024）",
+  sourceUrl: "https://www.enecho.meti.go.jp/category/saving_and_new/saiene/data/index.html",
+  recipients: [
+    { name: "太陽光発電（10kW以上・事業用）", amount: 21800, note: "FIT制度開始（2012年）以降に急増。全体の約52%を占める最大区分" },
+    { name: "太陽光発電（10kW未満・住宅用）", amount: 8400, note: "家庭の屋根置き太陽光。余剰電力を電力会社が固定価格で買取" },
+    { name: "バイオマス発電", amount: 7200, note: "木材チップ・廃棄物・畜産バイオガス等。燃料調達リスクが課題" },
+    { name: "風力発電（陸上）", amount: 2500, note: "低コスト化が進む。適地は東北・北海道・九州に多い" },
+    { name: "風力発電（洋上）", amount: 800, note: "大規模洋上風力はFIP移行。設置・維持費が高い" },
+    { name: "小水力発電", amount: 900, note: "農業用水路・河川を活用。地方自治体・農協が多く参加" },
+    { name: "地熱発電", amount: 400, note: "稼働コストは低いが開発許可・調査期間が長い。温泉地での協議が必要" },
+  ],
+};
+
+// ─────────────────────────────────────────────────────
 // まとめ: itemId → RecipientGroup マップ
 // ─────────────────────────────────────────────────────
 export const recipientGroups: Record<string, RecipientGroup> = {
@@ -696,7 +939,8 @@ export const recipientGroups: Record<string, RecipientGroup> = {
   "localalloc-kotei-futsuu": localAllocFutsuu,
 
   // ODA
-  "oda-oda-nichi": odaBilateral,
+  "oda-oda-kuni": odaBilateral,
+  "oda-oda-jica": odaJica,
   "oda-kokusai-un": odaKokusaiUn,
   "oda-kokusai-adb": odaKokusaiAdb,
 
@@ -706,9 +950,13 @@ export const recipientGroups: Record<string, RecipientGroup> = {
   "edu-science-jaxa": eduScienceJaxa,
   "edu-science-riken": eduScienceRiken,
   "edu-gikyo-kyouin": eduGikyoKyouin,
+  "edu-daigaku-kokuritu": eduDaigakuKokuritu,
+  "edu-daigaku-shiritsu": eduDaigakuShiritsu,
 
   // 防衛
   "defense-busshi": defenseContracts,
+  "defense-usfj": defenseUsfj,
+  "defense-kichi": defenseKichi,
 
   // 公共事業
   "public-road-chokukatsu": publicRoadChokukatsu,
@@ -720,9 +968,10 @@ export const recipientGroups: Record<string, RecipientGroup> = {
   "social-pension-kokumin-rourei": pensionKokuminRourei,
   "social-pension-kokumin-shogai": pensionKokuminShogai,
 
-  // 社会保障 — 医療（個人給付）
+  // 社会保障 — 医療（個人給付・団体給付）
   "social-medical-roujin-kyufu": medicalRoujinKyufu,
   "social-medical-kenko-ryoyo": medicalKenkoRyoyo,
+  "social-medical-kokaho-kyufu": medicalKokuhoKyufu,
 
   // 社会保障 — 子育て（個人給付）
   "social-child-jido-ichiji": childJidoIchiji,
@@ -735,6 +984,15 @@ export const recipientGroups: Record<string, RecipientGroup> = {
 
   // 社会保障 — 雇用（個人給付）
   "social-emp-koyohoken-kyufu": empKoyohokenKyufu,
+
+  // 食料安定供給
+  "food-kome-keiei": foodKomeKeiei,
+
+  // 国債費
+  "bond-interest-naiku": bondHolders,
+
+  // エネルギー
+  "energy-saisei-fitto": energyFit,
 };
 
 export function hasRecipients(itemId: string): boolean {

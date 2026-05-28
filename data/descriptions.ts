@@ -142,6 +142,11 @@ export const itemDescriptions: Record<string, string> = {
   "defense-shisetsu-beigun":
     "在日米軍施設の共同使用・SACO（沖縄に関する特別行動委員会）関係経費。移転・跡地整備等。",
 
+  "defense-usfj":
+    "日米地位協定に基づき日本が負担する在日米軍の駐留経費（思いやり予算）。労務費・施設整備費・光熱水料が三本柱。5年ごとの特別協定で金額を決定。令和7年度は約2,680億円。",
+  "defense-kichi":
+    "基地周辺住民への防音工事・騒音対策、SACO合意に基づく沖縄基地の移設・返還経費、米軍再編関連（グアム移転等）の同盟強靭化予算を含む。",
+
   // ── 公共事業 ──
   "public-road-kosoku":
     "NEXCO3社・首都高・阪神高速等との連携事業および国土交通省直轄の高速道路建設・4車線化費用。",
@@ -159,6 +164,12 @@ export const itemDescriptions: Record<string, string> = {
     "市街地再開発・土地区画整理・都市公園・下水道整備等への国庫補助。コンパクトシティ化支援。",
   "public-housing-suido":
     "水道施設の老朽化更新・耐震化への支援。小規模水道の統廃合・広域化促進費も含む。",
+
+  // ── 文教・科学 > 大学振興 ──
+  "edu-daigaku-kokuritu":
+    "86の国立大学法人に交付する運営費交付金。授業料収入だけでは賄えない教育・研究費用を国が補助。東大・京大等の研究大学から地方国立大まで規模に応じて配分。",
+  "edu-daigaku-shiritsu":
+    "全国約600校の私立大学・短期大学に交付する経常費補助。学生数・教職員数等に基づき日本私立学校振興・共済事業団を通じて配分。私立大学の授業料抑制にも貢献。",
 
   // ── 文教・科学 ──
   "edu-gikyo-kyouin":
@@ -209,8 +220,10 @@ export const itemDescriptions: Record<string, string> = {
     "中小企業信用補完制度（信用保証協会）への出資・補助。融資アクセス向上と貸し倒れリスク低減。",
 
   // ── ODA ──
-  "oda-oda-nichi":
-    "円借款（低金利の有償資金協力）・無償資金協力・技術協力（JICA）の合計。対象国はアジアが中心。",
+  "oda-oda-kuni":
+    "二国間援助のうち、受取国ごとの配分額。円借款はインド・バングラデシュ・インドネシアなどアジア新興国のインフラ整備が中心。無償資金協力はアフリカ・中東・島嶼国が重点地域。",
+  "oda-oda-jica":
+    "JICAが実施する三本柱（有償資金協力・無償資金協力・技術協力）のスキーム別事業費内訳。専門家派遣・研修員受入・国際緊急援助隊等を含む。",
   "oda-oda-ngo":
     "NGO・市民社会との連携による草の根援助・国際緊急援助・難民支援等への拠出。",
 
@@ -343,8 +356,17 @@ export const itemSourceUrls: Record<string, string> = {
   "sme-shien-hojo": "https://www.chusho.meti.go.jp/keiei/index.html",
   "sme-shien-kinyu": "https://www.chusho.meti.go.jp/kinyu/index.html",
 
+  // ── 文教・科学 > 大学振興 ──
+  "edu-daigaku-kokuritu": "https://www.mext.go.jp/a_menu/koutou/houjin/index.htm",
+  "edu-daigaku-shiritsu": "https://www.shigaku.go.jp/s_subsidy.htm",
+
+  // ── 防衛 > 在日米軍・基地 ──
+  "defense-usfj": "https://www.mod.go.jp/j/approach/zaibeigun/us_japan_deference/index.html",
+  "defense-kichi": "https://www.mod.go.jp/j/budget/index.html",
+
   // ── ODA ──
-  "oda-oda-nichi": "https://www.mofa.go.jp/mofaj/gaiko/oda/index.html",
+  "oda-oda-kuni": "https://www.mofa.go.jp/mofaj/gaiko/oda/shiryo/hakusyo/index.html",
+  "oda-oda-jica": "https://www.jica.go.jp/about/profile/publication/annual/index.html",
   "oda-oda-ngo": "https://www.mofa.go.jp/mofaj/gaiko/oda/shimin/oda_ngo/index.html",
   "oda-kokusai-un": "https://www.mofa.go.jp/mofaj/ic/index.html",
   "oda-kokusai-adb": "https://www.mof.go.jp/policy/international_policy/imf/index.htm",

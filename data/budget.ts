@@ -256,7 +256,14 @@ const budget2025: BudgetYear = {
           ],
         },
         { id: "defense-ippan", name: "一般物件費", amount: 16200 },
-        { id: "defense-other", name: "その他", amount: 8644 },
+        {
+          id: "defense-other", name: "その他", amount: 8644,
+          children: [
+            { id: "defense-usfj", name: "在日米軍駐留経費負担（思いやり予算）", amount: 2680, descriptionKey: "defense-usfj" },
+            { id: "defense-kichi", name: "基地対策費・SACO・同盟強靭化", amount: 1850, descriptionKey: "defense-kichi" },
+            { id: "defense-other-misc", name: "その他防衛関連経費", amount: 4114 },
+          ],
+        },
       ],
     },
     {
@@ -315,7 +322,14 @@ const budget2025: BudgetYear = {
             { id: "edu-science-kakenhi", name: "科研費（競争的研究資金）", amount: 3900, descriptionKey: "edu-science-kakenhi" },
           ],
         },
-        { id: "edu-shien", name: "教育振興助成費", amount: 15200 },
+        {
+          id: "edu-shien", name: "教育振興助成費", amount: 15200,
+          children: [
+            { id: "edu-daigaku-kokuritu", name: "国立大学法人運営費交付金", amount: 10900, descriptionKey: "edu-daigaku-kokuritu" },
+            { id: "edu-daigaku-shiritsu", name: "私立大学等経常費補助", amount: 3200, descriptionKey: "edu-daigaku-shiritsu" },
+            { id: "edu-shien-other", name: "その他教育助成", amount: 1100 },
+          ],
+        },
         {
           id: "edu-ikuei", name: "育英事業費（奨学金）", amount: 5200,
           children: [
@@ -393,7 +407,13 @@ const budget2025: BudgetYear = {
         {
           id: "oda-oda", name: "政府開発援助（ODA）", amount: 3800,
           children: [
-            { id: "oda-oda-nichi", name: "二国間援助（円借款・無償・技協）", amount: 2800, descriptionKey: "oda-oda-nichi" },
+            {
+              id: "oda-oda-nichi", name: "二国間援助（円借款・無償・技協）", amount: 2800,
+              children: [
+                { id: "oda-oda-kuni", name: "国別援助額", amount: 2200, descriptionKey: "oda-oda-kuni" },
+                { id: "oda-oda-jica", name: "JICAスキーム別内訳", amount: 600, descriptionKey: "oda-oda-jica" },
+              ],
+            },
             { id: "oda-oda-ngo", name: "NGO・緊急人道支援", amount: 1000, descriptionKey: "oda-oda-ngo" },
           ],
         },
@@ -575,7 +595,14 @@ const budget2024: BudgetYear = {
         { id: "defense-kenkyu", name: "研究開発費", amount: 7800 },
         { id: "defense-shisetsu", name: "施設整備費", amount: 4200 },
         { id: "defense-ippan", name: "一般物件費", amount: 14800 },
-        { id: "defense-other", name: "その他", amount: 5672 },
+        {
+          id: "defense-other", name: "その他", amount: 5672,
+          children: [
+            { id: "defense-usfj", name: "在日米軍駐留経費負担（思いやり予算）", amount: 2320 },
+            { id: "defense-kichi", name: "基地対策費・SACO・同盟強靭化", amount: 1200 },
+            { id: "defense-other-misc", name: "その他防衛関連経費", amount: 2152 },
+          ],
+        },
       ],
     },
     {
@@ -622,7 +649,14 @@ const budget2024: BudgetYear = {
             { id: "edu-science-kakenhi", name: "科研費（競争的研究資金）", amount: 3900 },
           ],
         },
-        { id: "edu-shien", name: "教育振興助成費", amount: 14985 },
+        {
+          id: "edu-shien", name: "教育振興助成費", amount: 14985,
+          children: [
+            { id: "edu-daigaku-kokuritu", name: "国立大学法人運営費交付金", amount: 10700 },
+            { id: "edu-daigaku-shiritsu", name: "私立大学等経常費補助", amount: 3185 },
+            { id: "edu-shien-other", name: "その他教育助成", amount: 1100 },
+          ],
+        },
         { id: "edu-ikuei", name: "育英事業費（奨学金）", amount: 5200 },
         { id: "edu-shisetsu", name: "教育施設費", amount: 3300 },
       ],
@@ -664,7 +698,13 @@ const budget2024: BudgetYear = {
         {
           id: "oda-oda", name: "政府開発援助（ODA）", amount: 3800,
           children: [
-            { id: "oda-oda-nichi", name: "二国間援助（円借款・無償・技協）", amount: 2800 },
+            {
+              id: "oda-oda-nichi", name: "二国間援助（円借款・無償・技協）", amount: 2800,
+              children: [
+                { id: "oda-oda-kuni", name: "国別援助額", amount: 2200 },
+                { id: "oda-oda-jica", name: "JICAスキーム別内訳", amount: 600 },
+              ],
+            },
             { id: "oda-oda-ngo", name: "NGO・緊急人道支援", amount: 1000 },
           ],
         },
@@ -845,7 +885,14 @@ const budget2023: BudgetYear = {
         { id: "defense-kenkyu", name: "研究開発費", amount: 6200 },
         { id: "defense-shisetsu", name: "施設整備費", amount: 3900 },
         { id: "defense-ippan", name: "一般物件費", amount: 12100 },
-        { id: "defense-other", name: "その他", amount: 3719 },
+        {
+          id: "defense-other", name: "その他", amount: 3719,
+          children: [
+            { id: "defense-usfj", name: "在日米軍駐留経費負担（思いやり予算）", amount: 2110 },
+            { id: "defense-kichi", name: "基地対策費・SACO・同盟強靭化", amount: 980 },
+            { id: "defense-other-misc", name: "その他防衛関連経費", amount: 629 },
+          ],
+        },
       ],
     },
     {
@@ -892,7 +939,14 @@ const budget2023: BudgetYear = {
             { id: "edu-science-kakenhi", name: "科研費（競争的研究資金）", amount: 4000 },
           ],
         },
-        { id: "edu-shien", name: "教育振興助成費", amount: 14741 },
+        {
+          id: "edu-shien", name: "教育振興助成費", amount: 14741,
+          children: [
+            { id: "edu-daigaku-kokuritu", name: "国立大学法人運営費交付金", amount: 10500 },
+            { id: "edu-daigaku-shiritsu", name: "私立大学等経常費補助", amount: 3141 },
+            { id: "edu-shien-other", name: "その他教育助成", amount: 1100 },
+          ],
+        },
         { id: "edu-ikuei", name: "育英事業費（奨学金）", amount: 5100 },
         { id: "edu-shisetsu", name: "教育施設費", amount: 3500 },
       ],
@@ -934,7 +988,13 @@ const budget2023: BudgetYear = {
         {
           id: "oda-oda", name: "政府開発援助（ODA）", amount: 3900,
           children: [
-            { id: "oda-oda-nichi", name: "二国間援助（円借款・無償・技協）", amount: 2900 },
+            {
+              id: "oda-oda-nichi", name: "二国間援助（円借款・無償・技協）", amount: 2900,
+              children: [
+                { id: "oda-oda-kuni", name: "国別援助額", amount: 2280 },
+                { id: "oda-oda-jica", name: "JICAスキーム別内訳", amount: 620 },
+              ],
+            },
             { id: "oda-oda-ngo", name: "NGO・緊急人道支援", amount: 1000 },
           ],
         },
