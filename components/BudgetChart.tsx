@@ -1,7 +1,7 @@
 "use client";
 
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BudgetItem, formatAmount, formatPercent } from "@/data/budget";
 import { itemDescriptions, itemSourceUrls } from "@/data/descriptions";
 import { Info, List, ExternalLink } from "lucide-react";
@@ -39,6 +39,11 @@ function CustomTooltip({ active, payload }: any) {
 export default function BudgetChart({ items, total, onSelect }: Props) {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [descItem, setDescItem] = useState<BudgetItem | null>(null);
+
+  // items が変わったとき（ドリルダウン・戻る・年度切替）だけパネルをリセット
+  useEffect(() => {
+    setDescItem(null);
+  }, [items]);
 
   const data = items.map((item, i) => ({
     ...item,
@@ -90,7 +95,7 @@ export default function BudgetChart({ items, total, onSelect }: Props) {
       {/* Right column: list + description panel */}
       <div
         className="flex-1 w-full flex flex-col gap-3"
-        onMouseLeave={() => { setHoveredId(null); setDescItem(null); }}
+        onMouseLeave={() => setHoveredId(null)}
       >
         {/* Item list */}
         <div className="grid grid-cols-1 gap-1.5">
@@ -105,16 +110,14 @@ export default function BudgetChart({ items, total, onSelect }: Props) {
                 onClick={() => isDrillable(item) && onSelect(item)}
                 onMouseEnter={() => {
                   setHoveredId(item.id);
-                  // 別の項目にカーソルが当たったとき、descItemを更新または消去
+                  // 説明付き葉項目のときだけパネルを更新
+                  // それ以外の項目を通過してもパネルは消えない
                   if (leaf && desc && !hasRecipients(item.id)) {
                     setDescItem(item);
-                  } else {
-                    setDescItem(null);
                   }
                 }}
                 onMouseLeave={() => {
                   setHoveredId(null);
-                  // descItem はここでは消さない — リスト外に出るまで維持
                 }}
                 className={`budget-card flex items-center gap-3 px-3 py-2.5 rounded-xl border text-left w-full transition-all ${
                   isActive
