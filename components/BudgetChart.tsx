@@ -88,7 +88,10 @@ export default function BudgetChart({ items, total, onSelect }: Props) {
       </div>
 
       {/* Right column: list + description panel */}
-      <div className="flex-1 w-full flex flex-col gap-3">
+      <div
+        className="flex-1 w-full flex flex-col gap-3"
+        onMouseLeave={() => { setHoveredId(null); setDescItem(null); }}
+      >
         {/* Item list */}
         <div className="grid grid-cols-1 gap-1.5">
           {data.map((item, i) => {
@@ -102,11 +105,16 @@ export default function BudgetChart({ items, total, onSelect }: Props) {
                 onClick={() => isDrillable(item) && onSelect(item)}
                 onMouseEnter={() => {
                   setHoveredId(item.id);
-                  if (leaf && desc && !hasRecipients(item.id)) setDescItem(item);
+                  // 別の項目にカーソルが当たったとき、descItemを更新または消去
+                  if (leaf && desc && !hasRecipients(item.id)) {
+                    setDescItem(item);
+                  } else {
+                    setDescItem(null);
+                  }
                 }}
                 onMouseLeave={() => {
                   setHoveredId(null);
-                  setDescItem(null);
+                  // descItem はここでは消さない — リスト外に出るまで維持
                 }}
                 className={`budget-card flex items-center gap-3 px-3 py-2.5 rounded-xl border text-left w-full transition-all ${
                   isActive
@@ -144,7 +152,7 @@ export default function BudgetChart({ items, total, onSelect }: Props) {
         {/* Description panel — appears when hovering a leaf with description */}
         <div
           className={`overflow-hidden transition-all duration-200 ${
-            descItem ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+            descItem ? "max-h-52 opacity-100" : "max-h-0 opacity-0"
           }`}
         >
           {descItem && (
