@@ -435,8 +435,22 @@ const budget2024: BudgetYear = {
           name: "年金",
           amount: 131305,
           children: [
-            { id: "social-pension-kosei", name: "厚生年金保険給付費", amount: 96500 },
-            { id: "social-pension-kokumin", name: "国民年金給付費", amount: 23300 },
+            {
+              id: "social-pension-kosei", name: "厚生年金保険給付費", amount: 96500,
+              children: [
+                { id: "social-pension-kosei-rourei", name: "老齢厚生年金", amount: 72700 },
+                { id: "social-pension-kosei-shogai", name: "障害厚生年金", amount: 9600 },
+                { id: "social-pension-kosei-izoku", name: "遺族厚生年金", amount: 14200 },
+              ],
+            },
+            {
+              id: "social-pension-kokumin", name: "国民年金給付費", amount: 23300,
+              children: [
+                { id: "social-pension-kokumin-rourei", name: "老齢基礎年金", amount: 17800 },
+                { id: "social-pension-kokumin-shogai", name: "障害基礎年金", amount: 3500 },
+                { id: "social-pension-kokumin-izoku", name: "遺族基礎年金", amount: 2000 },
+              ],
+            },
             { id: "social-pension-other", name: "その他年金関連", amount: 11505 },
           ],
         },
@@ -445,8 +459,23 @@ const budget2024: BudgetYear = {
           name: "医療",
           amount: 123945,
           children: [
-            { id: "social-medical-kenko", name: "健康保険給付費", amount: 47500 },
-            { id: "social-medical-roujin", name: "後期高齢者医療", amount: 39000 },
+            {
+              id: "social-medical-kenko", name: "健康保険給付費", amount: 47500,
+              children: [
+                { id: "social-medical-kenko-ryoyo", name: "療養給付費", amount: 31700 },
+                { id: "social-medical-kenko-kogaku", name: "高額療養費", amount: 9000 },
+                { id: "social-medical-kenko-shobyo", name: "傷病手当金", amount: 3800 },
+                { id: "social-medical-kenko-shussan", name: "出産育児一時金等", amount: 3000 },
+              ],
+            },
+            {
+              id: "social-medical-roujin", name: "後期高齢者医療", amount: 39000,
+              children: [
+                { id: "social-medical-roujin-kyufu", name: "医療給付費", amount: 30700 },
+                { id: "social-medical-roujin-shien", name: "支援金", amount: 5300 },
+                { id: "social-medical-roujin-hoken", name: "保険料軽減補助", amount: 3000 },
+              ],
+            },
             { id: "social-medical-kokaho", name: "国民健康保険", amount: 23200 },
             { id: "social-medical-other", name: "その他医療費", amount: 14245 },
           ],
@@ -465,7 +494,13 @@ const budget2024: BudgetYear = {
           name: "少子化対策",
           amount: 31946,
           children: [
-            { id: "social-child-jido", name: "児童手当", amount: 13000 },
+            {
+              id: "social-child-jido", name: "児童手当", amount: 13000,
+              children: [
+                { id: "social-child-jido-ichiji", name: "0〜15歳分", amount: 12500 },
+                { id: "social-child-jido-shushoku", name: "高校生年代拡充分（10月〜）", amount: 500 },
+              ],
+            },
             { id: "social-child-hoiku", name: "保育所関連", amount: 11200 },
             { id: "social-child-kodomo", name: "こども家庭庁関連", amount: 7746 },
           ],
@@ -475,7 +510,15 @@ const budget2024: BudgetYear = {
           name: "生活扶助等",
           amount: 39663,
           children: [
-            { id: "social-welfare-seikatsu", name: "生活保護費", amount: 30800 },
+            {
+              id: "social-welfare-seikatsu", name: "生活保護費", amount: 30800,
+              children: [
+                { id: "social-welfare-seikatsu-seikatsu", name: "生活扶助", amount: 10600 },
+                { id: "social-welfare-seikatsu-jutaku", name: "住宅扶助", amount: 5500 },
+                { id: "social-welfare-seikatsu-iryo", name: "医療扶助", amount: 12500 },
+                { id: "social-welfare-seikatsu-kyoiku", name: "教育扶助等", amount: 2200 },
+              ],
+            },
             { id: "social-welfare-shogai", name: "障害者支援", amount: 8863 },
           ],
         },
@@ -484,7 +527,13 @@ const budget2024: BudgetYear = {
           name: "雇用",
           amount: 7252,
           children: [
-            { id: "social-emp-koyohoken", name: "雇用保険", amount: 4700 },
+            {
+              id: "social-emp-koyohoken", name: "雇用保険", amount: 4700,
+              children: [
+                { id: "social-emp-koyohoken-kyufu", name: "失業給付", amount: 3100 },
+                { id: "social-emp-koyohoken-kyoshoku", name: "教育訓練給付", amount: 1600 },
+              ],
+            },
             { id: "social-emp-other", name: "その他雇用対策", amount: 2552 },
           ],
         },
@@ -505,7 +554,13 @@ const budget2024: BudgetYear = {
       name: "地方交付税交付金等",
       amount: 181024,
       children: [
-        { id: "localalloc-kotei", name: "地方交付税交付金", amount: 152766 },
+        {
+          id: "localalloc-kotei", name: "地方交付税交付金", amount: 152766,
+          children: [
+            { id: "localalloc-kotei-futsuu", name: "普通交付税", amount: 140000 },
+            { id: "localalloc-kotei-tokubetsu", name: "特別交付税", amount: 12766 },
+          ],
+        },
         { id: "localalloc-joto", name: "地方譲与税譲与金", amount: 22115 },
         { id: "localalloc-tokurei", name: "地方特例交付金等", amount: 6143 },
       ],
@@ -528,7 +583,14 @@ const budget2024: BudgetYear = {
       name: "公共事業関係費",
       amount: 60936,
       children: [
-        { id: "public-road", name: "道路整備", amount: 14500 },
+        {
+          id: "public-road", name: "道路整備", amount: 14500,
+          children: [
+            { id: "public-road-kosoku", name: "高速道路整備", amount: 4100 },
+            { id: "public-road-chokukatsu", name: "直轄国道整備", amount: 6600 },
+            { id: "public-road-hojo", name: "補助道路整備", amount: 3800 },
+          ],
+        },
         { id: "public-flood", name: "治山治水", amount: 9000 },
         { id: "public-housing", name: "住宅・都市環境整備", amount: 6600 },
         { id: "public-agri", name: "農業農村整備", amount: 5100 },
@@ -544,8 +606,22 @@ const budget2024: BudgetYear = {
       name: "文教及び科学振興費",
       amount: 53685,
       children: [
-        { id: "edu-gikyo", name: "義務教育費国庫負担金", amount: 16400 },
-        { id: "edu-science", name: "科学技術振興費", amount: 13800 },
+        {
+          id: "edu-gikyo", name: "義務教育費国庫負担金", amount: 16400,
+          children: [
+            { id: "edu-gikyo-kyouin", name: "教職員給与負担", amount: 13600 },
+            { id: "edu-gikyo-tokushi", name: "特別支援教育加配", amount: 2800 },
+          ],
+        },
+        {
+          id: "edu-science", name: "科学技術振興費", amount: 13800,
+          children: [
+            { id: "edu-science-jst", name: "JST（科学技術振興機構）", amount: 3200 },
+            { id: "edu-science-jaxa", name: "JAXA（宇宙航空研究開発）", amount: 2100 },
+            { id: "edu-science-riken", name: "国立研究開発法人交付金", amount: 4600 },
+            { id: "edu-science-kakenhi", name: "科研費（競争的研究資金）", amount: 3900 },
+          ],
+        },
         { id: "edu-shien", name: "教育振興助成費", amount: 14985 },
         { id: "edu-ikuei", name: "育英事業費（奨学金）", amount: 5200 },
         { id: "edu-shisetsu", name: "教育施設費", amount: 3300 },
@@ -585,8 +661,20 @@ const budget2024: BudgetYear = {
       name: "経済協力費",
       amount: 5201,
       children: [
-        { id: "oda-oda", name: "政府開発援助（ODA）", amount: 3800 },
-        { id: "oda-kokusai", name: "国際機関分担金", amount: 1401 },
+        {
+          id: "oda-oda", name: "政府開発援助（ODA）", amount: 3800,
+          children: [
+            { id: "oda-oda-nichi", name: "二国間援助（円借款・無償・技協）", amount: 2800 },
+            { id: "oda-oda-ngo", name: "NGO・緊急人道支援", amount: 1000 },
+          ],
+        },
+        {
+          id: "oda-kokusai", name: "国際機関分担金", amount: 1401,
+          children: [
+            { id: "oda-kokusai-un", name: "国連・WHO・UNHCR等", amount: 900 },
+            { id: "oda-kokusai-adb", name: "国際金融機関（ADB・世銀等）", amount: 501 },
+          ],
+        },
       ],
     },
     {
@@ -618,8 +706,22 @@ const budget2023: BudgetYear = {
           name: "年金",
           amount: 128500,
           children: [
-            { id: "social-pension-kosei", name: "厚生年金保険給付費", amount: 94500 },
-            { id: "social-pension-kokumin", name: "国民年金給付費", amount: 22700 },
+            {
+              id: "social-pension-kosei", name: "厚生年金保険給付費", amount: 94500,
+              children: [
+                { id: "social-pension-kosei-rourei", name: "老齢厚生年金", amount: 71200 },
+                { id: "social-pension-kosei-shogai", name: "障害厚生年金", amount: 9400 },
+                { id: "social-pension-kosei-izoku", name: "遺族厚生年金", amount: 13900 },
+              ],
+            },
+            {
+              id: "social-pension-kokumin", name: "国民年金給付費", amount: 22700,
+              children: [
+                { id: "social-pension-kokumin-rourei", name: "老齢基礎年金", amount: 17300 },
+                { id: "social-pension-kokumin-shogai", name: "障害基礎年金", amount: 3400 },
+                { id: "social-pension-kokumin-izoku", name: "遺族基礎年金", amount: 2000 },
+              ],
+            },
             { id: "social-pension-other", name: "その他年金関連", amount: 11300 },
           ],
         },
@@ -628,8 +730,23 @@ const budget2023: BudgetYear = {
           name: "医療",
           amount: 121200,
           children: [
-            { id: "social-medical-kenko", name: "健康保険給付費", amount: 46500 },
-            { id: "social-medical-roujin", name: "後期高齢者医療", amount: 38200 },
+            {
+              id: "social-medical-kenko", name: "健康保険給付費", amount: 46500,
+              children: [
+                { id: "social-medical-kenko-ryoyo", name: "療養給付費", amount: 31000 },
+                { id: "social-medical-kenko-kogaku", name: "高額療養費", amount: 8800 },
+                { id: "social-medical-kenko-shobyo", name: "傷病手当金", amount: 3700 },
+                { id: "social-medical-kenko-shussan", name: "出産育児一時金等", amount: 3000 },
+              ],
+            },
+            {
+              id: "social-medical-roujin", name: "後期高齢者医療", amount: 38200,
+              children: [
+                { id: "social-medical-roujin-kyufu", name: "医療給付費", amount: 30100 },
+                { id: "social-medical-roujin-shien", name: "支援金", amount: 5200 },
+                { id: "social-medical-roujin-hoken", name: "保険料軽減補助", amount: 2900 },
+              ],
+            },
             { id: "social-medical-kokaho", name: "国民健康保険", amount: 22600 },
             { id: "social-medical-other", name: "その他医療費", amount: 13900 },
           ],
@@ -648,7 +765,12 @@ const budget2023: BudgetYear = {
           name: "少子化対策",
           amount: 30000,
           children: [
-            { id: "social-child-jido", name: "児童手当", amount: 12400 },
+            {
+              id: "social-child-jido", name: "児童手当", amount: 12400,
+              children: [
+                { id: "social-child-jido-ichiji", name: "0〜15歳分", amount: 12400 },
+              ],
+            },
             { id: "social-child-hoiku", name: "保育所関連", amount: 10900 },
             { id: "social-child-kodomo", name: "こども家庭庁関連", amount: 6700 },
           ],
@@ -658,7 +780,15 @@ const budget2023: BudgetYear = {
           name: "生活扶助等",
           amount: 40700,
           children: [
-            { id: "social-welfare-seikatsu", name: "生活保護費", amount: 31500 },
+            {
+              id: "social-welfare-seikatsu", name: "生活保護費", amount: 31500,
+              children: [
+                { id: "social-welfare-seikatsu-seikatsu", name: "生活扶助", amount: 10900 },
+                { id: "social-welfare-seikatsu-jutaku", name: "住宅扶助", amount: 5700 },
+                { id: "social-welfare-seikatsu-iryo", name: "医療扶助", amount: 12800 },
+                { id: "social-welfare-seikatsu-kyoiku", name: "教育扶助等", amount: 2100 },
+              ],
+            },
             { id: "social-welfare-shogai", name: "障害者支援", amount: 9200 },
           ],
         },
@@ -667,7 +797,13 @@ const budget2023: BudgetYear = {
           name: "雇用",
           amount: 7089,
           children: [
-            { id: "social-emp-koyohoken", name: "雇用保険", amount: 4600 },
+            {
+              id: "social-emp-koyohoken", name: "雇用保険", amount: 4600,
+              children: [
+                { id: "social-emp-koyohoken-kyufu", name: "失業給付", amount: 3100 },
+                { id: "social-emp-koyohoken-kyoshoku", name: "教育訓練給付", amount: 1500 },
+              ],
+            },
             { id: "social-emp-other", name: "その他雇用対策", amount: 2489 },
           ],
         },
@@ -688,7 +824,13 @@ const budget2023: BudgetYear = {
       name: "地方交付税交付金等",
       amount: 181123,
       children: [
-        { id: "localalloc-kotei", name: "地方交付税交付金", amount: 152300 },
+        {
+          id: "localalloc-kotei", name: "地方交付税交付金", amount: 152300,
+          children: [
+            { id: "localalloc-kotei-futsuu", name: "普通交付税", amount: 139700 },
+            { id: "localalloc-kotei-tokubetsu", name: "特別交付税", amount: 12600 },
+          ],
+        },
         { id: "localalloc-joto", name: "地方譲与税譲与金", amount: 21900 },
         { id: "localalloc-tokurei", name: "地方特例交付金等", amount: 6923 },
       ],
@@ -711,7 +853,14 @@ const budget2023: BudgetYear = {
       name: "公共事業関係費",
       amount: 60828,
       children: [
-        { id: "public-road", name: "道路整備", amount: 14200 },
+        {
+          id: "public-road", name: "道路整備", amount: 14200,
+          children: [
+            { id: "public-road-kosoku", name: "高速道路整備", amount: 4000 },
+            { id: "public-road-chokukatsu", name: "直轄国道整備", amount: 6500 },
+            { id: "public-road-hojo", name: "補助道路整備", amount: 3700 },
+          ],
+        },
         { id: "public-flood", name: "治山治水", amount: 8900 },
         { id: "public-housing", name: "住宅・都市環境整備", amount: 6500 },
         { id: "public-agri", name: "農業農村整備", amount: 5000 },
@@ -727,8 +876,22 @@ const budget2023: BudgetYear = {
       name: "文教及び科学振興費",
       amount: 53341,
       children: [
-        { id: "edu-gikyo", name: "義務教育費国庫負担金", amount: 16300 },
-        { id: "edu-science", name: "科学技術振興費", amount: 13700 },
+        {
+          id: "edu-gikyo", name: "義務教育費国庫負担金", amount: 16300,
+          children: [
+            { id: "edu-gikyo-kyouin", name: "教職員給与負担", amount: 13500 },
+            { id: "edu-gikyo-tokushi", name: "特別支援教育加配", amount: 2800 },
+          ],
+        },
+        {
+          id: "edu-science", name: "科学技術振興費", amount: 13700,
+          children: [
+            { id: "edu-science-jst", name: "JST（科学技術振興機構）", amount: 3100 },
+            { id: "edu-science-jaxa", name: "JAXA（宇宙航空研究開発）", amount: 2000 },
+            { id: "edu-science-riken", name: "国立研究開発法人交付金", amount: 4600 },
+            { id: "edu-science-kakenhi", name: "科研費（競争的研究資金）", amount: 4000 },
+          ],
+        },
         { id: "edu-shien", name: "教育振興助成費", amount: 14741 },
         { id: "edu-ikuei", name: "育英事業費（奨学金）", amount: 5100 },
         { id: "edu-shisetsu", name: "教育施設費", amount: 3500 },
@@ -768,8 +931,20 @@ const budget2023: BudgetYear = {
       name: "経済協力費",
       amount: 5362,
       children: [
-        { id: "oda-oda", name: "政府開発援助（ODA）", amount: 3900 },
-        { id: "oda-kokusai", name: "国際機関分担金", amount: 1462 },
+        {
+          id: "oda-oda", name: "政府開発援助（ODA）", amount: 3900,
+          children: [
+            { id: "oda-oda-nichi", name: "二国間援助（円借款・無償・技協）", amount: 2900 },
+            { id: "oda-oda-ngo", name: "NGO・緊急人道支援", amount: 1000 },
+          ],
+        },
+        {
+          id: "oda-kokusai", name: "国際機関分担金", amount: 1462,
+          children: [
+            { id: "oda-kokusai-un", name: "国連・WHO・UNHCR等", amount: 962 },
+            { id: "oda-kokusai-adb", name: "国際金融機関（ADB・世銀等）", amount: 500 },
+          ],
+        },
       ],
     },
     {
