@@ -12,6 +12,20 @@ import { ArrowLeft, ExternalLink, BarChart3, FileText, Clock, List } from "lucid
 
 type DataMode = "budget" | "settlement";
 
+/** パスの itemId 配列を新しい BudgetYear のツリーで辿り直す。
+ *  途中で存在しない ID があればそこで打ち切る（浅い階層で表示） */
+function resolvePath(year: BudgetYear, ids: string[]): BudgetItem[] {
+  const result: BudgetItem[] = [];
+  let items = year.items;
+  for (const id of ids) {
+    const found = items.find((item) => item.id === id);
+    if (!found) break;
+    result.push(found);
+    items = found.children ?? [];
+  }
+  return result;
+}
+
 export default function Home() {
   const [selectedYear, setSelectedYear] = useState<BudgetYear>(budgetData[0]);
   const [dataMode, setDataMode] = useState<DataMode>("budget");
@@ -51,16 +65,23 @@ export default function Home() {
   };
 
   const handleYearChange = (year: BudgetYear) => {
+    // 現在のパスを新しい年度のツリーで辿り直す
+    const idPath = path.map((item) => item.id);
+    const newPath = resolvePath(year, idPath);
     setSelectedYear(year);
-    setPath([]);
-    setRecipientItemId(null);
+    setPath(newPath);
+    // 支払先パネルは、末尾 itemId が一致する場合のみ維持
+    const newLastId = newPath.at(-1)?.id ?? null;
+    if (recipientItemId && newLastId !== recipientItemId) {
+      setRecipientItemId(null);
+    }
     if (!hasSettlement(year.year)) setDataMode("budget");
   };
 
   const handleModeChange = (mode: DataMode) => {
+    // 予算↔決算は同じ item ID 体系なのでパスをそのまま維持
+    // （決算データがある年度なら同じ階層を引き続き表示できる）
     setDataMode(mode);
-    setPath([]);
-    setRecipientItemId(null);
   };
 
   const sourceLabel =
