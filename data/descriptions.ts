@@ -229,3 +229,123 @@ export const itemDescriptions: Record<string, string> = {
   "other-justice-shihoh":
     "最高裁判所・下級裁判所・検察庁・矯正施設（刑務所等）・法務局等の運営費。",
 };
+
+/**
+ * 各予算項目の公式ページURL
+ * itemDescriptions と同じキーを使用
+ */
+export const itemSourceUrls: Record<string, string> = {
+  // ── 社会保障 > 年金 ──
+  "social-pension-kosei-rourei": "https://www.nenkin.go.jp/service/jukyu/rourei/index.html",
+  "social-pension-kosei-shogai": "https://www.nenkin.go.jp/service/jukyu/shougainenkin/index.html",
+  "social-pension-kosei-izoku": "https://www.nenkin.go.jp/service/jukyu/izokunenkin/index.html",
+  "social-pension-kokumin-rourei": "https://www.nenkin.go.jp/service/jukyu/rourei/index.html",
+  "social-pension-kokumin-shogai": "https://www.nenkin.go.jp/service/jukyu/shougainenkin/index.html",
+  "social-pension-kokumin-izoku": "https://www.nenkin.go.jp/service/jukyu/izokunenkin/index.html",
+
+  // ── 社会保障 > 医療 ──
+  "social-medical-kenko-ryoyo": "https://www.kyoukaikenpo.or.jp/g3/cat310/",
+  "social-medical-kenko-kogaku": "https://www.kyoukaikenpo.or.jp/g3/cat310/sb3030/",
+  "social-medical-kenko-shobyo": "https://www.kyoukaikenpo.or.jp/g3/cat310/sb3040/",
+  "social-medical-kenko-shussan": "https://www.kyoukaikenpo.or.jp/g3/cat310/sb3060/",
+  "social-medical-roujin-kyufu": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/iryouhoken/iryouhoken01/index.html",
+  "social-medical-roujin-shien": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/iryouhoken/iryouhoken01/index.html",
+  "social-medical-roujin-hoken": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/iryouhoken/iryouhoken01/index.html",
+  "social-medical-kokaho-kyufu": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/iryouhoken/iryouhoken13/index.html",
+  "social-medical-kokaho-shien": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/iryouhoken/iryouhoken13/index.html",
+  "social-medical-kokaho-hoken": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/iryouhoken/iryouhoken13/index.html",
+
+  // ── 社会保障 > 介護 ──
+  "social-care-kyotaku": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/index.html",
+  "social-care-shisetsu": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/index.html",
+  "social-care-chiiki": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/index.html",
+  "social-care-yobo": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/yobou/index.html",
+
+  // ── 社会保障 > 少子化対策 ──
+  "social-child-jido-ichiji": "https://www.cfa.go.jp/policies/jido_teate/",
+  "social-child-jido-shushoku": "https://www.cfa.go.jp/policies/jido_teate/",
+  "social-child-hoiku-unei": "https://www.cfa.go.jp/policies/hoiku/",
+  "social-child-hoiku-seibi": "https://www.cfa.go.jp/policies/hoiku/",
+  "social-child-kodomo-kyufu": "https://www.cfa.go.jp/",
+  "social-child-kodomo-shien": "https://www.cfa.go.jp/policies/kosodateshien/",
+
+  // ── 社会保障 > 生活保護 ──
+  "social-welfare-seikatsu-seikatsu": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/seikatsuhogo/index.html",
+  "social-welfare-seikatsu-jutaku": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/seikatsuhogo/index.html",
+  "social-welfare-seikatsu-iryo": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/seikatsuhogo/index.html",
+  "social-welfare-seikatsu-kyoiku": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/seikatsuhogo/index.html",
+  "social-welfare-shogai-kyotaku": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/shougaishahukushi/index.html",
+  "social-welfare-shogai-shisetsu": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/shougaishahukushi/index.html",
+
+  // ── 社会保障 > 雇用 ──
+  "social-emp-koyohoken-kyufu": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyou/koyouhoken/index.html",
+  "social-emp-koyohoken-kyoshoku": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyou/kyouiku/index.html",
+  "social-emp-other-koyo": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyou/index.html",
+  "social-emp-other-shuroh": "https://www.hellowork.mhlw.go.jp/",
+
+  // ── 国債費 ──
+  "bond-interest-naiku": "https://www.mof.go.jp/jgbs/index.html",
+  "bond-interest-gaiku": "https://www.mof.go.jp/jgbs/index.html",
+  "bond-interest-kariire": "https://www.mof.go.jp/budget/fiscal_condition/index.html",
+  "bond-repay-teiri": "https://www.mof.go.jp/jgbs/reference/index.html",
+  "bond-repay-zaimu": "https://www.mof.go.jp/policy/zaito/index.html",
+
+  // ── 地方交付税 ──
+  "localalloc-kotei-futsuu": "https://www.soumu.go.jp/main_sosiki/c-zaisei/koufuzei/koufuzei.html",
+  "localalloc-kotei-tokubetsu": "https://www.soumu.go.jp/main_sosiki/c-zaisei/koufuzei/koufuzei.html",
+  "localalloc-joto-kihatsu": "https://www.soumu.go.jp/main_sosiki/c-zaisei/joto_zei.html",
+  "localalloc-joto-ton": "https://www.soumu.go.jp/main_sosiki/c-zaisei/joto_zei.html",
+
+  // ── 防衛 ──
+  "defense-jinken-jinkensen": "https://www.mod.go.jp/j/approach/hyouka/about/index.html",
+  "defense-jinken-ryoshoku": "https://www.mod.go.jp/j/approach/hyouka/about/index.html",
+  "defense-busshi-kokuki": "https://www.mod.go.jp/atla/souhon/supply/",
+  "defense-busshi-kansetsu": "https://www.mod.go.jp/atla/souhon/supply/",
+  "defense-busshi-buki": "https://www.mod.go.jp/atla/souhon/supply/",
+  "defense-busshi-shatei": "https://www.mod.go.jp/atla/souhon/supply/",
+  "defense-kenkyu-kaihatsu": "https://www.mod.go.jp/atla/research/index.html",
+  "defense-kenkyu-sangaku": "https://www.mod.go.jp/atla/research/program/index.html",
+  "defense-shisetsu-eizetsu": "https://www.mod.go.jp/j/approach/facilities/index.html",
+  "defense-shisetsu-beigun": "https://www.mod.go.jp/j/approach/anpo/beigun/index.html",
+
+  // ── 公共事業 ──
+  "public-road-kosoku": "https://www.mlit.go.jp/road/index.html",
+  "public-road-chokukatsu": "https://www.mlit.go.jp/road/index.html",
+  "public-road-hojo": "https://www.mlit.go.jp/road/index.html",
+  "public-flood-chisui": "https://www.mlit.go.jp/mizukokudo/sabo/index.html",
+  "public-flood-kasenhojo": "https://www.mlit.go.jp/river/index.html",
+  "public-housing-toshi": "https://www.mlit.go.jp/toshi/index.html",
+  "public-housing-suido": "https://www.mlit.go.jp/mizukokudo/sewerage/index.html",
+
+  // ── 文教・科学 ──
+  "edu-gikyo-kyouin": "https://www.mext.go.jp/a_menu/shotou/kyoin/index.htm",
+  "edu-gikyo-tokushi": "https://www.mext.go.jp/a_menu/shotou/tokubetu/main.htm",
+  "edu-science-jst": "https://www.jst.go.jp/",
+  "edu-science-jaxa": "https://www.jaxa.jp/",
+  "edu-science-riken": "https://www.mext.go.jp/a_menu/kagaku/pdfa/index.htm",
+  "edu-science-kakenhi": "https://www.jsps.go.jp/j-grantsinaid/",
+  "edu-ikuei-kyufu": "https://www.jasso.go.jp/shogakukin/kyufu/index.html",
+  "edu-ikuei-kashitsuke": "https://www.jasso.go.jp/shogakukin/index.html",
+
+  // ── 食料安定供給 ──
+  "food-kome-keiei": "https://www.maff.go.jp/j/keiei/index.html",
+  "food-kome-kome": "https://www.maff.go.jp/j/syouan/keikaku/index.html",
+  "food-shokuhin-suisan": "https://www.jfa.maff.go.jp/",
+  "food-shokuhin-chiku": "https://www.maff.go.jp/j/chikusan/index.html",
+
+  // ── エネルギー ──
+  "energy-saisei-fitto": "https://www.enecho.meti.go.jp/category/saving_and_new/saiene/",
+  "energy-saisei-kaihatsu": "https://www.nedo.go.jp/",
+  "energy-setsuyaku-kaden": "https://www.enecho.meti.go.jp/category/saving_and_new/saving/",
+  "energy-setsuyaku-sangyo": "https://www.enecho.meti.go.jp/category/saving_and_new/saving/",
+
+  // ── 中小企業 ──
+  "sme-shien-hojo": "https://www.chusho.meti.go.jp/keiei/index.html",
+  "sme-shien-kinyu": "https://www.chusho.meti.go.jp/kinyu/index.html",
+
+  // ── ODA ──
+  "oda-oda-nichi": "https://www.mofa.go.jp/mofaj/gaiko/oda/index.html",
+  "oda-oda-ngo": "https://www.mofa.go.jp/mofaj/gaiko/oda/shimin/oda_ngo/index.html",
+  "oda-kokusai-un": "https://www.mofa.go.jp/mofaj/ic/index.html",
+  "oda-kokusai-adb": "https://www.mof.go.jp/policy/international_policy/imf/index.htm",
+};

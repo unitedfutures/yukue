@@ -146,7 +146,20 @@ export default function RecipientsList({ group }: Props) {
           <div className="flex items-center gap-4 text-xs text-slate-500 bg-slate-800/50 border border-white/8 rounded-xl px-4 py-2">
             <span>表示中: <span className="text-slate-300 font-medium">{shown.length}件</span></span>
             <span>合計: <span className="text-slate-300 font-medium">{formatAmount(shown.reduce((s, r) => s + r.amount, 0))}</span></span>
-            <span className="ml-auto">{group.sourceNote}</span>
+            <span className="ml-auto flex items-center gap-1.5">
+              {group.sourceNote}
+              {group.sourceUrl && (
+                <a
+                  href={group.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-0.5 text-indigo-400 hover:text-indigo-300 underline underline-offset-2 transition-colors"
+                >
+                  <ExternalLink size={11} />
+                  公式サイト
+                </a>
+              )}
+            </span>
           </div>
 
           {/* Recipient rows */}
@@ -216,7 +229,20 @@ export default function RecipientsList({ group }: Props) {
 
       {/* source note for individual-only groups */}
       {!hasOrgList && (
-        <p className="text-xs text-slate-600">{group.sourceNote}</p>
+        <p className="text-xs text-slate-600 flex items-center gap-1.5 flex-wrap">
+          {group.sourceNote}
+          {group.sourceUrl && (
+            <a
+              href={group.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-0.5 text-indigo-400/70 hover:text-indigo-400 underline underline-offset-2 transition-colors"
+            >
+              <ExternalLink size={10} />
+              公式サイト
+            </a>
+          )}
+        </p>
       )}
 
       <div className="flex items-center gap-1.5 text-xs text-slate-600">

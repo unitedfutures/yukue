@@ -27,6 +27,7 @@ export interface RecipientGroup {
   unit: string; // "億円" or other
   recipients: Recipient[];
   sourceNote: string;
+  sourceUrl?: string; // 公式サイト・資料へのリンク
   individualSummary?: IndividualSummary; // 個人給付の場合に設定
 }
 
@@ -42,6 +43,7 @@ const localAllocFutsuu: RecipientGroup = {
   total: 140200,
   unit: "億円",
   sourceNote: "出典: 総務省「令和6年度地方交付税の交付状況」（概算）",
+  sourceUrl: "https://www.soumu.go.jp/main_sosiki/c-zaisei/koufuzei/koufuzei.html",
   recipients: [
     { name: "北海道", amount: 7284, region: "北海道" },
     { name: "長野県", amount: 2920, region: "中部" },
@@ -104,6 +106,7 @@ const odaBilateral: RecipientGroup = {
   total: 3700,
   unit: "億円",
   sourceNote: "出典: 外務省「令和5年版ODA白書」（円借款・無償・技協合計）",
+  sourceUrl: "https://www.mofa.go.jp/mofaj/gaiko/oda/index.html",
   recipients: [
     { name: "インド", amount: 892, note: "メトロ整備・高速鉄道等の円借款が主体", region: "南アジア" },
     { name: "バングラデシュ", amount: 418, note: "インフラ整備・農業支援", region: "南アジア" },
@@ -138,6 +141,7 @@ const kakenhi: RecipientGroup = {
   total: 3850,
   unit: "億円",
   sourceNote: "出典: 国立情報学研究所 KAKEN DB「令和5年度採択課題」集計（概算）",
+  sourceUrl: "https://kaken.nii.ac.jp/",
   recipients: [
     { name: "東京大学", amount: 452, note: "基礎研究から応用まで全分野", region: "関東" },
     { name: "京都大学", amount: 298, note: "人文・自然科学・医学", region: "近畿" },
@@ -177,6 +181,7 @@ const defenseContracts: RecipientGroup = {
   total: 23500,
   unit: "億円",
   sourceNote: "出典: 防衛省「令和5年度調達実績（主要装備品等）」（概算値）",
+  sourceUrl: "https://www.mod.go.jp/atla/souhon/supply/",
   recipients: [
     { name: "三菱重工業", amount: 5820, note: "F-35関連・護衛艦・哨戒機・ミサイル" },
     { name: "川崎重工業", amount: 2480, note: "潜水艦・C-2輸送機・OH-1ヘリ" },
@@ -209,6 +214,7 @@ const jstGrants: RecipientGroup = {
   total: 3200,
   unit: "億円",
   sourceNote: "出典: 科学技術振興機構（JST）「令和6年度予算」",
+  sourceUrl: "https://www.jst.go.jp/pr/info/index.html",
   recipients: [
     { name: "CREST（戦略的創造研究推進）", amount: 480, note: "チームで取り組む基礎研究（3〜5年）" },
     { name: "産学共同（産学連携事業）", amount: 380, note: "企業との共同研究・マッチングファンド" },
@@ -234,6 +240,7 @@ const pensionKoseiRourei: RecipientGroup = {
   total: 74000,
   unit: "億円",
   sourceNote: "出典: 厚生労働省「令和7年度社会保障関係予算」",
+  sourceUrl: "https://www.nenkin.go.jp/service/jukyu/rourei/index.html",
   recipients: [],
   individualSummary: {
     avgLabel: "月額平均 約1.76万円（国庫分/人）",
@@ -253,6 +260,7 @@ const pensionKoseiShogai: RecipientGroup = {
   total: 9800,
   unit: "億円",
   sourceNote: "出典: 厚生労働省「令和7年度社会保障関係予算」",
+  sourceUrl: "https://www.nenkin.go.jp/service/jukyu/shougainenkin/index.html",
   recipients: [],
   individualSummary: {
     avgLabel: "月額平均 約5.1万円（国庫分/人）",
@@ -272,6 +280,7 @@ const pensionKoseiIzoku: RecipientGroup = {
   total: 14440,
   unit: "億円",
   sourceNote: "出典: 厚生労働省「令和7年度社会保障関係予算」",
+  sourceUrl: "https://www.nenkin.go.jp/service/jukyu/izokunenkin/index.html",
   recipients: [],
   individualSummary: {
     avgLabel: "月額平均 約3.1万円（国庫分/人）",
@@ -291,6 +300,7 @@ const pensionKokuminRourei: RecipientGroup = {
   total: 18200,
   unit: "億円",
   sourceNote: "出典: 厚生労働省「令和7年度社会保障関係予算」",
+  sourceUrl: "https://www.nenkin.go.jp/service/jukyu/rourei/index.html",
   recipients: [],
   individualSummary: {
     avgLabel: "月額平均 約0.52万円（国庫分/人）",
@@ -310,6 +320,7 @@ const pensionKokuminShogai: RecipientGroup = {
   total: 3560,
   unit: "億円",
   sourceNote: "出典: 厚生労働省「令和7年度社会保障関係予算」",
+  sourceUrl: "https://www.nenkin.go.jp/service/jukyu/shougainenkin/index.html",
   recipients: [],
   individualSummary: {
     avgLabel: "月額平均 約3.3万円（国庫分/人）",
@@ -329,6 +340,7 @@ const medicalRoujinKyufu: RecipientGroup = {
   total: 31200,
   unit: "億円",
   sourceNote: "出典: 厚生労働省「令和7年度社会保障関係予算」",
+  sourceUrl: "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/koukikourei/index.html",
   recipients: [],
   individualSummary: {
     avgLabel: "年間平均 約16.4万円（国庫分/人）",
@@ -348,6 +360,7 @@ const medicalKenkoRyoyo: RecipientGroup = {
   total: 32200,
   unit: "億円",
   sourceNote: "出典: 厚生労働省「令和7年度社会保障関係予算」",
+  sourceUrl: "https://www.kyoukaikenpo.or.jp/g3/cat315/sb3020/",
   recipients: [],
   individualSummary: {
     avgLabel: "年間平均 約9,500円（国庫分/人）",
@@ -367,6 +380,7 @@ const childJidoIchiji: RecipientGroup = {
   total: 10800,
   unit: "億円",
   sourceNote: "出典: こども家庭庁「令和7年度予算」",
+  sourceUrl: "https://www.cfa.go.jp/policies/child-allowance/",
   recipients: [],
   individualSummary: {
     avgLabel: "月額平均 約1.0万円/人",
@@ -386,6 +400,7 @@ const childJidoShushoku: RecipientGroup = {
   total: 3400,
   unit: "億円",
   sourceNote: "出典: こども家庭庁「令和7年度予算」",
+  sourceUrl: "https://www.cfa.go.jp/policies/child-allowance/",
   recipients: [],
   individualSummary: {
     avgLabel: "月額 1.0万円/人",
@@ -405,6 +420,7 @@ const welfareSeikatsuSeikatsu: RecipientGroup = {
   total: 10200,
   unit: "億円",
   sourceNote: "出典: 厚生労働省「令和7年度社会保障関係予算」",
+  sourceUrl: "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/seikatsuhogo/seikatuhogo/index.html",
   recipients: [],
   individualSummary: {
     avgLabel: "月額平均 約4.25万円/人",
@@ -424,6 +440,7 @@ const welfareSeikatsuJutaku: RecipientGroup = {
   total: 5300,
   unit: "億円",
   sourceNote: "出典: 厚生労働省「令和7年度社会保障関係予算」",
+  sourceUrl: "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/seikatsuhogo/seikatuhogo/index.html",
   recipients: [],
   individualSummary: {
     avgLabel: "月額平均 約2.2万円/世帯",
@@ -443,6 +460,7 @@ const welfareSeikatsuIryo: RecipientGroup = {
   total: 12000,
   unit: "億円",
   sourceNote: "出典: 厚生労働省「令和7年度社会保障関係予算」",
+  sourceUrl: "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/seikatsuhogo/seikatuhogo/index.html",
   recipients: [],
   individualSummary: {
     avgLabel: "年間平均 約60万円/人",
@@ -462,6 +480,7 @@ const empKoyohokenKyufu: RecipientGroup = {
   total: 3200,
   unit: "億円",
   sourceNote: "出典: 厚生労働省「令和7年度社会保障関係予算」",
+  sourceUrl: "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000077386.html",
   recipients: [],
   individualSummary: {
     avgLabel: "日額平均 約5,600円",
@@ -482,6 +501,7 @@ const odaKokusaiUn: RecipientGroup = {
   total: 900,
   unit: "億円",
   sourceNote: "出典: 外務省「国際機関への拠出・出資状況（令和6年度）」",
+  sourceUrl: "https://www.mofa.go.jp/mofaj/gaiko/oda/shiryo/hakusyo.html",
   recipients: [
     { name: "国連（UN）通常予算分担金", amount: 198, note: "分担率 8.033%（第3位）。安保理・総会等の運営費", region: "その他" },
     { name: "国連平和維持活動（PKO）", amount: 154, note: "分担率 8.033%。世界各地のPKO部隊経費", region: "その他" },
@@ -509,6 +529,7 @@ const odaKokusaiAdb: RecipientGroup = {
   total: 501,
   unit: "億円",
   sourceNote: "出典: 財務省「令和6年度国際機関等への拠出金・出資金」",
+  sourceUrl: "https://www.mof.go.jp/policy/international_policy/imf/index.html",
   recipients: [
     { name: "アジア開発銀行（ADB）", amount: 182, note: "日本は米国と並ぶ最大出資国（15.6%）。アジア太平洋のインフラ・開発融資" },
     { name: "世界銀行グループ（IBRD/IDA）", amount: 143, note: "途上国への開発融資・技術協力" },
@@ -532,6 +553,7 @@ const publicRoadChokukatsu: RecipientGroup = {
   total: 6800,
   unit: "億円",
   sourceNote: "出典: 国土交通省「令和5年度建設工事施工統計」（直轄道路工事、概算）",
+  sourceUrl: "https://www.mlit.go.jp/road/road/traffic/census/index.html",
   recipients: [
     { name: "大林組", amount: 620, note: "高速道路・大型橋梁・トンネル" },
     { name: "鹿島建設", amount: 598, note: "大型土木・トンネル・橋梁" },
@@ -560,6 +582,7 @@ const eduGikyoKyouin: RecipientGroup = {
   total: 13600,
   unit: "億円",
   sourceNote: "出典: 文部科学省「令和7年度義務教育費国庫負担金の配分」（概算）",
+  sourceUrl: "https://www.mext.go.jp/a_menu/shotou/kyoukaihi/index.htm",
   recipients: [
     { name: "北海道", amount: 890, note: "公立小中学校教職員給与の国庫負担", region: "北海道" },
     { name: "東京都", amount: 780, note: "", region: "関東" },
@@ -622,6 +645,7 @@ const eduScienceJaxa: RecipientGroup = {
   total: 2100,
   unit: "億円",
   sourceNote: "出典: JAXA「令和6年度予算・事業計画」",
+  sourceUrl: "https://www.jaxa.jp/about/budget/index_j.html",
   recipients: [
     { name: "H3ロケット開発・打上", amount: 380, note: "次世代基幹ロケット。2024年初号機打上成功" },
     { name: "国際宇宙ステーション（ISS）・きぼう", amount: 280, note: "ISS日本実験棟きぼうの維持・運用" },
@@ -647,6 +671,7 @@ const eduScienceRiken: RecipientGroup = {
   total: 4600,
   unit: "億円",
   sourceNote: "出典: 各府省「令和6年度運営費交付金等の配分状況」（概算）",
+  sourceUrl: "https://www8.cao.go.jp/cstp/budget/index.html",
   recipients: [
     { name: "理化学研究所（RIKEN）", amount: 980, note: "生命科学・物理・計算科学。富岳スパコン運用" },
     { name: "物質・材料研究機構（NIMS）", amount: 280, note: "先進材料・ナノテクノロジー研究" },

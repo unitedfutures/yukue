@@ -3,8 +3,8 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { useState } from "react";
 import { BudgetItem, formatAmount, formatPercent } from "@/data/budget";
-import { itemDescriptions } from "@/data/descriptions";
-import { Info, List } from "lucide-react";
+import { itemDescriptions, itemSourceUrls } from "@/data/descriptions";
+import { Info, List, ExternalLink } from "lucide-react";
 import { hasRecipients } from "@/data/recipients";
 
 const COLORS = [
@@ -50,6 +50,8 @@ export default function BudgetChart({ items, total, onSelect }: Props) {
   const isDrillable = (item: BudgetItem) => !isLeaf(item) || hasRecipients(item.id);
   const getDesc = (item: BudgetItem) =>
     item.descriptionKey ? itemDescriptions[item.descriptionKey] : null;
+  const getSourceUrl = (item: BudgetItem) =>
+    item.descriptionKey ? (itemSourceUrls[item.descriptionKey] ?? null) : null;
 
   return (
     <div className="flex flex-col lg:flex-row items-start gap-6">
@@ -154,6 +156,18 @@ export default function BudgetChart({ items, total, onSelect }: Props) {
               <p className="text-xs text-slate-300 leading-relaxed">
                 {getDesc(descItem)}
               </p>
+              {getSourceUrl(descItem) && (
+                <a
+                  href={getSourceUrl(descItem)!}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="inline-flex items-center gap-1 mt-2 text-xs text-emerald-400 hover:text-emerald-300 underline underline-offset-2 transition-colors"
+                >
+                  <ExternalLink size={11} />
+                  公式サイト
+                </a>
+              )}
             </div>
           )}
         </div>
