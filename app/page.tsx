@@ -99,6 +99,7 @@ export default function Home() {
         className="border-b border-white/10 sticky top-0 z-10"
         style={{ background: "rgba(10,15,30,0.85)", backdropFilter: "blur(12px)" }}
       >
+        {/* 1行目: ロゴ + 切替コントロール */}
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-4 flex-wrap">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
@@ -161,6 +162,19 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* 2行目: パンくず（ドリルダウン中のみ表示） */}
+        {activeTab === "drill" && path.length > 0 && (
+          <div className="border-t border-white/5 px-4 py-2">
+            <div className="max-w-7xl mx-auto">
+              <Breadcrumb
+                path={path}
+                onNavigate={handleNavigate}
+                yearLabel={activeData.label}
+              />
+            </div>
+          </div>
+        )}
       </header>
 
       <div className="max-w-7xl mx-auto px-4 pt-6 pb-12">
@@ -217,12 +231,7 @@ export default function Home() {
             {/* ヘッダー行 */}
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
               <div>
-                <Breadcrumb
-                  path={path}
-                  onNavigate={handleNavigate}
-                  yearLabel={activeData.label}
-                />
-                <div className="mt-3 flex items-baseline gap-3 flex-wrap">
+                <div className="flex items-baseline gap-3 flex-wrap">
                   <span className="text-4xl font-bold text-white">
                     {formatAmount(currentTotal)}
                   </span>
