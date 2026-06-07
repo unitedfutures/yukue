@@ -8,7 +8,8 @@ import BudgetChart from "@/components/BudgetChart";
 import Breadcrumb from "@/components/Breadcrumb";
 import RankingPanel from "@/components/RankingPanel";
 import RecipientsList from "@/components/RecipientsList";
-import { ArrowLeft, ExternalLink, BarChart3, FileText, Clock, List } from "lucide-react";
+import Link from "next/link";
+import { ArrowLeft, ExternalLink, BarChart3, FileText, Clock, List, Info } from "lucide-react";
 
 type DataMode = "budget" | "settlement";
 
@@ -112,6 +113,14 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-2 flex-wrap">
+            {/* このサイトについて */}
+            <Link
+              href="/about"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-slate-400 hover:text-slate-200 transition-colors"
+            >
+              <Info size={14} />
+              <span>このサイトについて</span>
+            </Link>
             {/* 予算/決算 切替 */}
             <div className="flex items-center gap-1 bg-slate-900/80 border border-white/10 rounded-xl p-1">
               <button
