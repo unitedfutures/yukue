@@ -1021,7 +1021,436 @@ const budget2023: BudgetYear = {
   ],
 };
 
-export const budgetData: BudgetYear[] = [budget2025, budget2024, budget2023];
+// ─── 令和8年度予算（2026年4月7日成立・過去最高） ───────────────────────────
+// 出典: 財務省「令和8年度予算のポイント」
+// 歳出総額: 122兆3,092億円
+const budget2026: BudgetYear = {
+  year: 2026,
+  label: "令和8年度",
+  total: 1223092,
+  items: [
+    {
+      id: "social",
+      name: "社会保障関係費",
+      amount: 390559,
+      children: [
+        {
+          id: "social-pension",
+          name: "年金",
+          amount: 136905,
+          children: [
+            {
+              id: "social-pension-kosei", name: "厚生年金保険給付費", amount: 100700,
+              children: [
+                { id: "social-pension-kosei-rourei", name: "老齢厚生年金", amount: 76000, descriptionKey: "social-pension-kosei-rourei" },
+                { id: "social-pension-kosei-shogai", name: "障害厚生年金", amount: 10100, descriptionKey: "social-pension-kosei-shogai" },
+                { id: "social-pension-kosei-izoku", name: "遺族厚生年金", amount: 14600, descriptionKey: "social-pension-kosei-izoku" },
+              ],
+            },
+            {
+              id: "social-pension-kokumin", name: "国民年金給付費", amount: 24430,
+              children: [
+                { id: "social-pension-kokumin-rourei", name: "老齢基礎年金", amount: 18650, descriptionKey: "social-pension-kokumin-rourei" },
+                { id: "social-pension-kokumin-shogai", name: "障害基礎年金", amount: 3620, descriptionKey: "social-pension-kokumin-shogai" },
+                { id: "social-pension-kokumin-izoku", name: "遺族基礎年金", amount: 2160, descriptionKey: "social-pension-kokumin-izoku" },
+              ],
+            },
+            { id: "social-pension-other", name: "その他年金関連", amount: 11775 },
+          ],
+        },
+        {
+          id: "social-medical",
+          name: "医療",
+          amount: 127128,
+          children: [
+            {
+              id: "social-medical-kenko", name: "健康保険給付費", amount: 49300,
+              children: [
+                { id: "social-medical-kenko-ryoyo", name: "療養給付費", amount: 33100, descriptionKey: "social-medical-kenko-ryoyo" },
+                { id: "social-medical-kenko-kogaku", name: "高額療養費", amount: 9300, descriptionKey: "social-medical-kenko-kogaku" },
+                { id: "social-medical-kenko-shobyo", name: "傷病手当金", amount: 3900, descriptionKey: "social-medical-kenko-shobyo" },
+                { id: "social-medical-kenko-shussan", name: "出産育児一時金等", amount: 3000, descriptionKey: "social-medical-kenko-shussan" },
+              ],
+            },
+            {
+              id: "social-medical-roujin", name: "後期高齢者医療", amount: 40600,
+              children: [
+                { id: "social-medical-roujin-kyufu", name: "医療給付費", amount: 32000, descriptionKey: "social-medical-roujin-kyufu" },
+                { id: "social-medical-roujin-shien", name: "支援金", amount: 5500, descriptionKey: "social-medical-roujin-shien" },
+                { id: "social-medical-roujin-hoken", name: "保険料軽減補助", amount: 3100, descriptionKey: "social-medical-roujin-hoken" },
+              ],
+            },
+            {
+              id: "social-medical-kokaho", name: "国民健康保険", amount: 24000,
+              children: [
+                { id: "social-medical-kokaho-kyufu", name: "療養給付費等交付金", amount: 16000, descriptionKey: "social-medical-kokaho-kyufu" },
+                { id: "social-medical-kokaho-shien", name: "財政安定化支援金", amount: 4900, descriptionKey: "social-medical-kokaho-shien" },
+                { id: "social-medical-kokaho-hoken", name: "保険料軽減補助", amount: 3100, descriptionKey: "social-medical-kokaho-hoken" },
+              ],
+            },
+            { id: "social-medical-other", name: "その他医療費", amount: 13228 },
+          ],
+        },
+        {
+          id: "social-care",
+          name: "介護",
+          amount: 43260,
+          children: [
+            {
+              id: "social-care-service", name: "介護給付費", amount: 35900,
+              children: [
+                { id: "social-care-kyotaku", name: "居宅介護サービス", amount: 16800, descriptionKey: "social-care-kyotaku" },
+                { id: "social-care-shisetsu", name: "施設介護サービス", amount: 12800, descriptionKey: "social-care-shisetsu" },
+                { id: "social-care-chiiki", name: "地域密着型サービス", amount: 4300, descriptionKey: "social-care-chiiki" },
+                { id: "social-care-yobo", name: "介護予防サービス", amount: 2000, descriptionKey: "social-care-yobo" },
+              ],
+            },
+            { id: "social-care-other", name: "その他介護関連", amount: 7360 },
+          ],
+        },
+        {
+          id: "social-child",
+          name: "少子化対策",
+          amount: 38340,
+          children: [
+            {
+              id: "social-child-jido", name: "児童手当", amount: 14700,
+              children: [
+                { id: "social-child-jido-ichiji", name: "0〜15歳分", amount: 11200, descriptionKey: "social-child-jido-ichiji" },
+                { id: "social-child-jido-shushoku", name: "高校生年代拡充分", amount: 3500, descriptionKey: "social-child-jido-shushoku" },
+              ],
+            },
+            {
+              id: "social-child-hoiku", name: "保育所関連", amount: 12200,
+              children: [
+                { id: "social-child-hoiku-unei", name: "保育所等運営費", amount: 9100, descriptionKey: "social-child-hoiku-unei" },
+                { id: "social-child-hoiku-seibi", name: "保育所等整備費", amount: 3100, descriptionKey: "social-child-hoiku-seibi" },
+              ],
+            },
+            {
+              id: "social-child-kodomo", name: "こども家庭庁関連", amount: 11440,
+              children: [
+                { id: "social-child-kodomo-kyufu", name: "こども・子育て給付", amount: 7900, descriptionKey: "social-child-kodomo-kyufu" },
+                { id: "social-child-kodomo-shien", name: "地域子育て支援", amount: 3540, descriptionKey: "social-child-kodomo-shien" },
+              ],
+            },
+          ],
+        },
+        {
+          id: "social-welfare",
+          name: "生活扶助等",
+          amount: 37553,
+          children: [
+            {
+              id: "social-welfare-seikatsu", name: "生活保護費", amount: 30253,
+              children: [
+                { id: "social-welfare-seikatsu-seikatsu", name: "生活扶助", amount: 10400, descriptionKey: "social-welfare-seikatsu-seikatsu" },
+                { id: "social-welfare-seikatsu-jutaku", name: "住宅扶助", amount: 5400, descriptionKey: "social-welfare-seikatsu-jutaku" },
+                { id: "social-welfare-seikatsu-iryo", name: "医療扶助", amount: 12300, descriptionKey: "social-welfare-seikatsu-iryo" },
+                { id: "social-welfare-seikatsu-kyoiku", name: "教育扶助等", amount: 2153, descriptionKey: "social-welfare-seikatsu-kyoiku" },
+              ],
+            },
+            {
+              id: "social-welfare-shogai", name: "障害者支援", amount: 7300,
+              children: [
+                { id: "social-welfare-shogai-kyotaku", name: "居宅系サービス", amount: 4200, descriptionKey: "social-welfare-shogai-kyotaku" },
+                { id: "social-welfare-shogai-shisetsu", name: "施設系サービス", amount: 3100, descriptionKey: "social-welfare-shogai-shisetsu" },
+              ],
+            },
+          ],
+        },
+        {
+          id: "social-employment",
+          name: "雇用",
+          amount: 7373,
+          children: [
+            {
+              id: "social-emp-koyohoken", name: "雇用保険", amount: 4900,
+              children: [
+                { id: "social-emp-koyohoken-kyufu", name: "失業給付", amount: 3300, descriptionKey: "social-emp-koyohoken-kyufu" },
+                { id: "social-emp-koyohoken-kyoshoku", name: "教育訓練給付", amount: 1600, descriptionKey: "social-emp-koyohoken-kyoshoku" },
+              ],
+            },
+            {
+              id: "social-emp-other", name: "その他雇用対策", amount: 2473,
+              children: [
+                { id: "social-emp-other-koyo", name: "雇用維持・創出補助", amount: 1550, descriptionKey: "social-emp-other-koyo" },
+                { id: "social-emp-other-shuroh", name: "ハローワーク運営", amount: 923, descriptionKey: "social-emp-other-shuroh" },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: "bond",
+      name: "国債費",
+      amount: 312758,
+      children: [
+        {
+          id: "bond-interest", name: "利子及割引料", amount: 130500,
+          children: [
+            { id: "bond-interest-naiku", name: "内国債利子", amount: 115000, descriptionKey: "bond-interest-naiku" },
+            { id: "bond-interest-gaiku", name: "外債利子", amount: 9000, descriptionKey: "bond-interest-gaiku" },
+            { id: "bond-interest-kariire", name: "借入金利子等", amount: 6500, descriptionKey: "bond-interest-kariire" },
+          ],
+        },
+        {
+          id: "bond-repay", name: "国債償還費", amount: 182258,
+          children: [
+            { id: "bond-repay-teiri", name: "普通国債償還費", amount: 147000, descriptionKey: "bond-repay-teiri" },
+            { id: "bond-repay-zaimu", name: "財投債等償還費", amount: 35258, descriptionKey: "bond-repay-zaimu" },
+          ],
+        },
+      ],
+    },
+    {
+      id: "localalloc",
+      name: "地方交付税交付金等",
+      amount: 208778,
+      children: [
+        {
+          id: "localalloc-kotei", name: "地方交付税交付金", amount: 175000,
+          children: [
+            { id: "localalloc-kotei-futsuu", name: "普通交付税", amount: 160000, descriptionKey: "localalloc-kotei-futsuu" },
+            { id: "localalloc-kotei-tokubetsu", name: "特別交付税", amount: 15000, descriptionKey: "localalloc-kotei-tokubetsu" },
+          ],
+        },
+        {
+          id: "localalloc-joto", name: "地方譲与税譲与金", amount: 25000,
+          children: [
+            { id: "localalloc-joto-kihatsu", name: "地方揮発油譲与税", amount: 16000, descriptionKey: "localalloc-joto-kihatsu" },
+            { id: "localalloc-joto-ton", name: "特別とん譲与税等", amount: 9000, descriptionKey: "localalloc-joto-ton" },
+          ],
+        },
+        { id: "localalloc-tokurei", name: "地方特例交付金等", amount: 8778 },
+      ],
+    },
+    {
+      id: "defense",
+      name: "防衛関係費",
+      amount: 88093,
+      children: [
+        {
+          id: "defense-jinken", name: "人件費・糧食費", amount: 24400,
+          children: [
+            { id: "defense-jinken-jinkensen", name: "給与・手当・退職金", amount: 20900, descriptionKey: "defense-jinken-jinkensen" },
+            { id: "defense-jinken-ryoshoku", name: "糧食・被服・営舎費", amount: 3500, descriptionKey: "defense-jinken-ryoshoku" },
+          ],
+        },
+        {
+          id: "defense-busshi", name: "装備品等購入費", amount: 27800,
+          children: [
+            { id: "defense-busshi-kokuki", name: "航空機等", amount: 8700, descriptionKey: "defense-busshi-kokuki" },
+            { id: "defense-busshi-kansetsu", name: "艦船等", amount: 7400, descriptionKey: "defense-busshi-kansetsu" },
+            { id: "defense-busshi-buki", name: "誘導弾・弾薬", amount: 6200, descriptionKey: "defense-busshi-buki" },
+            { id: "defense-busshi-shatei", name: "車両・火器", amount: 3400, descriptionKey: "defense-busshi-shatei" },
+            { id: "defense-busshi-other", name: "その他装備品", amount: 2100 },
+          ],
+        },
+        {
+          id: "defense-kenkyu", name: "研究開発費", amount: 8500,
+          children: [
+            { id: "defense-kenkyu-kaihatsu", name: "次世代装備研究開発", amount: 5900, descriptionKey: "defense-kenkyu-kaihatsu" },
+            { id: "defense-kenkyu-sangaku", name: "産学連携・安全保障技術", amount: 2600, descriptionKey: "defense-kenkyu-sangaku" },
+          ],
+        },
+        {
+          id: "defense-shisetsu", name: "施設整備費", amount: 4600,
+          children: [
+            { id: "defense-shisetsu-eizetsu", name: "基地・駐屯地整備", amount: 2950, descriptionKey: "defense-shisetsu-eizetsu" },
+            { id: "defense-shisetsu-beigun", name: "在日米軍関連", amount: 1650, descriptionKey: "defense-shisetsu-beigun" },
+          ],
+        },
+        { id: "defense-ippan", name: "一般物件費", amount: 14144 },
+        {
+          id: "defense-other", name: "その他", amount: 8649,
+          children: [
+            { id: "defense-usfj", name: "在日米軍駐留経費負担（思いやり予算）", amount: 2780, descriptionKey: "defense-usfj" },
+            { id: "defense-kichi", name: "基地対策費・SACO・同盟強靭化", amount: 1900, descriptionKey: "defense-kichi" },
+            { id: "defense-other-misc", name: "その他防衛関連経費", amount: 3969 },
+          ],
+        },
+      ],
+    },
+    {
+      id: "public",
+      name: "公共事業関係費",
+      amount: 61078,
+      children: [
+        {
+          id: "public-road", name: "道路整備", amount: 14860,
+          children: [
+            { id: "public-road-kosoku", name: "高速道路整備", amount: 4200, descriptionKey: "public-road-kosoku" },
+            { id: "public-road-chokukatsu", name: "直轄国道整備", amount: 6900, descriptionKey: "public-road-chokukatsu" },
+            { id: "public-road-hojo", name: "補助道路整備", amount: 3760, descriptionKey: "public-road-hojo" },
+          ],
+        },
+        {
+          id: "public-flood", name: "治山治水", amount: 9200,
+          children: [
+            { id: "public-flood-chisui", name: "砂防・急傾斜地対策", amount: 3800, descriptionKey: "public-flood-chisui" },
+            { id: "public-flood-kasenhojo", name: "河川整備", amount: 5400, descriptionKey: "public-flood-kasenhojo" },
+          ],
+        },
+        {
+          id: "public-housing", name: "住宅・都市環境整備", amount: 6800,
+          children: [
+            { id: "public-housing-toshi", name: "都市再開発・公園整備", amount: 4100, descriptionKey: "public-housing-toshi" },
+            { id: "public-housing-suido", name: "水道施設整備", amount: 2700, descriptionKey: "public-housing-suido" },
+          ],
+        },
+        { id: "public-agri", name: "農業農村整備", amount: 5300 },
+        { id: "public-disaster", name: "災害復旧等", amount: 10600 },
+        { id: "public-port", name: "港湾・空港・鉄道整備", amount: 3100 },
+        { id: "public-forest", name: "林野公共事業", amount: 3800 },
+        { id: "public-fishery", name: "漁港漁場整備", amount: 2100 },
+        { id: "public-other", name: "その他公共事業", amount: 5318 },
+      ],
+    },
+    {
+      id: "education",
+      name: "文教及び科学振興費",
+      amount: 60406,
+      children: [
+        {
+          id: "edu-gikyo", name: "義務教育費国庫負担金", amount: 17906,
+          children: [
+            { id: "edu-gikyo-kyouin", name: "教職員給与負担", amount: 14980, descriptionKey: "edu-gikyo-kyouin" },
+            { id: "edu-gikyo-tokushi", name: "特別支援教育加配", amount: 2926, descriptionKey: "edu-gikyo-tokushi" },
+          ],
+        },
+        {
+          id: "edu-science", name: "科学技術振興費", amount: 14250,
+          children: [
+            { id: "edu-science-jst", name: "JST（科学技術振興機構）", amount: 3349, descriptionKey: "edu-science-jst" },
+            { id: "edu-science-jaxa", name: "JAXA（宇宙航空研究開発）", amount: 2200, descriptionKey: "edu-science-jaxa" },
+            { id: "edu-science-riken", name: "国立研究開発法人交付金", amount: 4700, descriptionKey: "edu-science-riken" },
+            { id: "edu-science-kakenhi", name: "科研費（競争的研究資金）", amount: 4001, descriptionKey: "edu-science-kakenhi" },
+          ],
+        },
+        {
+          id: "edu-shien", name: "教育振興助成費", amount: 19650,
+          children: [
+            { id: "edu-daigaku-kokuritu", name: "国立大学法人運営費交付金", amount: 11088, descriptionKey: "edu-daigaku-kokuritu" },
+            { id: "edu-daigaku-shiritsu", name: "私立大学等経常費補助", amount: 3250, descriptionKey: "edu-daigaku-shiritsu" },
+            { id: "edu-koukou-musho", name: "高校無償化（就学支援金拡充）", amount: 1876 },
+            { id: "edu-kyushoku-musho", name: "給食無償化（給食費負担軽減）", amount: 1649 },
+            { id: "edu-shien-other", name: "その他教育助成", amount: 1787 },
+          ],
+        },
+        {
+          id: "edu-ikuei", name: "育英事業費（奨学金）", amount: 5300,
+          children: [
+            { id: "edu-ikuei-kyufu", name: "給付型奨学金", amount: 1900, descriptionKey: "edu-ikuei-kyufu" },
+            { id: "edu-ikuei-kashitsuke", name: "貸付型奨学金原資", amount: 3400, descriptionKey: "edu-ikuei-kashitsuke" },
+          ],
+        },
+        { id: "edu-shisetsu", name: "教育施設費", amount: 3300 },
+      ],
+    },
+    {
+      id: "food",
+      name: "食料安定供給関係費",
+      amount: 13300,
+      children: [
+        {
+          id: "food-kome", name: "農業経営安定対策", amount: 5900,
+          children: [
+            { id: "food-kome-keiei", name: "収入保険・経営安定対策", amount: 3700, descriptionKey: "food-kome-keiei" },
+            { id: "food-kome-kome", name: "米政策・備蓄米", amount: 2200, descriptionKey: "food-kome-kome" },
+          ],
+        },
+        {
+          id: "food-shokuhin", name: "食料品安定供給対策", amount: 4200,
+          children: [
+            { id: "food-shokuhin-suisan", name: "水産業振興", amount: 1800, descriptionKey: "food-shokuhin-suisan" },
+            { id: "food-shokuhin-chiku", name: "畜産経営安定", amount: 2400, descriptionKey: "food-shokuhin-chiku" },
+          ],
+        },
+        { id: "food-other", name: "その他", amount: 3200 },
+      ],
+    },
+    {
+      id: "energy",
+      name: "エネルギー対策費",
+      amount: 9500,
+      children: [
+        {
+          id: "energy-saisei", name: "再生可能エネルギー対策", amount: 3900,
+          children: [
+            { id: "energy-saisei-fitto", name: "FIT/FIP制度拠出", amount: 2300, descriptionKey: "energy-saisei-fitto" },
+            { id: "energy-saisei-kaihatsu", name: "次世代エネルギー研究開発", amount: 1600, descriptionKey: "energy-saisei-kaihatsu" },
+          ],
+        },
+        {
+          id: "energy-setsuyaku", name: "省エネルギー対策", amount: 2700,
+          children: [
+            { id: "energy-setsuyaku-kaden", name: "省エネ家電・住宅補助", amount: 1600, descriptionKey: "energy-setsuyaku-kaden" },
+            { id: "energy-setsuyaku-sangyo", name: "産業省エネ設備補助", amount: 1100, descriptionKey: "energy-setsuyaku-sangyo" },
+          ],
+        },
+        { id: "energy-other", name: "その他エネルギー施策", amount: 2900 },
+      ],
+    },
+    {
+      id: "sme",
+      name: "中小企業対策費",
+      amount: 1730,
+      children: [
+        {
+          id: "sme-shien", name: "中小企業支援対策", amount: 1020,
+          children: [
+            { id: "sme-shien-hojo", name: "デジタル化・設備補助金", amount: 580, descriptionKey: "sme-shien-hojo" },
+            { id: "sme-shien-kinyu", name: "信用補完・融資支援", amount: 440, descriptionKey: "sme-shien-kinyu" },
+          ],
+        },
+        { id: "sme-other", name: "その他", amount: 710 },
+      ],
+    },
+    {
+      id: "oda",
+      name: "経済協力費",
+      amount: 5234,
+      children: [
+        {
+          id: "oda-oda", name: "政府開発援助（ODA）", amount: 3833,
+          children: [
+            {
+              id: "oda-oda-nichi", name: "二国間援助（円借款・無償・技協）", amount: 2833,
+              children: [
+                { id: "oda-oda-kuni", name: "国別援助額", amount: 2233, descriptionKey: "oda-oda-kuni" },
+                { id: "oda-oda-jica", name: "JICAスキーム別内訳", amount: 600, descriptionKey: "oda-oda-jica" },
+              ],
+            },
+            { id: "oda-oda-ngo", name: "NGO・緊急人道支援", amount: 1000, descriptionKey: "oda-oda-ngo" },
+          ],
+        },
+        {
+          id: "oda-kokusai", name: "国際機関分担金", amount: 1401,
+          children: [
+            { id: "oda-kokusai-un", name: "国連・WHO・UNHCR等", amount: 900, descriptionKey: "oda-kokusai-un" },
+            { id: "oda-kokusai-adb", name: "国際金融機関（ADB・世銀等）", amount: 501, descriptionKey: "oda-kokusai-adb" },
+          ],
+        },
+      ],
+    },
+    {
+      id: "other",
+      name: "その他の事項経費等",
+      amount: 71656,
+      children: [
+        { id: "other-reserve", name: "予備費", amount: 10000 },
+        { id: "other-gyosei", name: "一般行政費", amount: 35000 },
+        { id: "other-gaikoku", name: "外国人施策等", amount: 2250 },
+        { id: "other-justice", name: "司法・警察関係費", amount: 12590 },
+        { id: "other-misc", name: "その他", amount: 11816 },
+      ],
+    },
+  ],
+};
+
+export const budgetData: BudgetYear[] = [budget2026, budget2025, budget2024, budget2023];
 
 export function formatAmount(amount: number): string {
   if (amount >= 10000) {

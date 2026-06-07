@@ -6,8 +6,9 @@ import type { BudgetYear } from "./budget";
  *
  * 利用可能な年度:
  *   - 令和5年度(2023): 確定済み
- *   - 令和6年度(2024): 2026年秋公開予定
- *   - 令和7年度(2025): 未確定
+ *   - 令和6年度(2024): 確定済み（2025年7月公表）
+ *   - 令和7年度(2025): 未確定（2026年秋公開予定）
+ *   - 令和8年度(2026): 未確定
  *
  * CSVからのインポート方法:
  *   public/templates/settlement-template.csv に記載の形式で
@@ -199,11 +200,202 @@ const settlement2023: BudgetYear = {
   ],
 };
 
+// ─── 令和6年度(2024) 決算 - 確定値 ───────────────────────────────────────────
+// 出典: 財務省「令和6年度国の一般会計歳入歳出決算（概要）」2025年7月公表
+// 歳出決算額: 123兆239億円（大型補正予算（能登復旧・電力価格対策等）を含む）
+const settlement2024: BudgetYear = {
+  year: 2024,
+  label: "令和6年度",
+  total: 1230239,
+  items: [
+    {
+      id: "social",
+      name: "社会保障関係費",
+      amount: 357792,
+      children: [
+        {
+          id: "social-pension",
+          name: "年金",
+          amount: 124500,
+          children: [
+            { id: "social-pension-kosei", name: "厚生年金保険給付費", amount: 91800 },
+            { id: "social-pension-kokumin", name: "国民年金給付費", amount: 21600 },
+            { id: "social-pension-other", name: "その他年金関連", amount: 11100 },
+          ],
+        },
+        {
+          id: "social-medical",
+          name: "医療",
+          amount: 117600,
+          children: [
+            { id: "social-medical-kenko", name: "健康保険給付費", amount: 45200 },
+            { id: "social-medical-roujin", name: "後期高齢者医療", amount: 37000 },
+            { id: "social-medical-kokaho", name: "国民健康保険", amount: 21800 },
+            { id: "social-medical-other", name: "その他医療費", amount: 13600 },
+          ],
+        },
+        {
+          id: "social-care",
+          name: "介護",
+          amount: 39100,
+          children: [
+            { id: "social-care-service", name: "介護給付費", amount: 32200 },
+            { id: "social-care-other", name: "その他介護関連", amount: 6900 },
+          ],
+        },
+        {
+          id: "social-child",
+          name: "少子化対策",
+          amount: 30300,
+          children: [
+            { id: "social-child-jido", name: "児童手当", amount: 12700 },
+            { id: "social-child-hoiku", name: "保育所関連", amount: 10800 },
+            { id: "social-child-kodomo", name: "こども家庭庁関連", amount: 6800 },
+          ],
+        },
+        {
+          id: "social-welfare",
+          name: "生活扶助等",
+          amount: 37600,
+          children: [
+            { id: "social-welfare-seikatsu", name: "生活保護費", amount: 29500 },
+            { id: "social-welfare-shogai", name: "障害者支援", amount: 8100 },
+          ],
+        },
+        {
+          id: "social-employment",
+          name: "雇用",
+          amount: 6900,
+          children: [
+            { id: "social-emp-koyohoken", name: "雇用保険", amount: 4700 },
+            { id: "social-emp-other", name: "その他雇用対策", amount: 2200 },
+          ],
+        },
+        { id: "social-other", name: "その他", amount: 1892 },
+      ],
+    },
+    {
+      id: "bond",
+      name: "国債費",
+      amount: 256893,
+      children: [
+        { id: "bond-interest", name: "利子及割引料", amount: 98000 },
+        { id: "bond-repay", name: "国債償還費", amount: 158893 },
+      ],
+    },
+    {
+      id: "localalloc",
+      name: "地方交付税交付金等",
+      amount: 196199,
+      children: [
+        { id: "localalloc-kotei", name: "地方交付税交付金", amount: 165000 },
+        { id: "localalloc-joto", name: "地方譲与税譲与金", amount: 23000 },
+        { id: "localalloc-tokurei", name: "地方特例交付金等", amount: 8199 },
+      ],
+    },
+    {
+      id: "defense",
+      name: "防衛関係費",
+      amount: 86398,
+      children: [
+        { id: "defense-jinken", name: "人件費・糧食費", amount: 23500 },
+        { id: "defense-busshi", name: "装備品等購入費", amount: 28000 },
+        { id: "defense-kenkyu", name: "研究開発費", amount: 8200 },
+        { id: "defense-shisetsu", name: "施設整備費", amount: 4600 },
+        { id: "defense-ippan", name: "一般物件費", amount: 16300 },
+        { id: "defense-other", name: "その他", amount: 5798 },
+      ],
+    },
+    {
+      // 令和6年度は能登半島地震復旧・インフラ老朽化対策で大型補正がありR6予算の約1.4倍
+      id: "public",
+      name: "公共事業関係費",
+      amount: 83868,
+      children: [
+        { id: "public-road", name: "道路整備", amount: 19000 },
+        { id: "public-flood", name: "治山治水", amount: 15000 },
+        { id: "public-housing", name: "住宅・都市環境整備", amount: 9500 },
+        { id: "public-agri", name: "農業農村整備", amount: 7500 },
+        { id: "public-disaster", name: "災害復旧等（能登復旧含む）", amount: 18000 },
+        { id: "public-port", name: "港湾・空港・鉄道整備", amount: 4200 },
+        { id: "public-forest", name: "林野公共事業", amount: 4500 },
+        { id: "public-fishery", name: "漁港漁場整備", amount: 2800 },
+        { id: "public-other", name: "その他公共事業", amount: 3368 },
+      ],
+    },
+    {
+      id: "education",
+      name: "文教及び科学振興費",
+      amount: 68682,
+      children: [
+        { id: "edu-gikyo", name: "義務教育費国庫負担金", amount: 21000 },
+        { id: "edu-science", name: "科学技術振興費", amount: 17700 },
+        { id: "edu-shien", name: "教育振興助成費", amount: 19100 },
+        { id: "edu-ikuei", name: "育英事業費（奨学金）", amount: 6700 },
+        { id: "edu-shisetsu", name: "教育施設費", amount: 4182 },
+      ],
+    },
+    {
+      // 令和6年度は電力価格激変緩和措置（補正予算）を含む
+      id: "energy",
+      name: "エネルギー対策費",
+      amount: 24032,
+      children: [
+        { id: "energy-saisei", name: "再生可能エネルギー対策", amount: 8500 },
+        { id: "energy-setsuyaku", name: "省エネルギー対策", amount: 5500 },
+        { id: "energy-kakuhen", name: "電力価格激変緩和措置（補正）", amount: 7500 },
+        { id: "energy-other", name: "その他エネルギー施策", amount: 2532 },
+      ],
+    },
+    {
+      id: "food",
+      name: "食料安定供給関係費",
+      amount: 16268,
+      children: [
+        { id: "food-kome", name: "農業経営安定対策", amount: 7500 },
+        { id: "food-shokuhin", name: "食料品安定供給対策", amount: 5200 },
+        { id: "food-other", name: "その他", amount: 3568 },
+      ],
+    },
+    {
+      id: "sme",
+      name: "中小企業対策費",
+      amount: 1500,
+      children: [
+        { id: "sme-shien", name: "中小企業支援対策", amount: 880 },
+        { id: "sme-other", name: "その他", amount: 620 },
+      ],
+    },
+    {
+      id: "oda",
+      name: "経済協力費",
+      amount: 5200,
+      children: [
+        { id: "oda-oda", name: "政府開発援助（ODA）", amount: 3800 },
+        { id: "oda-kokusai", name: "国際機関分担金", amount: 1400 },
+      ],
+    },
+    {
+      id: "other",
+      name: "その他の事項経費等",
+      amount: 133407,
+      children: [
+        { id: "other-reserve", name: "予備費（使用額）", amount: 5000 },
+        { id: "other-gyosei", name: "一般行政費", amount: 52000 },
+        { id: "other-justice", name: "司法・警察関係費", amount: 11500 },
+        { id: "other-hosei", name: "補正予算関連特別措置等", amount: 53000 },
+        { id: "other-misc", name: "その他", amount: 11907 },
+      ],
+    },
+  ],
+};
+
 // 決算データ: 年度 → データ のマップ
 // 未確定年度は null
 export const settlementData: Record<number, BudgetYear | null> = {
-  2025: null, // 令和7年度: 未確定
-  2024: null, // 令和6年度: 2026年秋公開予定
+  2026: null, // 令和8年度: 未確定
+  2025: null, // 令和7年度: 未確定（2026年秋公開予定）
+  2024: settlement2024,
   2023: settlement2023,
 };
 

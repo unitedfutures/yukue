@@ -184,7 +184,7 @@ export default function Home() {
             <Clock size={13} />
             <span>
               {selectedYear.label}の決算データは未公開です（財務省が翌年秋頃に公表）。
-              令和5年度は決算を表示できます。
+              令和5年度・令和6年度は決算を表示できます。
             </span>
           </div>
         )}
