@@ -3,8 +3,8 @@ import Link from "next/link";
 import { BarChart3, Eye, FileSearch, BookOpen, ArrowLeft, ExternalLink, MessageSquare } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "このサイトについて | 税金の行き先",
-  description: "「税金の行き先」のコンセプト・データの出典・制作の背景を説明するページです。",
+  title: "このサイトについて | YUKUE",
+  description: "YUKUEのコンセプト・データの出典・制作の背景を説明するページです。税金の行方を公開情報をもとに可視化しています。",
 };
 
 export default function AboutPage() {
@@ -31,7 +31,7 @@ export default function AboutPage() {
             <div className="w-7 h-7 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
               <BarChart3 size={14} className="text-indigo-400" />
             </div>
-            <span className="text-sm font-semibold text-white">税金の行き先</span>
+            <span className="text-sm font-semibold text-white tracking-wider">YUKUE</span>
           </div>
         </div>
       </header>

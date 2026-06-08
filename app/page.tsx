@@ -107,8 +107,8 @@ export default function Home() {
               <BarChart3 size={16} className="text-indigo-400" />
             </div>
             <div>
-              <h1 className="text-base font-bold text-white">税金の行き先</h1>
-              <p className="text-xs text-slate-500">国家予算可視化ダッシュボード</p>
+              <h1 className="text-base font-bold text-white tracking-wider">YUKUE</h1>
+              <p className="text-xs text-slate-500">税金の行き先 — 国家予算可視化</p>
             </div>
           </div>
 
