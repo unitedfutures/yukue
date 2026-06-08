@@ -310,16 +310,16 @@ export const itemSourceUrls: Record<string, string> = {
   "localalloc-joto-ton": "https://www.soumu.go.jp/main_sosiki/c-zaisei/joto_zei.html",
 
   // ── 防衛 ──
-  "defense-jinken-jinkensen": "https://www.mod.go.jp/j/approach/hyouka/about/index.html",
-  "defense-jinken-ryoshoku": "https://www.mod.go.jp/j/approach/hyouka/about/index.html",
-  "defense-busshi-kokuki": "https://www.mod.go.jp/atla/souhon/supply/",
-  "defense-busshi-kansetsu": "https://www.mod.go.jp/atla/souhon/supply/",
-  "defense-busshi-buki": "https://www.mod.go.jp/atla/souhon/supply/",
-  "defense-busshi-shatei": "https://www.mod.go.jp/atla/souhon/supply/",
-  "defense-kenkyu-kaihatsu": "https://www.mod.go.jp/atla/research/index.html",
-  "defense-kenkyu-sangaku": "https://www.mod.go.jp/atla/research/program/index.html",
-  "defense-shisetsu-eizetsu": "https://www.mod.go.jp/j/approach/facilities/index.html",
-  "defense-shisetsu-beigun": "https://www.mod.go.jp/j/approach/anpo/beigun/index.html",
+  "defense-jinken-jinkensen": "https://www.mod.go.jp/gsdf/jieikanbosyu/treatment/",
+  "defense-jinken-ryoshoku": "https://www.mod.go.jp/gsdf/jieikanbosyu/treatment/",
+  "defense-busshi-kokuki": "https://www.mod.go.jp/atla/choutatsu.html",
+  "defense-busshi-kansetsu": "https://www.mod.go.jp/atla/choutatsu.html",
+  "defense-busshi-buki": "https://www.mod.go.jp/atla/choutatsu.html",
+  "defense-busshi-shatei": "https://www.mod.go.jp/atla/choutatsu.html",
+  "defense-kenkyu-kaihatsu": "https://www.mod.go.jp/atla/kenkyuu.html",
+  "defense-kenkyu-sangaku": "https://www.mod.go.jp/atla/funding.html",
+  "defense-shisetsu-eizetsu": "https://www.mod.go.jp/j/approach/chouwa/sisetsuseibi/index.html",
+  "defense-shisetsu-beigun": "https://www.mod.go.jp/j/approach/zaibeigun/us_sisetsu/",
 
   // ── 公共事業 ──
   "public-road-kosoku": "https://www.mlit.go.jp/road/index.html",
@@ -361,8 +361,8 @@ export const itemSourceUrls: Record<string, string> = {
   "edu-daigaku-shiritsu": "https://www.shigaku.go.jp/s_subsidy.htm",
 
   // ── 防衛 > 在日米軍・基地 ──
-  "defense-usfj": "https://www.mod.go.jp/j/approach/zaibeigun/us_japan_deference/index.html",
-  "defense-kichi": "https://www.mod.go.jp/j/budget/index.html",
+  "defense-usfj": "https://www.mod.go.jp/j/approach/zaibeigun/us_keihi/index.html",
+  "defense-kichi": "https://www.mod.go.jp/j/approach/chouwa/index.html",
 
   // ── ODA ──
   "oda-oda-kuni": "https://www.mofa.go.jp/mofaj/gaiko/oda/shiryo/hakusyo/index.html",
