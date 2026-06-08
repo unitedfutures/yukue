@@ -9,7 +9,8 @@ import Breadcrumb from "@/components/Breadcrumb";
 import RankingPanel from "@/components/RankingPanel";
 import RecipientsList from "@/components/RecipientsList";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, BarChart3, FileText, Clock, List, Info } from "lucide-react";
+import Logo from "@/components/Logo";
+import { ArrowLeft, ExternalLink, FileText, Clock, List, Info } from "lucide-react";
 
 type DataMode = "budget" | "settlement";
 
@@ -91,44 +92,35 @@ export default function Home() {
     dataMode === "settlement" ? "一般会計歳出決算額" : "一般会計歳出予算合計";
 
   return (
-    <main
-      className="min-h-screen"
-      style={{ background: "linear-gradient(135deg, #0a0f1e 0%, #0f172a 50%, #0a1628 100%)" }}
-    >
+    <main className="min-h-screen bg-white">
       {/* Header */}
       <header
-        className="border-b border-white/10 sticky top-0 z-10"
-        style={{ background: "rgba(10,15,30,0.85)", backdropFilter: "blur(12px)" }}
+        className="border-b border-slate-200 sticky top-0 z-10 bg-white/95"
+        style={{ backdropFilter: "blur(12px)" }}
       >
         {/* 1行目: ロゴ + 切替コントロール */}
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-4 flex-wrap">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
-              <BarChart3 size={16} className="text-indigo-400" />
-            </div>
-            <div>
-              <h1 className="text-base font-bold text-white tracking-wider">YUKUE</h1>
-              <p className="text-xs text-slate-500">税金の行き先 — 国家予算可視化</p>
-            </div>
-          </div>
+        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4 flex-wrap">
+          <Link href="/" className="flex items-center">
+            <Logo variant="full" height={44} dark={true} />
+          </Link>
 
           <div className="flex items-center gap-2 flex-wrap">
             {/* このサイトについて */}
             <Link
               href="/about"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-slate-400 hover:text-slate-200 transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-slate-500 hover:text-slate-800 transition-colors"
             >
               <Info size={14} />
               <span>このサイトについて</span>
             </Link>
             {/* 予算/決算 切替 */}
-            <div className="flex items-center gap-1 bg-slate-900/80 border border-white/10 rounded-xl p-1">
+            <div className="flex items-center gap-1 bg-slate-100 border border-slate-200 rounded-xl p-1">
               <button
                 onClick={() => handleModeChange("budget")}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                   dataMode === "budget"
-                    ? "bg-indigo-500 text-white shadow-lg"
-                    : "text-slate-400 hover:text-slate-200"
+                    ? "bg-[#1a365d] text-white shadow-sm"
+                    : "text-slate-500 hover:text-slate-800"
                 }`}
               >
                 <FileText size={13} />
@@ -138,31 +130,31 @@ export default function Home() {
                 onClick={() => settlementAvailable && handleModeChange("settlement")}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                   !settlementAvailable
-                    ? "text-slate-600 cursor-not-allowed"
+                    ? "text-slate-300 cursor-not-allowed"
                     : dataMode === "settlement"
-                    ? "bg-emerald-600 text-white shadow-lg"
-                    : "text-slate-400 hover:text-slate-200"
+                    ? "bg-emerald-600 text-white shadow-sm"
+                    : "text-slate-500 hover:text-slate-800"
                 }`}
                 title={!settlementAvailable ? "この年度の決算データは未公開です" : undefined}
               >
                 <FileText size={13} />
                 決算
                 {!settlementAvailable && (
-                  <Clock size={11} className="text-slate-600 ml-0.5" />
+                  <Clock size={11} className="text-slate-300 ml-0.5" />
                 )}
               </button>
             </div>
 
             {/* 年度セレクター */}
-            <div className="flex items-center gap-1 bg-slate-900/80 border border-white/10 rounded-xl p-1">
+            <div className="flex items-center gap-1 bg-slate-100 border border-slate-200 rounded-xl p-1">
               {[...budgetData].reverse().map((bd) => (
                 <button
                   key={bd.year}
                   onClick={() => handleYearChange(bd)}
                   className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                     selectedYear.year === bd.year
-                      ? "bg-indigo-500 text-white shadow-lg"
-                      : "text-slate-400 hover:text-slate-200"
+                      ? "bg-[#1a365d] text-white shadow-sm"
+                      : "text-slate-500 hover:text-slate-800"
                   }`}
                 >
                   {bd.label}
@@ -174,7 +166,7 @@ export default function Home() {
 
         {/* 2行目: パンくず（ドリルダウン中のみ表示） */}
         {activeTab === "drill" && path.length > 0 && (
-          <div className="border-t border-white/5 px-4 py-2">
+          <div className="border-t border-slate-100 px-4 py-2 bg-slate-50">
             <div className="max-w-7xl mx-auto">
               <Breadcrumb
                 path={path}
@@ -189,7 +181,7 @@ export default function Home() {
       <div className="max-w-7xl mx-auto px-4 pt-6 pb-12">
         {/* 決算未公開バナー */}
         {dataMode === "budget" && !settlementAvailable && (
-          <div className="flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-xl px-4 py-2.5 mb-4 text-xs text-amber-400">
+          <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-xl px-4 py-2.5 mb-4 text-xs text-amber-700">
             <Clock size={13} />
             <span>
               {selectedYear.label}の決算データは未公開です（財務省が翌年秋頃に公表）。
@@ -199,13 +191,13 @@ export default function Home() {
         )}
 
         {/* タブ */}
-        <div className="flex gap-1 bg-slate-900/60 border border-white/10 rounded-xl p-1 w-fit mb-6">
+        <div className="flex gap-1 bg-slate-100 border border-slate-200 rounded-xl p-1 w-fit mb-6">
           <button
             onClick={() => setActiveTab("drill")}
             className={`px-5 py-2 rounded-lg text-sm font-medium transition-all ${
               activeTab === "drill"
-                ? "bg-indigo-500 text-white"
-                : "text-slate-400 hover:text-slate-200"
+                ? "bg-[#1a365d] text-white shadow-sm"
+                : "text-slate-500 hover:text-slate-800"
             }`}
           >
             ドリルダウン
@@ -214,8 +206,8 @@ export default function Home() {
             onClick={() => setActiveTab("ranking")}
             className={`px-5 py-2 rounded-lg text-sm font-medium transition-all ${
               activeTab === "ranking"
-                ? "bg-indigo-500 text-white"
-                : "text-slate-400 hover:text-slate-200"
+                ? "bg-[#1a365d] text-white shadow-sm"
+                : "text-slate-500 hover:text-slate-800"
             }`}
           >
             ランキング
@@ -223,14 +215,14 @@ export default function Home() {
         </div>
 
         {activeTab === "drill" && (
-          <div className="bg-slate-900/60 border border-white/10 rounded-2xl p-6">
+          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
             {/* モードバッジ */}
             <div className="flex items-center gap-2 mb-4">
               <span
                 className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
                   dataMode === "settlement"
-                    ? "bg-emerald-500/15 text-emerald-400 border border-emerald-500/30"
-                    : "bg-indigo-500/15 text-indigo-400 border border-indigo-500/30"
+                    ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                    : "bg-indigo-50 text-indigo-700 border border-indigo-200"
                 }`}
               >
                 {dataMode === "settlement" ? "決算（確定値）" : "予算（当初予算）"}
@@ -241,11 +233,11 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
               <div>
                 <div className="flex items-baseline gap-3 flex-wrap">
-                  <span className="text-4xl font-bold text-white">
+                  <span className="text-4xl font-bold text-slate-900">
                     {formatAmount(currentTotal)}
                   </span>
                   {path.length > 0 && (
-                    <span className="text-sm text-slate-400">
+                    <span className="text-sm text-slate-500">
                       歳出総額{formatAmount(activeData.total)}の{" "}
                       {((currentTotal / activeData.total) * 100).toFixed(1)}%
                     </span>
@@ -263,7 +255,7 @@ export default function Home() {
                   {hasRecipients(path[path.length - 1].id) && !recipientItemId && (
                     <button
                       onClick={() => setRecipientItemId(path[path.length - 1].id)}
-                      className="flex items-center gap-2 px-4 py-2 bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 rounded-xl text-sm text-cyan-400 transition-colors"
+                      className="flex items-center gap-2 px-4 py-2 bg-cyan-50 hover:bg-cyan-100 border border-cyan-200 rounded-xl text-sm text-cyan-700 transition-colors"
                     >
                       <List size={14} />
                       支払先一覧
@@ -271,7 +263,7 @@ export default function Home() {
                   )}
                   <button
                     onClick={() => handleNavigate(path.length - 2)}
-                    className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-xl text-sm text-slate-300 transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-xl text-sm text-slate-700 transition-colors"
                   >
                     <ArrowLeft size={14} />
                     戻る
@@ -290,14 +282,14 @@ export default function Home() {
                 onSelect={handleSelect}
               />
             ) : (
-              <div className="flex flex-col items-center justify-center py-16 text-slate-500">
+              <div className="flex flex-col items-center justify-center py-16 text-slate-400">
                 <ExternalLink size={32} className="mb-3 opacity-40" />
                 <p className="text-sm">これ以上の内訳データはありません</p>
               </div>
             )}
 
             {!recipientItemId && (
-              <p className="text-xs text-slate-600 mt-5 text-right">
+              <p className="text-xs text-slate-400 mt-5 text-right">
                 ▶ のある項目はクリックでさらに内訳へ &nbsp;|&nbsp;
                 <List size={11} className="inline mb-0.5 mx-1" />
                 のある項目は支払先一覧へ &nbsp;|&nbsp; 出典: 財務省「

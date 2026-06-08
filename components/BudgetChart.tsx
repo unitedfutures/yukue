@@ -26,12 +26,12 @@ function CustomTooltip({ active, payload }: any) {
   const tot: number = payload[0].payload.__total;
   return (
     <div
-      className="rounded-xl border border-indigo-500/30 px-4 py-3 text-sm shadow-xl max-w-[220px]"
-      style={{ background: "rgba(15,23,42,0.97)" }}
+      className="rounded-xl border border-slate-200 px-4 py-3 text-sm max-w-[220px] bg-white"
+      style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.10)" }}
     >
-      <p className="font-semibold text-white mb-1">{item.name}</p>
-      <p className="text-indigo-300 font-mono">{formatAmount(item.amount)}</p>
-      <p className="text-slate-400 text-xs">{formatPercent(item.amount, tot)}</p>
+      <p className="font-semibold text-slate-900 mb-1">{item.name}</p>
+      <p className="text-indigo-600 font-mono">{formatAmount(item.amount)}</p>
+      <p className="text-slate-500 text-xs">{formatPercent(item.amount, tot)}</p>
     </div>
   );
 }
@@ -122,30 +122,30 @@ export default function BudgetChart({ items, total, onSelect }: Props) {
                 className={`budget-card flex items-center gap-3 px-3 py-2.5 rounded-xl border text-left w-full transition-all ${
                   isActive
                     ? leaf && !hasRecipients(item.id)
-                      ? "border-emerald-400/60 bg-emerald-500/8"
-                      : "border-cyan-400/60 bg-cyan-500/8"
-                    : "border-white/8 bg-white/4 hover:border-white/15"
+                      ? "border-emerald-300 bg-emerald-50"
+                      : "border-cyan-300 bg-cyan-50"
+                    : "border-slate-200 bg-slate-50 hover:border-slate-300 hover:bg-white"
                 } ${isDrillable(item) ? "cursor-pointer" : "cursor-default"}`}
               >
                 <span
                   className="w-2.5 h-2.5 rounded-full flex-shrink-0"
                   style={{ background: COLORS[i % COLORS.length] }}
                 />
-                <span className="flex-1 text-sm text-slate-200 truncate">{item.name}</span>
+                <span className="flex-1 text-sm text-slate-800 truncate">{item.name}</span>
                 {leaf && desc && !hasRecipients(item.id) && (
-                  <Info size={13} className={`flex-shrink-0 ${isActive ? "text-emerald-400" : "text-slate-600"}`} />
+                  <Info size={13} className={`flex-shrink-0 ${isActive ? "text-emerald-600" : "text-slate-400"}`} />
                 )}
                 {hasRecipients(item.id) && (
-                  <List size={13} className={`flex-shrink-0 ${isActive ? "text-cyan-400" : "text-slate-500"}`} />
+                  <List size={13} className={`flex-shrink-0 ${isActive ? "text-cyan-600" : "text-slate-400"}`} />
                 )}
-                <span className="text-xs text-slate-500 flex-shrink-0 w-12 text-right">
+                <span className="text-xs text-slate-400 flex-shrink-0 w-12 text-right">
                   {formatPercent(item.amount, total)}
                 </span>
-                <span className="text-sm font-mono text-slate-300 flex-shrink-0 w-28 text-right">
+                <span className="text-sm font-mono text-slate-700 flex-shrink-0 w-28 text-right">
                   {formatAmount(item.amount)}
                 </span>
                 {!leaf && !hasRecipients(item.id) && (
-                  <span className="text-slate-500 text-xs flex-shrink-0">▶</span>
+                  <span className="text-slate-400 text-xs flex-shrink-0">▶</span>
                 )}
               </button>
             );
@@ -159,12 +159,12 @@ export default function BudgetChart({ items, total, onSelect }: Props) {
           }`}
         >
           {descItem && (
-            <div className="rounded-xl border border-emerald-500/25 bg-emerald-500/6 px-4 py-3">
+            <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3">
               <div className="flex items-center gap-1.5 mb-1.5">
-                <Info size={13} className="text-emerald-400 flex-shrink-0" />
-                <span className="text-xs font-semibold text-emerald-400">{descItem.name}</span>
+                <Info size={13} className="text-emerald-600 flex-shrink-0" />
+                <span className="text-xs font-semibold text-emerald-700">{descItem.name}</span>
               </div>
-              <p className="text-xs text-slate-300 leading-relaxed">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 {getDesc(descItem)}
               </p>
               {getSourceUrl(descItem) && (
@@ -173,7 +173,7 @@ export default function BudgetChart({ items, total, onSelect }: Props) {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="inline-flex items-center gap-1 mt-2 text-xs text-emerald-400 hover:text-emerald-300 underline underline-offset-2 transition-colors"
+                  className="inline-flex items-center gap-1 mt-2 text-xs text-emerald-600 hover:text-emerald-800 underline underline-offset-2 transition-colors"
                 >
                   <ExternalLink size={11} />
                   公式サイト
