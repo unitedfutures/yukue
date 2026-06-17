@@ -301,6 +301,14 @@ export default function Home() {
 
         {activeTab === "ranking" && <RankingPanel budget={activeData} topN={20} />}
       </div>
+
+      <footer className="max-w-4xl mx-auto px-4 py-6 mt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+        <span>© {new Date().getFullYear()} YUKUE</span>
+        <div className="flex items-center gap-4">
+          <Link href="/about" className="hover:text-slate-700 transition-colors">このサイトについて</Link>
+          <Link href="/privacy" className="hover:text-slate-700 transition-colors">プライバシーポリシー</Link>
+        </div>
+      </footer>
     </main>
   );
 }
