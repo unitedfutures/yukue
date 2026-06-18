@@ -241,6 +241,132 @@ export const itemDescriptions: Record<string, string> = {
     "警察庁・都道府県警察への国庫補助（給与の1/2等）。サイバー犯罪・テロ対策強化分野に重点配分。",
   "other-justice-shihoh":
     "最高裁判所・下級裁判所・検察庁・矯正施設（刑務所等）・法務局等の運営費。",
+
+  // ── 社会保障 > 年金（追加） ──
+  "social-pension-other":
+    "独立行政法人福祉医療機構等への職域加算補助・共済年金関連の調整費・事務費など、主要年金区分以外の年金関連経費。",
+
+  // ── 社会保障 > 医療（追加） ──
+  "social-medical-other":
+    "健康保険制度の調整交付金・事務費等、療養給付・高額療養・出産一時金以外の医療保険関連経費の合算。",
+  "social-medical-kokaho":
+    "市区町村が運営する国民健康保険への国庫負担の総額。療養給付費交付金・財政安定化支援金・保険料軽減補助の3区分で構成。自営業者・退職者等約2,600万人が加入。",
+
+  // ── 社会保障 > 介護（追加） ──
+  "social-care-other":
+    "介護保険制度の調整交付金・事務費・システム整備費等、居宅・施設・地域密着・予防以外の介護関連経費。",
+  "social-care-service":
+    "介護保険制度に基づく介護サービス給付費への国庫負担（給付費の25%）。居宅・施設・地域密着・介護予防の各サービスへの支出合計。受給者は約680万人。",
+
+  // ── 社会保障 > 少子化対策（追加） ──
+  "social-child-hoiku":
+    "認可保育所・認定こども園等の保育サービス全体への国費支援。施設の日常的な運営費補助と、待機児童解消のための新設・増設整備費の2本柱で構成。",
+  "social-child-kodomo":
+    "こども家庭庁が所管する子育て支援施策全般への国費。こども・子育て給付（育児休業給付等の制度拡充分）と地域子育て支援（産後ケア・ヤングケアラー支援等）の2区分。",
+
+  // ── 社会保障 > 障害者（追加） ──
+  "social-welfare-shogai":
+    "障害者総合支援法に基づく障害福祉サービス費への国庫負担（給付費の50%）。訪問介護・就労支援等の居宅系と、障害者支援施設・グループホーム等の施設系の2区分で構成。",
+
+  // ── 社会保障 > 雇用（追加） ──
+  "social-emp-other":
+    "雇用保険の失業給付・教育訓練給付以外の雇用対策費。雇用調整助成金等の雇用維持・創出補助と、ハローワーク（公共職業安定所）の運営費の2区分で構成。",
+
+  // ── 社会保障 > その他 ──
+  "social-other":
+    "社会保障関係費のうち年金・医療・介護・子育て・生活保護・障害・雇用以外の調整費等。社会福祉施設整備費・社会保険制度全般の共通事務費等が含まれる。",
+
+  // ── 国債費（追加） ──
+  "bond-interest":
+    "国が発行した国債・借入金の利子支払い費用の総額。内国債（普通国債・財投債等）の利子が大部分を占め、金利上昇の影響を強く受ける。令和7年度は約11兆円。",
+  "bond-repay":
+    "普通国債・財投債等の元本返済費用（定率繰上償還含む）。国債残高は約1,000兆円超で毎年度の償還費は一般会計歳出の約6割を占める。借換債（再発行分）は含まない。",
+
+  // ── 地方交付税（追加） ──
+  "localalloc-joto":
+    "国税の一定割合を使途指定なしで地方公共団体へ配分する制度。道路財源の地方揮発油譲与税（約1.4兆円）と港湾財源の特別とん譲与税等が主体。",
+  "localalloc-tokurei":
+    "住宅ローン減税等の国税減収により地方税収が不足する分を補填する特例的な交付金。地方財政への影響を緩和するための財政調整措置。",
+
+  // ── 防衛（追加） ──
+  "defense-busshi":
+    "航空機・艦船・弾薬・火器・車両等の装備品購入費の総計。防衛力抜本的強化計画（令和5〜9年度）のもとで大幅に増額。5年間で43兆円規模の防衛費拡充の中核。",
+  "defense-busshi-other":
+    "航空機・艦船・弾薬・戦車以外の装備品（通信機器・レーダー・電子戦装置・特殊車両等）の調達費。デジタル・情報領域の装備品調達が近年増加傾向。",
+  "defense-ippan":
+    "自衛隊の活動に必要な燃料・弾薬維持・装備品の維持整備・光熱水料・通信費・輸送費等の運営経費。演習・訓練の実施頻度に応じて変動する。",
+  "defense-jinken":
+    "自衛官・防衛省職員（約26万人）の給与・各種手当・退職金等の人件費と、隊員の食事・被服・営舎等の基本生活費（糧食費）の合計。防衛費の約4割を占める。",
+  "defense-kenkyu":
+    "将来の防衛装備技術確保のための研究開発費の合計。次世代戦闘機（F-X）等の先端技術研究と、大学・民間企業との産学連携研究（安全保障技術研究推進制度）の2本柱。",
+  "defense-shisetsu":
+    "自衛隊基地・駐屯地の営舎・庁舎・格納庫等の整備費と、在日米軍施設の日米共同使用に関連するSACO関連施設整備費の合計。老朽化対策が課題。",
+  "defense-other-misc":
+    "防衛省が所管する経費のうち人件費・物件費・装備品・研究開発・施設整備以外の経費。予備費・調整費・サイバー防衛関連費等が含まれる。",
+
+  // ── 公共事業（追加） ──
+  "public-flood":
+    "洪水・土砂災害から人命・財産を守るための治山・治水事業費の総称。砂防堰堤・急傾斜地崩壊対策（林野庁・国交省）と一級河川の堤防強化・河道整備の2区分で構成。",
+  "public-housing":
+    "住みやすい都市環境整備への国費支援の総称。市街地再開発・土地区画整理・都市公園・下水道整備（国交省）と水道施設の老朽化更新・耐震化（厚労省）の2区分。",
+  "public-agri":
+    "農村地域の農地・用排水路・農道・圃場整備等の基盤整備事業への国庫補助。食料自給率向上と農業の生産性改善のためのインフラ整備。農林水産省が主管。",
+  "public-disaster":
+    "台風・豪雨・地震等による公共インフラ（道路・河川・農地等）の被災箇所を国庫補助で復旧する事業費。激甚災害指定で補助率が最大90%まで引き上げられる。",
+  "public-port":
+    "国際競争力強化のための国際拠点港湾整備、空港旅客ターミナル・滑走路の拡充、新幹線・鉄道ネットワーク整備への国庫補助。物流・交通インフラの根幹。",
+  "public-forest":
+    "山地・森林における治山ダム・砂防工事・林道・作業道整備等の公共事業。国土保全・水源涵養機能の維持と、林業の効率化・木材安定供給の両面に貢献。",
+  "public-fishery":
+    "漁港の整備・防波堤改良・漁場環境保全（藻場・干潟・人工礁）等への国庫補助。水産業の生産基盤強化と沿岸漁業の安定操業を支援。水産庁が主管。",
+  "public-other":
+    "公共事業費のうち道路・治水・農業・港湾・住宅・都市整備等の主要事業以外の経費。広域道路・国際空間整備等の調整費・小規模事業支援等が含まれる。",
+
+  // ── 文教・科学（追加） ──
+  "edu-shisetsu":
+    "小中高・特別支援学校等の公立学校施設の耐震化・改築・大規模改修への国庫補助。全国の学校約3万校の施設老朽化対策・バリアフリー化推進が主要課題。",
+  "edu-shien-other":
+    "教育助成費のうち義務教育費国庫負担・特別支援教育加配以外の教育支援。教材費・ICT環境整備・就学援助・不登校・いじめ対策関連の補助金等。",
+  "edu-ikuei":
+    "日本学生支援機構（JASSO）が運営する返済不要の給付型奨学金と有利子・無利子の貸与型奨学金の原資。経済的理由による進学断念を防ぎ、教育機会の均等を保障。",
+  "edu-koukou-musho":
+    "公立高校は授業料相当額を無償化、私立高校は就学支援金（年収590万円未満世帯で上限約40万円）を支給する制度への国費。令和7年度から所得制限を見直し拡充。",
+  "edu-kyushoku-musho":
+    "小中学校の給食費負担を軽減するための国費支援。自治体が給食費を無料化・値上げ抑制する際の補助金。令和7年度から段階的に本格化し、完全無償化を後押し。",
+
+  // ── 食料安定供給（追加） ──
+  "food-kome":
+    "農家の経営安定を図る収入保険・直接支払い・水田活用直接支払い・備蓄米政策等の総称。食料自給率向上と農業所得の下支えが目的。農林水産省が主管。",
+  "food-shokuhin":
+    "水産物・畜産物の安定供給を支える価格安定・経営支援・生産基盤強化策の総称。漁業への各種補助金と、牛肉・牛乳・鶏卵等の畜産経営安定資金で構成。",
+  "food-other":
+    "食料安定供給関係費のうち農業経営安定対策・水産・畜産以外の経費。食品安全対策・農林水産物の輸出促進・農業研究開発推進等が含まれる。",
+
+  // ── エネルギー（追加） ──
+  "energy-saisei":
+    "再生可能エネルギーの普及拡大に向けた国費支援の総称。太陽光・風力・地熱・バイオマス等のFIT/FIP買取費用への拠出と、洋上風力・水素等の次世代技術開発補助の2本柱。",
+  "energy-setsuyaku":
+    "エネルギー消費効率の改善に向けた補助の総称。家庭向け省エネ家電・住宅設備の買替支援と、工場・事業所の省エネ設備導入・エネルギーマネジメントシステム（EMS）補助の2区分。",
+  "energy-other":
+    "エネルギー政策費のうち再生可能エネルギー・省エネルギー以外の経費。原子力安全対策・石油備蓄・液化天然ガス（LNG）の安定供給確保・鉱山保安等が含まれる。",
+
+  // ── 中小企業（追加） ──
+  "sme-shien":
+    "中小企業支援の2本柱。①設備投資・デジタル化への補助金（ものづくり補助金・IT導入補助金等）と、②信用保証制度（信用保証協会への出資）による資金繰り支援の合計。",
+  "sme-other":
+    "中小企業政策のうち補助金・信用保証以外の経費。商工会議所等による経営相談・販路開拓支援、事業承継対策、地域資源活用促進、小規模企業者向け支援等。",
+
+  // ── その他（追加） ──
+  "other-reserve":
+    "年度途中の緊急事態（自然災害・感染症・物価急騰等）に対応する予備費。国会の議決なしに内閣が使用でき、使用後に国会へ報告する。コロナ禍では年間10兆円規模が積まれた。",
+  "other-gyosei":
+    "内閣府・各省庁の一般的な業務運営費（物件費・委託費・情報システム費等）。デジタル庁・こども家庭庁等の新設省庁関連費も含む。行政DX推進経費が近年増加傾向。",
+  "other-justice":
+    "治安・司法機能を担う機関の運営費の総称。警察庁（サイバー犯罪・テロ対策強化費を含む）と、裁判所・検察庁・法務省（矯正施設・出入国在留管理）の経費で構成。",
+  "other-misc":
+    "その他経費のうち予備費・一般行政費・司法警察費以外の経費。外交費・情報収集衛星関連費・府省横断的な共通経費等が含まれる。",
+  "other-gaikoku":
+    "外国人の在留管理（出入国在留管理庁）・生活支援・多文化共生施策への経費。在留外国人は約340万人（令和6年）で過去最多を更新中。日本語教育支援等も含む。",
 };
 
 /**
@@ -370,4 +496,53 @@ export const itemSourceUrls: Record<string, string> = {
   "oda-oda-ngo": "https://www.mofa.go.jp/mofaj/gaiko/oda/shimin/oda_ngo/index.html",
   "oda-kokusai-un": "https://www.mofa.go.jp/mofaj/ic/index.html",
   "oda-kokusai-adb": "https://www.mof.go.jp/policy/international_policy/imf/index.htm",
+
+  // ── 追加項目のURL ──
+  "social-pension-other": "https://www.nenkin.go.jp/",
+  "social-medical-other": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/iryouhoken/",
+  "social-medical-kokaho": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/iryouhoken/iryouhoken13/index.html",
+  "social-care-other": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/index.html",
+  "social-care-service": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/index.html",
+  "social-child-hoiku": "https://www.cfa.go.jp/policies/hoiku/",
+  "social-child-kodomo": "https://www.cfa.go.jp/",
+  "social-welfare-shogai": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/shougaishahukushi/index.html",
+  "social-emp-other": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyou/index.html",
+  "social-other": "https://www.mhlw.go.jp/",
+  "bond-interest": "https://www.mof.go.jp/jgbs/index.html",
+  "bond-repay": "https://www.mof.go.jp/jgbs/reference/index.html",
+  "localalloc-joto": "https://www.soumu.go.jp/main_sosiki/c-zaisei/joto_zei.html",
+  "localalloc-tokurei": "https://www.soumu.go.jp/main_sosiki/c-zaisei/",
+  "defense-busshi": "https://www.mod.go.jp/atla/choutatsu.html",
+  "defense-busshi-other": "https://www.mod.go.jp/atla/choutatsu.html",
+  "defense-ippan": "https://www.mod.go.jp/j/profile/mod_jsdf/",
+  "defense-jinken": "https://www.mod.go.jp/gsdf/jieikanbosyu/treatment/",
+  "defense-kenkyu": "https://www.mod.go.jp/atla/kenkyuu.html",
+  "defense-shisetsu": "https://www.mod.go.jp/j/approach/chouwa/sisetsuseibi/index.html",
+  "defense-other-misc": "https://www.mod.go.jp/",
+  "public-flood": "https://www.mlit.go.jp/mizukokudo/",
+  "public-housing": "https://www.mlit.go.jp/toshi/index.html",
+  "public-agri": "https://www.maff.go.jp/j/nousin/index.html",
+  "public-disaster": "https://www.mlit.go.jp/river/bousai/saigai/",
+  "public-port": "https://www.mlit.go.jp/kowan/index.html",
+  "public-forest": "https://www.rinya.maff.go.jp/",
+  "public-fishery": "https://www.jfa.maff.go.jp/j/gyoko_gyojyo/",
+  "public-other": "https://www.mlit.go.jp/",
+  "edu-shisetsu": "https://www.mext.go.jp/a_menu/shisetu/",
+  "edu-shien-other": "https://www.mext.go.jp/",
+  "edu-ikuei": "https://www.jasso.go.jp/shogakukin/",
+  "edu-koukou-musho": "https://www.mext.go.jp/a_menu/shotou/mushouka/index.htm",
+  "edu-kyushoku-musho": "https://www.mext.go.jp/",
+  "food-kome": "https://www.maff.go.jp/j/keiei/",
+  "food-shokuhin": "https://www.maff.go.jp/j/syouan/",
+  "food-other": "https://www.maff.go.jp/",
+  "energy-saisei": "https://www.enecho.meti.go.jp/category/saving_and_new/saiene/",
+  "energy-setsuyaku": "https://www.enecho.meti.go.jp/category/saving_and_new/saving/",
+  "energy-other": "https://www.enecho.meti.go.jp/",
+  "sme-shien": "https://www.chusho.meti.go.jp/",
+  "sme-other": "https://www.chusho.meti.go.jp/",
+  "other-reserve": "https://www.mof.go.jp/budget/budger_workflow/budget/",
+  "other-gyosei": "https://www.cao.go.jp/",
+  "other-justice": "https://www.npa.go.jp/",
+  "other-misc": "https://www.mof.go.jp/",
+  "other-gaikoku": "https://www.moj.go.jp/isa/",
 };
