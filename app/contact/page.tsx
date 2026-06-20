@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Logo from "@/components/Logo";
-import { ArrowLeft, Send, CheckCircle } from "lucide-react";
+import { ArrowLeft, Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 
 const INQUIRY_TYPES = ["不具合報告", "開発要望", "業務提携", "メディア掲載", "その他"];
 
@@ -33,7 +33,8 @@ export default function ContactPage() {
     message: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [serverError, setServerError] = useState("");
 
   const validate = (): FormErrors => {
     const newErrors: FormErrors = {};
@@ -58,7 +59,7 @@ export default function ContactPage() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const newErrors = validate();
     if (Object.keys(newErrors).length > 0) {
@@ -66,23 +67,37 @@ export default function ContactPage() {
       return;
     }
 
-    const subject = encodeURIComponent(`[YUKUE] ${formData.type}のお問い合わせ`);
-    const body = encodeURIComponent(
-      [
-        `【会社名・屋号】${formData.company || "未記入"}`,
-        `【お名前】${formData.name}`,
-        `【メールアドレス】${formData.email}`,
-        `【電話番号】${formData.phone || "未記入"}`,
-        `【お問い合わせ種別】${formData.type}`,
-        "",
-        `【お問い合わせ内容】`,
-        formData.message,
-      ].join("\n")
-    );
+    setStatus("loading");
+    setServerError("");
 
-    window.location.href = `mailto:info@yukue.net?subject=${subject}&body=${body}`;
-    setSubmitted(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setServerError(data.error ?? "送信中にエラーが発生しました");
+        setStatus("error");
+        return;
+      }
+
+      setStatus("success");
+    } catch {
+      setServerError("ネットワークエラーが発生しました。しばらく経ってから再度お試しください。");
+      setStatus("error");
+    }
   };
+
+  const inputClass = (error?: string) =>
+    `w-full px-4 py-2.5 rounded-xl border text-sm text-slate-900 placeholder-slate-300 focus:outline-none focus:ring-2 transition-colors ${
+      error
+        ? "border-red-300 focus:ring-red-200 focus:border-red-400"
+        : "border-slate-200 focus:ring-[#1a365d]/20 focus:border-[#1a365d]"
+    }`;
 
   return (
     <main className="min-h-screen bg-white">
@@ -116,19 +131,19 @@ export default function ContactPage() {
           </p>
         </div>
 
-        {submitted ? (
+        {status === "success" ? (
           <div className="flex flex-col items-center justify-center py-20 text-center">
             <CheckCircle size={48} className="text-emerald-500 mb-4" />
-            <h2 className="text-xl font-bold text-slate-900 mb-2">メールクライアントが開きます</h2>
-            <p className="text-sm text-slate-600 mb-6 leading-relaxed">
-              お使いのメールアプリに内容が自動入力されています。<br />
-              送信ボタンを押してお送りください。
-            </p>
-            <p className="text-xs text-slate-400 mb-8">
-              メールアプリが開かない場合は <a href="mailto:info@yukue.net" className="text-indigo-600 underline underline-offset-2">info@yukue.net</a> までご連絡ください。
+            <h2 className="text-xl font-bold text-slate-900 mb-2">送信完了しました</h2>
+            <p className="text-sm text-slate-600 leading-relaxed mb-8">
+              お問い合わせいただきありがとうございます。<br />
+              内容を確認のうえ、担当者よりご連絡いたします。
             </p>
             <button
-              onClick={() => setSubmitted(false)}
+              onClick={() => {
+                setStatus("idle");
+                setFormData({ company: "", name: "", email: "", phone: "", type: "", message: "" });
+              }}
               className="text-sm text-slate-500 hover:text-slate-900 transition-colors underline underline-offset-2"
             >
               フォームに戻る
@@ -136,6 +151,14 @@ export default function ContactPage() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} noValidate className="space-y-6">
+            {/* サーバーエラー */}
+            {status === "error" && serverError && (
+              <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700">
+                <AlertCircle size={16} className="mt-0.5 shrink-0" />
+                <span>{serverError}</span>
+              </div>
+            )}
+
             {/* 会社名・屋号 */}
             <div>
               <label htmlFor="company" className="block text-sm font-medium text-slate-700 mb-1.5">
@@ -149,7 +172,7 @@ export default function ContactPage() {
                 value={formData.company}
                 onChange={handleChange}
                 placeholder="株式会社〇〇 / 個人の方は空欄で構いません"
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-[#1a365d]/20 focus:border-[#1a365d] transition-colors"
+                className={inputClass()}
               />
             </div>
 
@@ -166,11 +189,7 @@ export default function ContactPage() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="山田 太郎"
-                className={`w-full px-4 py-2.5 rounded-xl border text-sm text-slate-900 placeholder-slate-300 focus:outline-none focus:ring-2 transition-colors ${
-                  errors.name
-                    ? "border-red-300 focus:ring-red-200 focus:border-red-400"
-                    : "border-slate-200 focus:ring-[#1a365d]/20 focus:border-[#1a365d]"
-                }`}
+                className={inputClass(errors.name)}
               />
               {errors.name && <p className="mt-1.5 text-xs text-red-500">{errors.name}</p>}
             </div>
@@ -188,11 +207,7 @@ export default function ContactPage() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="example@email.com"
-                className={`w-full px-4 py-2.5 rounded-xl border text-sm text-slate-900 placeholder-slate-300 focus:outline-none focus:ring-2 transition-colors ${
-                  errors.email
-                    ? "border-red-300 focus:ring-red-200 focus:border-red-400"
-                    : "border-slate-200 focus:ring-[#1a365d]/20 focus:border-[#1a365d]"
-                }`}
+                className={inputClass(errors.email)}
               />
               {errors.email && <p className="mt-1.5 text-xs text-red-500">{errors.email}</p>}
             </div>
@@ -210,7 +225,7 @@ export default function ContactPage() {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="03-0000-0000"
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-[#1a365d]/20 focus:border-[#1a365d] transition-colors"
+                className={inputClass()}
               />
             </div>
 
@@ -225,12 +240,8 @@ export default function ContactPage() {
                 name="type"
                 value={formData.type}
                 onChange={handleChange}
-                className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none focus:ring-2 transition-colors appearance-none bg-white ${
+                className={`${inputClass(errors.type)} appearance-none bg-white ${
                   formData.type ? "text-slate-900" : "text-slate-400"
-                } ${
-                  errors.type
-                    ? "border-red-300 focus:ring-red-200 focus:border-red-400"
-                    : "border-slate-200 focus:ring-[#1a365d]/20 focus:border-[#1a365d]"
                 }`}
               >
                 <option value="" disabled>選択してください</option>
@@ -254,11 +265,7 @@ export default function ContactPage() {
                 onChange={handleChange}
                 rows={6}
                 placeholder="お問い合わせ内容をご記入ください"
-                className={`w-full px-4 py-2.5 rounded-xl border text-sm text-slate-900 placeholder-slate-300 focus:outline-none focus:ring-2 transition-colors resize-none ${
-                  errors.message
-                    ? "border-red-300 focus:ring-red-200 focus:border-red-400"
-                    : "border-slate-200 focus:ring-[#1a365d]/20 focus:border-[#1a365d]"
-                }`}
+                className={`${inputClass(errors.message)} resize-none`}
               />
               {errors.message && <p className="mt-1.5 text-xs text-red-500">{errors.message}</p>}
             </div>
@@ -267,14 +274,21 @@ export default function ContactPage() {
             <div className="pt-2">
               <button
                 type="submit"
-                className="flex items-center gap-2 px-8 py-3 bg-[#1a365d] hover:bg-[#1e4080] text-white text-sm font-medium rounded-xl transition-colors shadow-sm"
+                disabled={status === "loading"}
+                className="flex items-center gap-2 px-8 py-3 bg-[#1a365d] hover:bg-[#1e4080] disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm font-medium rounded-xl transition-colors shadow-sm"
               >
-                <Send size={15} />
-                送信する
+                {status === "loading" ? (
+                  <>
+                    <Loader2 size={15} className="animate-spin" />
+                    送信中…
+                  </>
+                ) : (
+                  <>
+                    <Send size={15} />
+                    送信する
+                  </>
+                )}
               </button>
-              <p className="mt-3 text-xs text-slate-400">
-                送信するとメールアプリが開き、内容が自動入力されます。メールアプリ上で送信してください。
-              </p>
             </div>
           </form>
         )}
