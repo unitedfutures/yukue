@@ -183,13 +183,16 @@ export default function PrivacyPage() {
         </div>
 
         {/* フッター */}
-        <div className="pt-8 mt-10 border-t border-slate-200">
+        <div className="pt-8 mt-10 border-t border-slate-200 flex items-center justify-between flex-wrap gap-4">
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 transition-colors"
           >
             <ArrowLeft size={14} />
             ダッシュボードに戻る
+          </Link>
+          <Link href="/contact" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+            お問い合わせ
           </Link>
         </div>
       </div>

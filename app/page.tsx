@@ -306,6 +306,7 @@ export default function Home() {
         <span>© {new Date().getFullYear()} YUKUE</span>
         <div className="flex items-center gap-4">
           <Link href="/about" className="hover:text-slate-700 transition-colors">このサイトについて</Link>
+          <Link href="/contact" className="hover:text-slate-700 transition-colors">お問い合わせ</Link>
           <Link href="/privacy" className="hover:text-slate-700 transition-colors">プライバシーポリシー</Link>
         </div>
       </footer>
