@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { neon } from "@neondatabase/serverless";
+import { createClient } from "@supabase/supabase-js";
 
 interface ContactPayload {
   company?: string;
@@ -89,18 +89,21 @@ export async function POST(req: NextRequest) {
     };
 
     // DB保存
-    const sql = neon(process.env.DATABASE_URL!);
-    await sql`
-      INSERT INTO contact_submissions (company, name, email, phone, inquiry_type, message)
-      VALUES (
-        ${payload.company ?? null},
-        ${payload.name},
-        ${payload.email},
-        ${payload.phone ?? null},
-        ${payload.type},
-        ${payload.message}
-      )
-    `;
+    const supabase = createClient(
+      process.env.SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
+    const { error: dbError } = await supabase
+      .from("contact_submissions")
+      .insert({
+        company: payload.company ?? null,
+        name: payload.name,
+        email: payload.email,
+        phone: payload.phone ?? null,
+        inquiry_type: payload.type,
+        message: payload.message,
+      });
+    if (dbError) throw new Error(`Supabase error: ${dbError.message}`);
 
     // メール送信
     await sendBrevoEmail(payload);
