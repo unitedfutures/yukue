@@ -191,9 +191,9 @@ export default function PrivacyPage() {
             <ArrowLeft size={14} />
             ダッシュボードに戻る
           </Link>
-          <Link href="/contact" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+          <a href="https://united-futures.com/contact/" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
             お問い合わせ
-          </Link>
+          </a>
         </div>
       </div>
     </main>
