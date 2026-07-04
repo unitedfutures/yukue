@@ -1,16 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { budgetData, BudgetItem, BudgetYear, formatAmount } from "@/data/budget";
 import { settlementData, hasSettlement } from "@/data/settlement";
 import { recipientGroups, hasRecipients } from "@/data/recipients";
+import {
+  getPrevYearAmounts,
+  getPrevYearTotal,
+  getExecutionRates,
+  yoyPercent,
+  perCapitaYen,
+  formatPerCapita,
+} from "@/data/analysis";
 import BudgetChart from "@/components/BudgetChart";
 import Breadcrumb from "@/components/Breadcrumb";
 import RankingPanel from "@/components/RankingPanel";
 import RecipientsList from "@/components/RecipientsList";
 import Link from "next/link";
 import Logo from "@/components/Logo";
-import { ArrowLeft, ExternalLink, FileText, Clock, List, Info } from "lucide-react";
+import { ArrowLeft, ExternalLink, FileText, Clock, List, Info, Calculator } from "lucide-react";
 
 type DataMode = "budget" | "settlement";
 
@@ -49,6 +57,22 @@ export default function Home() {
     path.length === 0 ? activeData.total : path[path.length - 1].amount;
 
   const settlementAvailable = hasSettlement(selectedYear.year);
+
+  // ── 分析データ ──
+  const prevAmounts = useMemo(
+    () => getPrevYearAmounts(selectedYear.year, dataMode),
+    [selectedYear.year, dataMode]
+  );
+  const execRates = useMemo(
+    () => (dataMode === "settlement" ? getExecutionRates(selectedYear.year) : null),
+    [selectedYear.year, dataMode]
+  );
+  // 現在表示中の階層の前年比
+  const prevTotal =
+    path.length === 0
+      ? getPrevYearTotal(selectedYear.year, dataMode)
+      : prevAmounts?.get(path[path.length - 1].id) ?? null;
+  const totalYoy = yoyPercent(currentTotal, prevTotal ?? undefined);
 
   const handleSelect = (item: BudgetItem) => {
     if (item.children && item.children.length > 0) {
@@ -105,6 +129,14 @@ export default function Home() {
           </Link>
 
           <div className="flex items-center gap-2 flex-wrap">
+            {/* 納税額シミュレーター */}
+            <Link
+              href="/simulator"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-slate-500 hover:text-slate-800 transition-colors"
+            >
+              <Calculator size={14} />
+              <span>シミュレーター</span>
+            </Link>
             {/* このサイトについて */}
             <Link
               href="/about"
@@ -236,6 +268,21 @@ export default function Home() {
                   <span className="text-4xl font-bold text-slate-900">
                     {formatAmount(currentTotal)}
                   </span>
+                  {totalYoy !== null && (
+                    <span
+                      className={`text-sm font-mono ${
+                        totalYoy > 0.05
+                          ? "text-rose-500"
+                          : totalYoy < -0.05
+                          ? "text-emerald-600"
+                          : "text-slate-400"
+                      }`}
+                      title="前年度比"
+                    >
+                      前年比 {totalYoy > 0.05 ? "+" : ""}
+                      {totalYoy.toFixed(1)}%
+                    </span>
+                  )}
                   {path.length > 0 && (
                     <span className="text-sm text-slate-500">
                       歳出総額{formatAmount(activeData.total)}の{" "}
@@ -243,11 +290,16 @@ export default function Home() {
                     </span>
                   )}
                 </div>
-                {path.length === 0 && (
-                  <p className="text-sm text-slate-500 mt-1">
-                    {activeData.label} {totalLabel}
-                  </p>
-                )}
+                <p className="text-sm text-slate-500 mt-1">
+                  {path.length === 0 && (
+                    <>
+                      {activeData.label} {totalLabel}
+                      <span className="mx-2 text-slate-300">|</span>
+                    </>
+                  )}
+                  国民1人あたり{" "}
+                  {formatPerCapita(perCapitaYen(currentTotal, selectedYear.year))}
+                </p>
               </div>
 
               {path.length > 0 && (
@@ -280,6 +332,9 @@ export default function Home() {
                 items={currentItems}
                 total={currentTotal}
                 onSelect={handleSelect}
+                prevAmounts={prevAmounts}
+                execRates={execRates}
+                year={selectedYear.year}
               />
             ) : (
               <div className="flex flex-col items-center justify-center py-16 text-slate-400">
@@ -305,6 +360,7 @@ export default function Home() {
       <footer className="max-w-4xl mx-auto px-4 py-6 mt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
         <span>© {new Date().getFullYear()} YUKUE</span>
         <div className="flex items-center gap-4">
+          <Link href="/simulator" className="hover:text-slate-700 transition-colors">納税額シミュレーター</Link>
           <Link href="/about" className="hover:text-slate-700 transition-colors">このサイトについて</Link>
           <a href="https://united-futures.com/contact/" target="_blank" rel="noopener noreferrer" className="hover:text-slate-700 transition-colors">お問い合わせ</a>
           <Link href="/privacy" className="hover:text-slate-700 transition-colors">プライバシーポリシー</Link>

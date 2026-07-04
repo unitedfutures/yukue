@@ -4,8 +4,9 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { useState, useEffect } from "react";
 import { BudgetItem, formatAmount, formatPercent } from "@/data/budget";
 import { itemDescriptions, itemSourceUrls } from "@/data/descriptions";
-import { Info, List, ExternalLink } from "lucide-react";
+import { Info, List, ExternalLink, Users } from "lucide-react";
 import { hasRecipients } from "@/data/recipients";
+import { yoyPercent, perCapitaYen, formatPerCapita } from "@/data/analysis";
 
 const COLORS = [
   "#6366f1", "#06b6d4", "#10b981", "#f59e0b", "#ef4444",
@@ -17,6 +18,28 @@ interface Props {
   items: BudgetItem[];
   total: number;
   onSelect: (item: BudgetItem) => void;
+  /** 前年度の id → 金額マップ（前年比表示用）。null なら非表示 */
+  prevAmounts?: Map<string, number> | null;
+  /** 執行率マップ（決算表示時のみ渡す）。null なら非表示 */
+  execRates?: Map<string, number> | null;
+  /** 1人あたり換算に使う年度 */
+  year?: number;
+}
+
+function YoyBadge({ current, prev }: { current: number; prev: number | undefined }) {
+  const pct = yoyPercent(current, prev);
+  if (pct === null) {
+    return <span className="text-[11px] text-slate-300 flex-shrink-0 w-14 text-right">—</span>;
+  }
+  const cls =
+    pct > 0.05 ? "text-rose-500" : pct < -0.05 ? "text-emerald-600" : "text-slate-400";
+  const sign = pct > 0.05 ? "+" : "";
+  return (
+    <span className={`text-[11px] font-mono flex-shrink-0 w-14 text-right ${cls}`}>
+      {sign}
+      {pct.toFixed(1)}%
+    </span>
+  );
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -24,6 +47,7 @@ function CustomTooltip({ active, payload }: any) {
   if (!active || !payload?.[0]) return null;
   const item: BudgetItem = payload[0].payload;
   const tot: number = payload[0].payload.__total;
+  const year: number | undefined = payload[0].payload.__year;
   return (
     <div
       className="rounded-xl border border-slate-200 px-4 py-3 text-sm max-w-[220px] bg-white"
@@ -32,11 +56,23 @@ function CustomTooltip({ active, payload }: any) {
       <p className="font-semibold text-slate-900 mb-1">{item.name}</p>
       <p className="text-indigo-600 font-mono">{formatAmount(item.amount)}</p>
       <p className="text-slate-500 text-xs">{formatPercent(item.amount, tot)}</p>
+      {year && (
+        <p className="text-slate-500 text-xs mt-1">
+          国民1人あたり {formatPerCapita(perCapitaYen(item.amount, year))}
+        </p>
+      )}
     </div>
   );
 }
 
-export default function BudgetChart({ items, total, onSelect }: Props) {
+export default function BudgetChart({
+  items,
+  total,
+  onSelect,
+  prevAmounts = null,
+  execRates = null,
+  year,
+}: Props) {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [descItem, setDescItem] = useState<BudgetItem | null>(null);
 
@@ -48,6 +84,7 @@ export default function BudgetChart({ items, total, onSelect }: Props) {
   const data = items.map((item, i) => ({
     ...item,
     __total: total,
+    __year: year,
     fill: COLORS[i % COLORS.length],
   }));
 
@@ -138,6 +175,14 @@ export default function BudgetChart({ items, total, onSelect }: Props) {
                 {hasRecipients(item.id) && (
                   <List size={13} className={`flex-shrink-0 ${isActive ? "text-cyan-600" : "text-slate-400"}`} />
                 )}
+                {execRates && execRates.has(item.id) && (
+                  <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 flex-shrink-0">
+                    執行率{Math.round(execRates.get(item.id)! * 100)}%
+                  </span>
+                )}
+                {prevAmounts && (
+                  <YoyBadge current={item.amount} prev={prevAmounts.get(item.id)} />
+                )}
                 <span className="text-xs text-slate-400 flex-shrink-0 w-12 text-right">
                   {formatPercent(item.amount, total)}
                 </span>
@@ -160,9 +205,15 @@ export default function BudgetChart({ items, total, onSelect }: Props) {
         >
           {descItem && (
             <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3">
-              <div className="flex items-center gap-1.5 mb-1.5">
+              <div className="flex items-center gap-1.5 mb-1.5 flex-wrap">
                 <Info size={13} className="text-emerald-600 flex-shrink-0" />
                 <span className="text-xs font-semibold text-emerald-700">{descItem.name}</span>
+                {year && (
+                  <span className="inline-flex items-center gap-1 text-[10px] text-emerald-600 bg-white border border-emerald-200 rounded-md px-1.5 py-0.5 ml-auto">
+                    <Users size={10} />
+                    国民1人あたり {formatPerCapita(perCapitaYen(descItem.amount, year))}
+                  </span>
+                )}
               </div>
               <p className="text-xs text-slate-600 leading-relaxed">
                 {getDesc(descItem)}
