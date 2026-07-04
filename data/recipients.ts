@@ -934,6 +934,299 @@ const energyFit: RecipientGroup = {
 // ─────────────────────────────────────────────────────
 // まとめ: itemId → RecipientGroup マップ
 // ─────────────────────────────────────────────────────
+
+// ─────────────────────────────────────────────────────
+// 行政事業レビューシート（RSシステム）由来の支払先データ
+// 出典: https://rssystem.go.jp/ 「令和7年度公表シート」の令和6年度支出実績
+// 国からの直接支出先ブロックを集計（一部は執行団体経由の間接交付先）
+// ─────────────────────────────────────────────────────
+
+const rsShogaiJiritsu: RecipientGroup = {
+  itemId: "social-welfare-shogai",
+  label: "障害者自立支援給付 都道府県別交付額",
+  year: 2024,
+  total: 15874,
+  unit: "億円",
+  sourceNote: "出典: 行政事業レビューシート「障害者自立支援給付」令和6年度支出実績（RSシステム・令和7年度公表）",
+  sourceUrl: "https://rssystem.go.jp/",
+  recipients: [
+    { name: "大阪府", amount: 1689 },
+    { name: "東京都", amount: 1312 },
+    { name: "北海道", amount: 935 },
+    { name: "神奈川県", amount: 935 },
+    { name: "愛知県", amount: 884 },
+    { name: "埼玉県", amount: 732 },
+    { name: "福岡県", amount: 727 },
+    { name: "兵庫県", amount: 693 },
+    { name: "千葉県", amount: 654 },
+    { name: "その他の道府県", amount: 7313 },
+  ],
+};
+
+const rsHoikuKyufu: RecipientGroup = {
+  itemId: "social-child-hoiku-unei",
+  label: "教育・保育給付交付金 交付先（市区町村）",
+  year: 2024,
+  total: 18076,
+  unit: "億円",
+  sourceNote: "出典: 行政事業レビューシート「子どものための教育・保育給付に必要な経費」令和6年度支出実績（RSシステム・令和7年度公表）。全国約1,700市区町村へ交付。上位は政令市",
+  sourceUrl: "https://rssystem.go.jp/",
+  recipients: [
+    { name: "大阪市", amount: 448 },
+    { name: "横浜市", amount: 446 },
+    { name: "川崎市", amount: 304 },
+    { name: "名古屋市", amount: 251 },
+    { name: "さいたま市", amount: 242 },
+    { name: "福岡市", amount: 200 },
+    { name: "札幌市", amount: 195 },
+    { name: "仙台市", amount: 195 },
+    { name: "熊本市", amount: 166 },
+    { name: "その他の市区町村", amount: 15628 },
+  ],
+};
+
+const rsKasenKaishu: RecipientGroup = {
+  itemId: "public-flood-kasenhojo",
+  label: "河川改修事業（直轄）の地域配分",
+  year: 2024,
+  total: 3192,
+  unit: "億円",
+  sourceNote: "出典: 行政事業レビューシート「河川改修事業」令和6年度支出実績（RSシステム・令和7年度公表）",
+  sourceUrl: "https://rssystem.go.jp/",
+  recipients: [
+    { name: "関東地方整備局", amount: 556 },
+    { name: "九州地方整備局", amount: 476 },
+    { name: "東北地方整備局", amount: 290 },
+    { name: "北陸地方整備局", amount: 241 },
+    { name: "四国地方整備局", amount: 238 },
+    { name: "近畿地方整備局", amount: 221 },
+    { name: "中国地方整備局", amount: 201 },
+    { name: "中部地方整備局", amount: 147 },
+    { name: "愛知県", amount: 72.6 },
+    { name: "北海道開発局・沖縄総合事務局・都道府県等", amount: 750 },
+  ],
+};
+
+const rsKowanSeibi: RecipientGroup = {
+  itemId: "public-port",
+  label: "港湾整備事業（直轄）の地域配分",
+  year: 2024,
+  total: 2593,
+  unit: "億円",
+  sourceNote: "出典: 行政事業レビューシート「港湾整備事業」令和6年度支出実績（RSシステム・令和7年度公表）",
+  sourceUrl: "https://rssystem.go.jp/",
+  recipients: [
+    { name: "関東地方整備局", amount: 495 },
+    { name: "九州地方整備局", amount: 488 },
+    { name: "中部地方整備局", amount: 402 },
+    { name: "近畿地方整備局", amount: 329 },
+    { name: "中国地方整備局", amount: 211 },
+    { name: "東北地方整備局", amount: 203 },
+    { name: "北陸地方整備局", amount: 189 },
+    { name: "四国地方整備局", amount: 144 },
+    { name: "国土技術政策総合研究所", amount: 40.1 },
+    { name: "北海道開発局・沖縄総合事務局等", amount: 91.3 },
+  ],
+};
+
+const rsShinrinSeibi: RecipientGroup = {
+  itemId: "public-forest",
+  label: "森林整備事業（直轄）の配分先",
+  year: 2024,
+  total: 694,
+  unit: "億円",
+  sourceNote: "出典: 行政事業レビューシート「森林整備事業（直轄）」令和6年度支出実績（RSシステム・令和7年度公表）",
+  sourceUrl: "https://rssystem.go.jp/",
+  recipients: [
+    { name: "東北森林管理局", amount: 200 },
+    { name: "北海道森林管理局", amount: 144 },
+    { name: "九州森林管理局", amount: 118 },
+    { name: "関東森林管理局", amount: 95.1 },
+    { name: "中部森林管理局", amount: 49.9 },
+    { name: "四国森林管理局", amount: 43.1 },
+    { name: "近畿中国森林管理局", amount: 26.2 },
+    { name: "農林水産省への移替", amount: 18.1 },
+  ],
+};
+
+const rsSuisanKiban: RecipientGroup = {
+  itemId: "public-fishery",
+  label: "水産基盤整備事業（補助）都道府県別",
+  year: 2024,
+  total: 438,
+  unit: "億円",
+  sourceNote: "出典: 行政事業レビューシート「水産基盤整備事業（補助）」令和6年度支出実績（RSシステム・令和7年度公表）",
+  sourceUrl: "https://rssystem.go.jp/",
+  recipients: [
+    { name: "青森県", amount: 57.3 },
+    { name: "長崎県", amount: 45.7 },
+    { name: "宮城県", amount: 23.8 },
+    { name: "熊本県", amount: 23.6 },
+    { name: "千葉県", amount: 22.5 },
+    { name: "岩手県", amount: 20.6 },
+    { name: "鹿児島県", amount: 18.9 },
+    { name: "福岡県", amount: 18.3 },
+    { name: "和歌山県", amount: 15.0 },
+    { name: "その他の道府県", amount: 193 },
+  ],
+};
+
+const rsSaigaiFukkyu: RecipientGroup = {
+  itemId: "public-disaster",
+  label: "河川等災害復旧事業の地域配分",
+  year: 2024,
+  total: 979,
+  unit: "億円",
+  sourceNote: "出典: 行政事業レビューシート「河川等災害復旧事業」令和6年度支出実績（RSシステム・令和7年度公表）",
+  sourceUrl: "https://rssystem.go.jp/",
+  recipients: [
+    { name: "東北地方整備局", amount: 308 },
+    { name: "九州地方整備局", amount: 268 },
+    { name: "関東地方整備局", amount: 267 },
+    { name: "北陸地方整備局", amount: 94.5 },
+    { name: "近畿地方整備局", amount: 21.0 },
+    { name: "四国地方整備局", amount: 13.2 },
+    { name: "中国地方整備局", amount: 3.6 },
+    { name: "石川県", amount: 1.5 },
+    { name: "中部地方整備局", amount: 0.5 },
+    { name: "その他（都道府県等）", amount: 2.2 },
+  ],
+};
+
+const rsGesuido: RecipientGroup = {
+  itemId: "public-housing-suido",
+  label: "下水道事業（国費）交付先自治体",
+  year: 2024,
+  total: 959,
+  unit: "億円",
+  sourceNote: "出典: 行政事業レビューシート「下水道事業」令和6年度支出実績（RSシステム・令和7年度公表）",
+  sourceUrl: "https://rssystem.go.jp/",
+  recipients: [
+    { name: "東京都", amount: 91.3 },
+    { name: "大阪市", amount: 57.9 },
+    { name: "大阪府", amount: 54.8 },
+    { name: "名古屋市", amount: 49.2 },
+    { name: "堺市", amount: 37.9 },
+    { name: "仙台市", amount: 34.1 },
+    { name: "国土技術政策総合研究所", amount: 32.7 },
+    { name: "滋賀県", amount: 28.6 },
+    { name: "戸田市", amount: 24.2 },
+    { name: "その他の地方公共団体", amount: 549 },
+  ],
+};
+
+const rsNogyoNoson: RecipientGroup = {
+  itemId: "public-agri",
+  label: "TPP等関連農業農村整備事業の地域配分",
+  year: 2024,
+  total: 422,
+  unit: "億円",
+  sourceNote: "出典: 行政事業レビューシート「TPP等関連農業農村整備事業」令和6年度支出実績（RSシステム・令和7年度公表）",
+  sourceUrl: "https://rssystem.go.jp/",
+  recipients: [
+    { name: "東北農政局", amount: 118 },
+    { name: "北陸農政局", amount: 94.9 },
+    { name: "中国四国農政局", amount: 72.3 },
+    { name: "九州農政局", amount: 52.0 },
+    { name: "関東農政局", amount: 40.9 },
+    { name: "近畿農政局", amount: 32.2 },
+    { name: "東海農政局", amount: 12.2 },
+  ],
+};
+
+const rsKeisatsuHojo: RecipientGroup = {
+  itemId: "other-justice",
+  label: "都道府県警察費補助金（捜査費等）交付先",
+  year: 2024,
+  total: 296,
+  unit: "億円",
+  sourceNote: "出典: 行政事業レビューシート「都道府県警察費補助金（都道府県警察における一般の捜査活動等に要する経費）」令和6年度支出実績（RSシステム・令和7年度公表）",
+  sourceUrl: "https://rssystem.go.jp/",
+  recipients: [
+    { name: "警視庁", amount: 50.0 },
+    { name: "大阪府警察", amount: 19.8 },
+    { name: "北海道警察", amount: 15.8 },
+    { name: "神奈川県警察", amount: 14.0 },
+    { name: "兵庫県警察", amount: 12.8 },
+    { name: "愛知県警察", amount: 12.5 },
+    { name: "千葉県警察", amount: 10.2 },
+    { name: "広島県警察", amount: 9.6 },
+    { name: "福岡県警察", amount: 9.5 },
+    { name: "その他の道府県警察", amount: 142 },
+  ],
+};
+
+const rsGovCloud: RecipientGroup = {
+  itemId: "other-gyosei",
+  label: "ガバメントクラウド利用料の支払先",
+  year: 2024,
+  total: 187,
+  unit: "億円",
+  sourceNote: "出典: 行政事業レビューシート「ガバメントクラウド（情報通信技術調達等適正・効率化推進費）」令和6年度支出実績（RSシステム・令和7年度公表）。政府共通クラウド基盤の利用料。デジタル庁経由で各府省・自治体システムが利用",
+  sourceUrl: "https://rssystem.go.jp/",
+  recipients: [
+    { name: "Amazon Web Services,Inc.", amount: 117 },
+    { name: "KPMGコンサルティング株式会社", amount: 18.6 },
+    { name: "日本オラクル株式会社", amount: 12.0 },
+    { name: "株式会社NTTデータ", amount: 11.8 },
+    { name: "さくらインターネット株式会社", amount: 4.9 },
+    { name: "PwCコンサルティング合同会社", amount: 4.0 },
+    { name: "株式会社ミラボ", amount: 2.9 },
+    { name: "グーグル・クラウド・ジャパン合同会社", amount: 2.7 },
+    { name: "富士フイルムシステムサービス株式会社", amount: 2.6 },
+    { name: "その他（国内SIer等）", amount: 10.4 },
+  ],
+};
+
+const rsF35: RecipientGroup = {
+  itemId: "defense-busshi-kokuki",
+  label: "F-35戦闘機取得費の支払先",
+  year: 2024,
+  total: 3029,
+  unit: "億円",
+  sourceNote: "出典: 行政事業レビューシート「戦闘機（Ｆ－３５Ａ／Ｂ）の取得」令和6年度支出実績（RSシステム・令和7年度公表）。FMS（対外有償軍事援助）により米国政府へ直接支払い",
+  sourceUrl: "https://rssystem.go.jp/",
+  recipients: [
+    { name: "米国（空軍省）", amount: 3029 },
+  ],
+};
+
+const rsShoeneHojo: RecipientGroup = {
+  itemId: "energy-setsuyaku-sangyo",
+  label: "省エネ補助金の交付先企業（執行団体SII経由）",
+  year: 2024,
+  total: 329,
+  unit: "億円",
+  sourceNote: "出典: 行政事業レビューシート「省エネルギー投資促進・需要構造転換支援事業費補助金」令和6年度支出実績（RSシステム・令和7年度公表）。執行団体の一般社団法人環境共創イニシアチブ（SII）を経由して交付",
+  sourceUrl: "https://rssystem.go.jp/",
+  recipients: [
+    { name: "レンゴー株式会社", amount: 15.0 },
+    { name: "大興製紙株式会社", amount: 15.0 },
+    { name: "株式会社ホテイフーズコーポレーション", amount: 15.0 },
+    { name: "和歌山共同火力株式会社", amount: 14.7 },
+    { name: "JFEスチール株式会社", amount: 12.5 },
+    { name: "新東海製紙株式会社", amount: 12.3 },
+    { name: "富士フイルム株式会社", amount: 11.1 },
+    { name: "大阪製鐵株式会社", amount: 11.0 },
+    { name: "JFE条鋼株式会社", amount: 9.4 },
+    { name: "その他の交付先企業", amount: 213 },
+  ],
+};
+
+const rsChikusanALIC: RecipientGroup = {
+  itemId: "food-shokuhin-chiku",
+  label: "畜産業振興対策交付金の支払先",
+  year: 2024,
+  total: 492,
+  unit: "億円",
+  sourceNote: "出典: 行政事業レビューシート「牛肉等関税財源畜産業振興対策交付金」令和6年度支出実績（RSシステム・令和7年度公表）。畜産農家・生産者団体への交付は農畜産業振興機構（ALIC）を通じて実施",
+  sourceUrl: "https://rssystem.go.jp/",
+  recipients: [
+    { name: "独立行政法人農畜産業振興機構", amount: 492 },
+  ],
+};
+
+
 export const recipientGroups: Record<string, RecipientGroup> = {
   // 地方交付税
   "localalloc-kotei-futsuu": localAllocFutsuu,
@@ -993,6 +1286,22 @@ export const recipientGroups: Record<string, RecipientGroup> = {
 
   // エネルギー
   "energy-saisei-fitto": energyFit,
+
+  // 行政事業レビュー由来（令和6年度支出実績）
+  "social-welfare-shogai": rsShogaiJiritsu,
+  "social-child-hoiku-unei": rsHoikuKyufu,
+  "public-flood-kasenhojo": rsKasenKaishu,
+  "public-port": rsKowanSeibi,
+  "public-forest": rsShinrinSeibi,
+  "public-fishery": rsSuisanKiban,
+  "public-disaster": rsSaigaiFukkyu,
+  "public-housing-suido": rsGesuido,
+  "public-agri": rsNogyoNoson,
+  "other-justice": rsKeisatsuHojo,
+  "other-gyosei": rsGovCloud,
+  "defense-busshi-kokuki": rsF35,
+  "energy-setsuyaku-sangyo": rsShoeneHojo,
+  "food-shokuhin-chiku": rsChikusanALIC,
 };
 
 export function hasRecipients(itemId: string): boolean {
