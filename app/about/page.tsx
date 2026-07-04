@@ -6,6 +6,9 @@ import { Eye, FileSearch, BookOpen, ArrowLeft, ExternalLink, MessageSquare } fro
 export const metadata: Metadata = {
   title: "このサイトについて | YUKUE",
   description: "YUKUEのコンセプト・データの出典・制作の背景を説明するページです。税金の行方を公開情報をもとに可視化しています。",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutPage() {

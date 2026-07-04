@@ -6,6 +6,9 @@ import { ArrowLeft } from "lucide-react";
 export const metadata: Metadata = {
   title: "プライバシーポリシー | YUKUE",
   description: "YUKUEのプライバシーポリシーです。Cookie・広告・アクセス解析に関する方針を説明します。",
+  alternates: {
+    canonical: "/privacy",
+  },
 };
 
 export default function PrivacyPage() {
