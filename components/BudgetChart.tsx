@@ -30,13 +30,19 @@ interface Props {
 function YoyBadge({ current, prev }: { current: number; prev: number | undefined }) {
   const pct = yoyPercent(current, prev);
   if (pct === null) {
-    return <span className="text-[11px] text-slate-300 flex-shrink-0 w-14 text-right">—</span>;
+    return (
+      <span className="hidden sm:block text-[11px] text-slate-300 flex-shrink-0 w-14 text-right">
+        —
+      </span>
+    );
   }
   const cls =
     pct > 0.05 ? "text-rose-500" : pct < -0.05 ? "text-emerald-600" : "text-slate-400";
   const sign = pct > 0.05 ? "+" : "";
   return (
-    <span className={`text-[11px] font-mono flex-shrink-0 w-14 text-right ${cls}`}>
+    <span
+      className={`hidden sm:block text-[11px] font-mono flex-shrink-0 w-14 text-right ${cls}`}
+    >
       {sign}
       {pct.toFixed(1)}%
     </span>
@@ -177,17 +183,17 @@ export default function BudgetChart({
                   <List size={13} className={`flex-shrink-0 ${isActive ? "text-cyan-600" : "text-slate-400"}`} />
                 )}
                 {execRates && execRates.has(item.id) && (
-                  <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 flex-shrink-0">
+                  <span className="hidden sm:block text-[10px] px-1.5 py-0.5 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 flex-shrink-0">
                     執行率{Math.round(execRates.get(item.id)! * 100)}%
                   </span>
                 )}
                 {prevAmounts && (
                   <YoyBadge current={item.amount} prev={prevAmounts.get(item.id)} />
                 )}
-                <span className="text-xs text-slate-400 flex-shrink-0 w-12 text-right">
+                <span className="hidden sm:block text-xs text-slate-400 flex-shrink-0 w-12 text-right">
                   {formatPercent(item.amount, total)}
                 </span>
-                <span className="text-sm font-mono text-slate-700 flex-shrink-0 w-28 text-right">
+                <span className="text-sm font-mono text-slate-700 flex-shrink-0 w-20 sm:w-28 text-right">
                   {formatAmount(item.amount)}
                 </span>
                 {!leaf && !hasRecipients(item.id) && (
