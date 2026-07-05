@@ -3,11 +3,13 @@
 import { useState, useMemo } from "react";
 import { budgetData, BudgetItem, BudgetYear, formatAmount } from "@/data/budget";
 import { settlementData, hasSettlement } from "@/data/settlement";
+import { revenueData, getRevenueYear } from "@/data/revenue";
 import { recipientGroups, hasRecipients } from "@/data/recipients";
 import {
   getPrevYearAmounts,
   getPrevYearTotal,
   getExecutionRates,
+  flattenAmounts,
   yoyPercent,
   perCapitaYen,
   formatPerCapita,
@@ -18,9 +20,10 @@ import RankingPanel from "@/components/RankingPanel";
 import RecipientsList from "@/components/RecipientsList";
 import Link from "next/link";
 import Logo from "@/components/Logo";
-import { ArrowLeft, ExternalLink, FileText, Clock, List, Info, Calculator } from "lucide-react";
+import { ArrowLeft, ExternalLink, FileText, Clock, List, Info, Calculator, TrendingDown, TrendingUp } from "lucide-react";
 
 type DataMode = "budget" | "settlement";
+type SideMode = "spending" | "revenue";
 
 /** パスの itemId 配列を新しい BudgetYear のツリーで辿り直す。
  *  途中で存在しない ID があればそこで打ち切る（浅い階層で表示） */
@@ -39,16 +42,20 @@ function resolvePath(year: BudgetYear, ids: string[]): BudgetItem[] {
 export default function Home() {
   const [selectedYear, setSelectedYear] = useState<BudgetYear>(budgetData[0]);
   const [dataMode, setDataMode] = useState<DataMode>("budget");
+  const [sideMode, setSideMode] = useState<SideMode>("spending");
   const [path, setPath] = useState<BudgetItem[]>([]);
   const [activeTab, setActiveTab] = useState<"drill" | "ranking">("drill");
   // 支払先一覧を表示中の itemId（null = 非表示）
   const [recipientItemId, setRecipientItemId] = useState<string | null>(null);
 
-  // 表示するデータ（予算 or 決算）
-  const activeData: BudgetYear =
-    dataMode === "settlement" && hasSettlement(selectedYear.year)
-      ? (settlementData[selectedYear.year] as BudgetYear)
-      : selectedYear;
+  const isRevenue = sideMode === "revenue";
+
+  // 表示するデータ（歳入 / 歳出予算 / 歳出決算）
+  const activeData: BudgetYear = isRevenue
+    ? (getRevenueYear(selectedYear.year) as BudgetYear)
+    : dataMode === "settlement" && hasSettlement(selectedYear.year)
+    ? (settlementData[selectedYear.year] as BudgetYear)
+    : selectedYear;
 
   const currentItems =
     path.length === 0 ? activeData.items : path[path.length - 1].children ?? [];
@@ -59,18 +66,31 @@ export default function Home() {
   const settlementAvailable = hasSettlement(selectedYear.year);
 
   // ── 分析データ ──
-  const prevAmounts = useMemo(
-    () => getPrevYearAmounts(selectedYear.year, dataMode),
-    [selectedYear.year, dataMode]
-  );
+  // 歳入は年度別（予算）どうしで前年比を取る
+  const revenuePrevAmounts = useMemo(() => {
+    if (!isRevenue) return null;
+    const prev = getRevenueYear(selectedYear.year - 1);
+    return prev ? flattenAmounts(prev) : null;
+  }, [isRevenue, selectedYear.year]);
+
+  const prevAmounts = isRevenue
+    ? revenuePrevAmounts
+    : getPrevYearAmounts(selectedYear.year, dataMode);
+
   const execRates = useMemo(
-    () => (dataMode === "settlement" ? getExecutionRates(selectedYear.year) : null),
-    [selectedYear.year, dataMode]
+    () =>
+      !isRevenue && dataMode === "settlement"
+        ? getExecutionRates(selectedYear.year)
+        : null,
+    [isRevenue, selectedYear.year, dataMode]
   );
   // 現在表示中の階層の前年比
+  const prevYearRevenue = isRevenue ? getRevenueYear(selectedYear.year - 1) : null;
   const prevTotal =
     path.length === 0
-      ? getPrevYearTotal(selectedYear.year, dataMode)
+      ? isRevenue
+        ? prevYearRevenue?.total ?? null
+        : getPrevYearTotal(selectedYear.year, dataMode)
       : prevAmounts?.get(path[path.length - 1].id) ?? null;
   const totalYoy = yoyPercent(currentTotal, prevTotal ?? undefined);
 
@@ -110,10 +130,24 @@ export default function Home() {
     setDataMode(mode);
   };
 
-  const sourceLabel =
-    dataMode === "settlement" ? "決算書" : "予算書";
-  const totalLabel =
-    dataMode === "settlement" ? "一般会計歳出決算額" : "一般会計歳出予算合計";
+  const handleSideChange = (mode: SideMode) => {
+    // 歳出↔歳入は item ID 体系が異なるためパスをリセット
+    setSideMode(mode);
+    setPath([]);
+    setRecipientItemId(null);
+    if (mode === "revenue") setDataMode("budget");
+  };
+
+  const sourceLabel = isRevenue
+    ? "予算書（歳入）"
+    : dataMode === "settlement"
+    ? "決算書"
+    : "予算書";
+  const totalLabel = isRevenue
+    ? "一般会計歳入予算合計"
+    : dataMode === "settlement"
+    ? "一般会計歳出決算額"
+    : "一般会計歳出予算合計";
 
   return (
     <main className="min-h-screen bg-white">
@@ -145,37 +179,65 @@ export default function Home() {
               <Info size={14} />
               <span>このサイトについて</span>
             </Link>
-            {/* 予算/決算 切替 */}
+            {/* 歳出/歳入 切替 */}
             <div className="flex items-center gap-1 bg-slate-100 border border-slate-200 rounded-xl p-1">
               <button
-                onClick={() => handleModeChange("budget")}
+                onClick={() => handleSideChange("spending")}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                  dataMode === "budget"
+                  !isRevenue
                     ? "bg-[#1a365d] text-white shadow-sm"
                     : "text-slate-500 hover:text-slate-800"
                 }`}
               >
-                <FileText size={13} />
-                予算
+                <TrendingDown size={13} />
+                歳出
               </button>
               <button
-                onClick={() => settlementAvailable && handleModeChange("settlement")}
+                onClick={() => handleSideChange("revenue")}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                  !settlementAvailable
-                    ? "text-slate-300 cursor-not-allowed"
-                    : dataMode === "settlement"
-                    ? "bg-emerald-600 text-white shadow-sm"
+                  isRevenue
+                    ? "bg-teal-600 text-white shadow-sm"
                     : "text-slate-500 hover:text-slate-800"
                 }`}
-                title={!settlementAvailable ? "この年度の決算データは未公開です" : undefined}
               >
-                <FileText size={13} />
-                決算
-                {!settlementAvailable && (
-                  <Clock size={11} className="text-slate-300 ml-0.5" />
-                )}
+                <TrendingUp size={13} />
+                歳入
               </button>
             </div>
+
+            {/* 予算/決算 切替（歳出時のみ） */}
+            {!isRevenue && (
+              <div className="flex items-center gap-1 bg-slate-100 border border-slate-200 rounded-xl p-1">
+                <button
+                  onClick={() => handleModeChange("budget")}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                    dataMode === "budget"
+                      ? "bg-[#1a365d] text-white shadow-sm"
+                      : "text-slate-500 hover:text-slate-800"
+                  }`}
+                >
+                  <FileText size={13} />
+                  予算
+                </button>
+                <button
+                  onClick={() => settlementAvailable && handleModeChange("settlement")}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                    !settlementAvailable
+                      ? "text-slate-300 cursor-not-allowed"
+                      : dataMode === "settlement"
+                      ? "bg-emerald-600 text-white shadow-sm"
+                      : "text-slate-500 hover:text-slate-800"
+                  }`}
+                  title={!settlementAvailable ? "この年度の決算データは未公開です" : undefined}
+                >
+                  <FileText size={13} />
+                  決算
+                  {!settlementAvailable && (
+                    <Clock size={11} className="text-slate-300 ml-0.5" />
+                  )}
+                </button>
+              </div>
+            )}
 
             {/* 年度セレクター */}
             <div className="flex items-center gap-1 bg-slate-100 border border-slate-200 rounded-xl p-1">
@@ -211,13 +273,24 @@ export default function Home() {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 pt-6 pb-12">
-        {/* 決算未公開バナー */}
-        {dataMode === "budget" && !settlementAvailable && (
+        {/* 決算未公開バナー（歳出時のみ） */}
+        {!isRevenue && dataMode === "budget" && !settlementAvailable && (
           <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-xl px-4 py-2.5 mb-4 text-xs text-amber-700">
             <Clock size={13} />
             <span>
               {selectedYear.label}の決算データは未公開です（財務省が翌年秋頃に公表）。
               令和5年度・令和6年度は決算を表示できます。
+            </span>
+          </div>
+        )}
+
+        {/* 歳入の説明バナー */}
+        {isRevenue && (
+          <div className="flex items-start gap-2 bg-teal-50 border border-teal-200 rounded-xl px-4 py-2.5 mb-4 text-xs text-teal-700">
+            <Info size={13} className="mt-0.5 shrink-0" />
+            <span>
+              「税金の出どころ」＝一般会計の歳入です。歳入総額は歳出総額と一致します。
+              約4分の1が公債金（借金）で賄われている点にご注目ください。
             </span>
           </div>
         )}
@@ -252,12 +325,18 @@ export default function Home() {
             <div className="flex items-center gap-2 mb-4">
               <span
                 className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
-                  dataMode === "settlement"
+                  isRevenue
+                    ? "bg-teal-50 text-teal-700 border border-teal-200"
+                    : dataMode === "settlement"
                     ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
                     : "bg-indigo-50 text-indigo-700 border border-indigo-200"
                 }`}
               >
-                {dataMode === "settlement" ? "決算（確定値）" : "予算（当初予算）"}
+                {isRevenue
+                  ? "歳入（当初予算）"
+                  : dataMode === "settlement"
+                  ? "決算（確定値）"
+                  : "予算（当初予算）"}
               </span>
             </div>
 
@@ -345,10 +424,15 @@ export default function Home() {
 
             {!recipientItemId && (
               <p className="text-xs text-slate-400 mt-5 text-right">
-                ▶ のある項目はクリックでさらに内訳へ &nbsp;|&nbsp;
-                <List size={11} className="inline mb-0.5 mx-1" />
-                のある項目は支払先一覧へ &nbsp;|&nbsp; 出典: 財務省「
-                {activeData.label}{sourceLabel}」
+                ▶ のある項目はクリックでさらに内訳へ
+                {!isRevenue && (
+                  <>
+                    &nbsp;|&nbsp;
+                    <List size={11} className="inline mb-0.5 mx-1" />
+                    のある項目は支払先一覧へ
+                  </>
+                )}
+                &nbsp;|&nbsp; 出典: 財務省「{activeData.label}{sourceLabel}」
               </p>
             )}
           </div>

@@ -1,5 +1,6 @@
 import { budgetData, BudgetItem } from "./budget";
 import { settlementData } from "./settlement";
+import { revenueData } from "./revenue";
 
 /**
  * 項目別ページ（/items/[id]）用のデータインデックス
@@ -86,6 +87,12 @@ for (const by of budgetData) {
   const amounts = new Map<string, number>();
   walk(by.items, [], by.year, by.label, by.total, amounts, true);
   budgetAmountByYear.set(by.year, amounts);
+}
+// 歳入（予算のみ）。rev-* の ID は歳出と衝突しないため同じ年度マップに統合する
+for (const ry of revenueData) {
+  const amounts = budgetAmountByYear.get(ry.year) ?? new Map<string, number>();
+  walk(ry.items, [], ry.year, ry.label, ry.total, amounts, true);
+  budgetAmountByYear.set(ry.year, amounts);
 }
 for (const [yearStr, sy] of Object.entries(settlementData)) {
   if (!sy) continue;

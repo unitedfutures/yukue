@@ -367,6 +367,38 @@ export const itemDescriptions: Record<string, string> = {
     "その他経費のうち予備費・一般行政費・司法警察費以外の経費。外交費・情報収集衛星関連費・府省横断的な共通経費等が含まれる。",
   "other-gaikoku":
     "外国人の在留管理（出入国在留管理庁）・生活支援・多文化共生施策への経費。在留外国人は約340万人（令和6年）で過去最多を更新中。日本語教育支援等も含む。",
+
+  // ── 歳入（税金の出どころ） ──
+  "rev-tax":
+    "国の収入の柱となる税金と印紙収入の合計。所得税・法人税・消費税の基幹3税で税収の約8割を占める。景気動向に大きく左右され、近年は物価上昇に伴い過去最高を更新し続けている。",
+  "rev-tax-shohi":
+    "商品・サービスの消費に10%（食料品等は軽減税率8%）課される税。景気に左右されにくく税収が安定するため、社会保障の主要財源に位置づけられている。今や最大の税目。",
+  "rev-tax-shotoku":
+    "個人の給与・事業・投資などの所得に課される税。所得が多いほど税率が上がる累進課税（5〜45%）。源泉徴収と確定申告で納付され、長らく国の基幹税だった。",
+  "rev-tax-hojin":
+    "企業の利益（所得）に課される税。基本税率は23.2%。企業業績に連動するため景気変動の影響を最も強く受け、好況期には税収が大きく伸びる。",
+  "rev-tax-sozoku":
+    "亡くなった人から財産を相続・遺贈された際に、その取得額に応じて課される税（贈与税を含む）。基礎控除を超える部分が対象で、資産の再分配機能を担う。",
+  "rev-tax-kihatsu":
+    "ガソリンなどに課される税（揮発油税・地方揮発油税）。かつては道路整備の特定財源だったが、現在は使途を限定しない一般財源。ガソリン価格の一部を構成する。",
+  "rev-tax-shu":
+    "酒類の製造・輸入に課される税。ビール・日本酒・ウイスキー等、種類ごとに税率が異なる。かつての主要税目だが、消費の多様化・減少で構成比は低下傾向。",
+  "rev-tax-tabako":
+    "たばこの製造・輸入に課される国税（別途、地方たばこ税・たばこ特別税もある）。1箱の価格の約6割が税金。健康志向による喫煙率低下で税収は減少傾向。",
+  "rev-tax-kanzei":
+    "輸入品に課される税。国内産業の保護と財政収入の両面を担う。品目ごとに税率が定められ、経済連携協定（EPA）の拡大により対象・税率は変化している。",
+  "rev-tax-inshi":
+    "契約書・領収書などの文書に課される税で、収入印紙を貼付して納める。電子契約の普及により対象文書が減り、税収は緩やかに減少している。",
+  "rev-tax-other":
+    "相続税・揮発油税・酒税・たばこ税・関税・印紙収入以外の各種税収の合計。石油石炭税・電源開発促進税・自動車重量税・関税以外の消費課税・登録免許税などが含まれる。",
+  "rev-other":
+    "税金・公債以外の収入（税外収入）。日本銀行の国庫納付金、国有財産の売却・貸付収入、各種手数料、特別会計からの受入金、外国為替資金特別会計の剰余金などで構成される。",
+  "rev-bond":
+    "歳出を賄うために国が新たに発行する借金（新規国債）。建設公債と特例公債からなり、歳入の約4分の1を占める。将来世代の負担となり、国債残高は1,000兆円を超える。",
+  "rev-bond-tokurei":
+    "社会保障費など、建設国債の対象とならない歳出を賄うために発行する国債。いわゆる「赤字国債」。本来は財政法で禁止されており、毎年度の特例法で発行を認めている。公債金の大部分を占める。",
+  "rev-bond-kensetsu":
+    "道路・港湾・公共施設など、後世に残る社会資本（インフラ）の整備費を賄うために発行する国債。財政法で発行が認められており、将来世代も便益を受けるという考えに基づく。",
 };
 
 /**
@@ -545,4 +577,21 @@ export const itemSourceUrls: Record<string, string> = {
   "other-justice": "https://www.npa.go.jp/",
   "other-misc": "https://www.mof.go.jp/",
   "other-gaikoku": "https://www.moj.go.jp/isa/",
+
+  // ── 歳入 ──
+  "rev-tax": "https://www.mof.go.jp/tax_policy/summary/condition/a03.htm",
+  "rev-tax-shohi": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/shohi.htm",
+  "rev-tax-shotoku": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/shotoku.htm",
+  "rev-tax-hojin": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hojin/hojin.htm",
+  "rev-tax-sozoku": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/sozoku.htm",
+  "rev-tax-kihatsu": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/kansetsu/kansetsu.htm",
+  "rev-tax-shu": "https://www.nta.go.jp/taxes/sake/index.htm",
+  "rev-tax-tabako": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/kansetsu/kansetsu.htm",
+  "rev-tax-kanzei": "https://www.customs.go.jp/",
+  "rev-tax-inshi": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/inshi/inshi.htm",
+  "rev-tax-other": "https://www.mof.go.jp/tax_policy/summary/condition/a03.htm",
+  "rev-other": "https://www.mof.go.jp/policy/budget/budger_workflow/budget/",
+  "rev-bond": "https://www.mof.go.jp/jgbs/index.html",
+  "rev-bond-tokurei": "https://www.mof.go.jp/jgbs/reference/appendix/index.html",
+  "rev-bond-kensetsu": "https://www.mof.go.jp/jgbs/reference/appendix/index.html",
 };

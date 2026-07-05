@@ -23,14 +23,17 @@ export async function generateMetadata({
   const data = getItemData(id);
   if (!data) return {};
 
+  const isRev = id.startsWith("rev-");
   const desc = data.descriptionKey ? itemDescriptions[data.descriptionKey] : null;
   const amountStr = formatAmount(data.latest.amount);
+  const kind = isRev ? "税収" : "予算";
+  const suffix = isRev ? "の仕組み" : "の使われ方";
   const description = desc
-    ? `${data.name}（${data.latest.label}予算 ${amountStr}）: ${desc}`.slice(0, 155)
-    : `${data.name}の${data.latest.label}予算は${amountStr}。国家予算に占める割合・年度別推移・税金の使われ方を解説します。`;
+    ? `${data.name}（${data.latest.label} ${amountStr}）: ${desc}`.slice(0, 155)
+    : `${data.name}の${data.latest.label}${kind}は${amountStr}。国家予算に占める割合・年度別推移を解説します。`;
 
   return {
-    title: `${data.name}とは？予算${amountStr}の使われ方 | YUKUE`,
+    title: `${data.name}とは？${amountStr}${suffix} | YUKUE`,
     description,
     alternates: {
       canonical: `/items/${id}`,
@@ -59,9 +62,11 @@ export default async function ItemPage({
   const data = getItemData(id);
   if (!data) notFound();
 
+  const isRev = id.startsWith("rev-");
   const desc = data.descriptionKey ? itemDescriptions[data.descriptionKey] : null;
   const sourceUrl = data.descriptionKey ? itemSourceUrls[data.descriptionKey] : null;
   const share = (data.latest.amount / data.latest.total) * 100;
+  const totalLabel = isRev ? "歳入総額" : "歳出総額";
 
   // 前年比（予算ベース）
   const yearsWithBudget = data.years.filter((y) => y.budget !== null);
@@ -153,7 +158,8 @@ export default async function ItemPage({
           <TrendBadge pct={yoy} />
         </div>
         <p className="text-sm text-slate-500 mb-8">
-          {data.latest.label}予算 ・ 歳出総額の{share.toFixed(2)}% ・ 国民1人あたり{" "}
+          {data.latest.label}{isRev ? "歳入" : "予算"} ・ {totalLabel}の{share.toFixed(2)}% ・
+          国民1人あたり{" "}
           {formatPerCapita(perCapitaYen(data.latest.amount, data.latest.year))}
         </p>
 
@@ -189,9 +195,15 @@ export default async function ItemPage({
               <thead>
                 <tr className="text-xs text-slate-500 border-b border-slate-100">
                   <th className="text-left py-2 font-medium">年度</th>
-                  <th className="text-right py-2 font-medium">当初予算</th>
-                  <th className="text-right py-2 font-medium">決算額</th>
-                  <th className="text-right py-2 font-medium">執行率</th>
+                  <th className="text-right py-2 font-medium">
+                    {isRev ? "当初予算（歳入）" : "当初予算"}
+                  </th>
+                  {!isRev && (
+                    <>
+                      <th className="text-right py-2 font-medium">決算額</th>
+                      <th className="text-right py-2 font-medium">執行率</th>
+                    </>
+                  )}
                 </tr>
               </thead>
               <tbody>
@@ -204,12 +216,16 @@ export default async function ItemPage({
                       <td className="py-2.5 text-right font-mono text-slate-800">
                         {y.budget !== null ? formatAmount(y.budget) : "—"}
                       </td>
-                      <td className="py-2.5 text-right font-mono text-slate-600">
-                        {y.settlement !== null ? formatAmount(y.settlement) : "—"}
-                      </td>
-                      <td className="py-2.5 text-right font-mono text-slate-600">
-                        {rate !== null ? `${rate.toFixed(0)}%` : "—"}
-                      </td>
+                      {!isRev && (
+                        <>
+                          <td className="py-2.5 text-right font-mono text-slate-600">
+                            {y.settlement !== null ? formatAmount(y.settlement) : "—"}
+                          </td>
+                          <td className="py-2.5 text-right font-mono text-slate-600">
+                            {rate !== null ? `${rate.toFixed(0)}%` : "—"}
+                          </td>
+                        </>
+                      )}
                     </tr>
                   );
                 })}
@@ -217,7 +233,7 @@ export default async function ItemPage({
             </table>
           </div>
           <p className="text-xs text-slate-400 mt-2">
-            出典: 財務省「予算書」「決算書」。決算額が未表示の年度は未公表。
+            出典: 財務省「予算書」{isRev ? "（歳入）" : "「決算書」。決算額が未表示の年度は未公表。"}
           </p>
         </section>
 
