@@ -1,7 +1,14 @@
 import type { MetadataRoute } from "next";
+import { getAllItemIds } from "@/data/itemIndex";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://yukue.net";
+  const itemPages: MetadataRoute.Sitemap = getAllItemIds().map((id) => ({
+    url: `${base}/items/${id}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.5,
+  }));
   return [
     {
       url: base,
@@ -27,5 +34,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    ...itemPages,
   ];
 }

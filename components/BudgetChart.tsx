@@ -2,6 +2,7 @@
 
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { BudgetItem, formatAmount, formatPercent } from "@/data/budget";
 import { itemDescriptions, itemSourceUrls } from "@/data/descriptions";
 import { Info, List, ExternalLink, Users } from "lucide-react";
@@ -218,18 +219,26 @@ export default function BudgetChart({
               <p className="text-xs text-slate-600 leading-relaxed">
                 {getDesc(descItem)}
               </p>
-              {getSourceUrl(descItem) && (
-                <a
-                  href={getSourceUrl(descItem)!}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="inline-flex items-center gap-1 mt-2 text-xs text-emerald-600 hover:text-emerald-800 underline underline-offset-2 transition-colors"
+              <div className="flex items-center gap-4 mt-2">
+                <Link
+                  href={`/items/${descItem.id}`}
+                  className="inline-flex items-center gap-1 text-xs text-emerald-600 hover:text-emerald-800 underline underline-offset-2 transition-colors"
                 >
-                  <ExternalLink size={11} />
-                  公式サイト
-                </a>
-              )}
+                  詳細ページへ
+                </Link>
+                {getSourceUrl(descItem) && (
+                  <a
+                    href={getSourceUrl(descItem)!}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="inline-flex items-center gap-1 text-xs text-emerald-600 hover:text-emerald-800 underline underline-offset-2 transition-colors"
+                  >
+                    <ExternalLink size={11} />
+                    公式サイト
+                  </a>
+                )}
+              </div>
             </div>
           )}
         </div>
