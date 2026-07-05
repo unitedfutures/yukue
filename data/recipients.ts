@@ -1227,6 +1227,119 @@ const rsChikusanALIC: RecipientGroup = {
 };
 
 
+
+// ─────────────────────────────────────────────────────
+// RSシステム由来 支払先データ 第2弾（令和6年度支出実績）
+// 防衛装備品の主要契約先・砂防事業の地域配分
+// ─────────────────────────────────────────────────────
+
+const rsKansen: RecipientGroup = {
+  itemId: "defense-busshi-kansetsu",
+  label: "艦船（護衛艦・潜水艦等）建造の主要契約先",
+  year: 2024,
+  total: 1427,
+  unit: "億円",
+  sourceNote: "出典: 行政事業レビューシート（RSシステム・令和7年度公表）令和6年度支出実績。国からの直接支出先（契約先）を集計。護衛艦・潜水艦等の建造・改修に係る主要契約。造船・重工大手が中核。",
+  sourceUrl: "https://rssystem.go.jp/",
+  recipients: [
+    { name: "三菱重工業株式会社", amount: 835 },
+    { name: "川崎重工業株式会社", amount: 295 },
+    { name: "ジャパンマリンユナイテッド株式会社", amount: 60 },
+    { name: "沖電気工業株式会社", amount: 60 },
+    { name: "株式会社ジーエス・ユアサテクノロジー", amount: 49 },
+    { name: "株式会社ヨネイ", amount: 44 },
+    { name: "株式会社IHI", amount: 16 },
+    { name: "株式会社TMEIC", amount: 15 },
+    { name: "森尾電機株式会社", amount: 13 },
+    { name: "その他の企業", amount: 40 },
+  ],
+};
+
+const rsYudodan: RecipientGroup = {
+  itemId: "defense-busshi-buki",
+  label: "ミサイル・弾薬の主要契約先",
+  year: 2024,
+  total: 1342,
+  unit: "億円",
+  sourceNote: "出典: 行政事業レビューシート（RSシステム・令和7年度公表）令和6年度支出実績。国からの直接支出先（契約先）を集計。スタンド・オフ・ミサイル等の誘導弾と各種弾薬の調達。米国（FMS）調達分を含む。",
+  sourceUrl: "https://rssystem.go.jp/",
+  recipients: [
+    { name: "三菱重工業株式会社", amount: 535 },
+    { name: "三菱電機株式会社", amount: 441 },
+    { name: "川崎重工業株式会社", amount: 99 },
+    { name: "米国(海軍省)", amount: 88 },
+    { name: "米国(空軍省)", amount: 85 },
+    { name: "東芝インフラシステムズ株式会社", amount: 72 },
+    { name: "日油株式会社", amount: 2.8 },
+    { name: "株式会社エムエイチアイロジテック", amount: 2.5 },
+    { name: "いすゞ自動車株式会社", amount: 2.0 },
+    { name: "その他の企業", amount: 14 },
+  ],
+};
+
+const rsSharyo: RecipientGroup = {
+  itemId: "defense-busshi-shatei",
+  label: "車両・火器の主要契約先",
+  year: 2024,
+  total: 383,
+  unit: "億円",
+  sourceNote: "出典: 行政事業レビューシート（RSシステム・令和7年度公表）令和6年度支出実績。国からの直接支出先（契約先）を集計。戦車・機動戦闘車・自走榴弾砲・小銃等の調達契約先。",
+  sourceUrl: "https://rssystem.go.jp/",
+  recipients: [
+    { name: "三菱重工業株式会社", amount: 254 },
+    { name: "株式会社日本製鋼所", amount: 78 },
+    { name: "豊和工業株式会社", amount: 41 },
+    { name: "株式会社ミクニエアロスペース", amount: 2.7 },
+    { name: "菱重特殊車両サービス株式会社", amount: 2.1 },
+    { name: "株式会社Fultum", amount: 1.7 },
+    { name: "株式会社サイトロンジャパン", amount: 1.1 },
+    { name: "日鋼特機株式会社", amount: 1.1 },
+    { name: "その他の企業", amount: 1.4 },
+  ],
+};
+
+const rsKenkyu: RecipientGroup = {
+  itemId: "defense-kenkyu-kaihatsu",
+  label: "次世代装備の研究開発の主要契約先",
+  year: 2024,
+  total: 1528,
+  unit: "億円",
+  sourceNote: "出典: 行政事業レビューシート（RSシステム・令和7年度公表）令和6年度支出実績。国からの直接支出先（契約先）を集計。次期戦闘機（F-X）をはじめとする装備品の研究開発契約。防衛産業大手が中核。",
+  sourceUrl: "https://rssystem.go.jp/",
+  recipients: [
+    { name: "三菱重工業株式会社", amount: 927 },
+    { name: "川崎重工業株式会社", amount: 159 },
+    { name: "三菱電機株式会社", amount: 141 },
+    { name: "東芝インフラシステムズ株式会社", amount: 27 },
+    { name: "株式会社神戸製鋼所", amount: 18 },
+    { name: "株式会社IHIプラント", amount: 14 },
+    { name: "株式会社日本製鋼所", amount: 11 },
+    { name: "東洋建設株式会社", amount: 10.0 },
+    { name: "株式会社ノビテック", amount: 8.1 },
+    { name: "その他の企業・研究機関", amount: 213 },
+  ],
+};
+
+const rsSabo: RecipientGroup = {
+  itemId: "public-flood-chisui",
+  label: "砂防事業（直轄）の地域配分",
+  year: 2024,
+  total: 956,
+  unit: "億円",
+  sourceNote: "出典: 行政事業レビューシート（RSシステム・令和7年度公表）令和6年度支出実績。国からの直接支出先（契約先）を集計。土石流・地すべり・急傾斜地崩壊を防ぐ砂防堰堤等の直轄整備。地方整備局が施工。",
+  sourceUrl: "https://rssystem.go.jp/",
+  recipients: [
+    { name: "北陸地方整備局", amount: 211 },
+    { name: "中部地方整備局", amount: 150 },
+    { name: "近畿地方整備局", amount: 134 },
+    { name: "関東地方整備局", amount: 133 },
+    { name: "東北地方整備局", amount: 103 },
+    { name: "九州地方整備局", amount: 86 },
+    { name: "中国地方整備局", amount: 80 },
+    { name: "四国地方整備局", amount: 60 },
+  ],
+};
+
 export const recipientGroups: Record<string, RecipientGroup> = {
   // 地方交付税
   "localalloc-kotei-futsuu": localAllocFutsuu,
@@ -1302,6 +1415,13 @@ export const recipientGroups: Record<string, RecipientGroup> = {
   "defense-busshi-kokuki": rsF35,
   "energy-setsuyaku-sangyo": rsShoeneHojo,
   "food-shokuhin-chiku": rsChikusanALIC,
+
+  // 支払先データ 第2弾（防衛装備・砂防）
+  "defense-busshi-kansetsu": rsKansen,
+  "defense-busshi-buki": rsYudodan,
+  "defense-busshi-shatei": rsSharyo,
+  "defense-kenkyu-kaihatsu": rsKenkyu,
+  "public-flood-chisui": rsSabo,
 };
 
 export function hasRecipients(itemId: string): boolean {
