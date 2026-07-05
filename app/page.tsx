@@ -205,39 +205,43 @@ export default function Home() {
               </button>
             </div>
 
-            {/* 予算/決算 切替（歳出時のみ） */}
-            {!isRevenue && (
-              <div className="flex items-center gap-1 bg-slate-100 border border-slate-200 rounded-xl p-1">
-                <button
-                  onClick={() => handleModeChange("budget")}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                    dataMode === "budget"
-                      ? "bg-[#1a365d] text-white shadow-sm"
-                      : "text-slate-500 hover:text-slate-800"
-                  }`}
-                >
-                  <FileText size={13} />
-                  予算
-                </button>
-                <button
-                  onClick={() => settlementAvailable && handleModeChange("settlement")}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                    !settlementAvailable
-                      ? "text-slate-300 cursor-not-allowed"
-                      : dataMode === "settlement"
-                      ? "bg-emerald-600 text-white shadow-sm"
-                      : "text-slate-500 hover:text-slate-800"
-                  }`}
-                  title={!settlementAvailable ? "この年度の決算データは未公開です" : undefined}
-                >
-                  <FileText size={13} />
-                  決算
-                  {!settlementAvailable && (
-                    <Clock size={11} className="text-slate-300 ml-0.5" />
-                  )}
-                </button>
-              </div>
-            )}
+            {/* 予算/決算 切替（歳入時は無効表示にして位置を固定） */}
+            <div
+              className={`flex items-center gap-1 bg-slate-100 border border-slate-200 rounded-xl p-1 transition-opacity ${
+                isRevenue ? "opacity-40 pointer-events-none" : ""
+              }`}
+              aria-disabled={isRevenue}
+              title={isRevenue ? "歳入は当初予算のみ表示できます" : undefined}
+            >
+              <button
+                onClick={() => handleModeChange("budget")}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                  !isRevenue && dataMode === "budget"
+                    ? "bg-[#1a365d] text-white shadow-sm"
+                    : "text-slate-500 hover:text-slate-800"
+                }`}
+              >
+                <FileText size={13} />
+                予算
+              </button>
+              <button
+                onClick={() => settlementAvailable && handleModeChange("settlement")}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                  !settlementAvailable
+                    ? "text-slate-300 cursor-not-allowed"
+                    : !isRevenue && dataMode === "settlement"
+                    ? "bg-emerald-600 text-white shadow-sm"
+                    : "text-slate-500 hover:text-slate-800"
+                }`}
+                title={!settlementAvailable ? "この年度の決算データは未公開です" : undefined}
+              >
+                <FileText size={13} />
+                決算
+                {!settlementAvailable && (
+                  <Clock size={11} className="text-slate-300 ml-0.5" />
+                )}
+              </button>
+            </div>
 
             {/* 年度セレクター */}
             <div className="flex items-center gap-1 bg-slate-100 border border-slate-200 rounded-xl p-1">
