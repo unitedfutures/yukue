@@ -7,8 +7,9 @@ import { formatAmount } from "@/data/budget";
 import { itemDescriptions, itemSourceUrls } from "@/data/descriptions";
 import { recipientGroups, hasRecipients } from "@/data/recipients";
 import { getAllItemIds, getItemData } from "@/data/itemIndex";
+import { getArticle } from "@/data/articles";
 import { yoyPercent, perCapitaYen, formatPerCapita } from "@/data/analysis";
-import { ArrowLeft, ExternalLink, ChevronRight, Users, TrendingUp } from "lucide-react";
+import { ArrowLeft, ExternalLink, ChevronRight, Users, TrendingUp, BookOpen, HelpCircle } from "lucide-react";
 
 export function generateStaticParams() {
   return getAllItemIds().map((id) => ({ id }));
@@ -24,12 +25,14 @@ export async function generateMetadata({
   if (!data) return {};
 
   const isRev = id.startsWith("rev-");
+  const article = getArticle(id);
   const desc = data.descriptionKey ? itemDescriptions[data.descriptionKey] : null;
   const amountStr = formatAmount(data.latest.amount);
   const kind = isRev ? "税収" : "予算";
   const suffix = isRev ? "の仕組み" : "の使われ方";
-  const description = desc
-    ? `${data.name}（${data.latest.label} ${amountStr}）: ${desc}`.slice(0, 155)
+  const summary = article?.lead ?? desc;
+  const description = summary
+    ? `${data.name}（${data.latest.label} ${amountStr}）: ${summary}`.slice(0, 155)
     : `${data.name}の${data.latest.label}${kind}は${amountStr}。国家予算に占める割合・年度別推移を解説します。`;
 
   return {
@@ -63,6 +66,7 @@ export default async function ItemPage({
   if (!data) notFound();
 
   const isRev = id.startsWith("rev-");
+  const article = getArticle(id);
   const desc = data.descriptionKey ? itemDescriptions[data.descriptionKey] : null;
   const sourceUrl = data.descriptionKey ? itemSourceUrls[data.descriptionKey] : null;
   const share = (data.latest.amount / data.latest.total) * 100;
@@ -97,12 +101,51 @@ export default async function ItemPage({
     ],
   };
 
+  // 記事の構造化データ（解説がある項目のみ）
+  const articleLd = article
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: `${data.name}とは？予算${formatAmount(data.latest.amount)}の使いみち`,
+        description: article.lead,
+        articleBody: [article.lead, ...article.sections.map((s) => `${s.heading}。${s.body}`)].join("\n\n"),
+        inLanguage: "ja",
+        isPartOf: { "@type": "WebSite", name: "YUKUE", url: "https://yukue.net/" },
+        mainEntityOfPage: `https://yukue.net/items/${id}`,
+      }
+    : null;
+
+  const faqLd =
+    article?.faqs && article.faqs.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: article.faqs.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }
+      : null;
+
   return (
     <main className="min-h-screen bg-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
+      {articleLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+        />
+      )}
+      {faqLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+      )}
 
       {/* Header */}
       <header
@@ -181,6 +224,23 @@ export default async function ItemPage({
                 公式サイトで詳しく見る
               </a>
             )}
+          </section>
+        )}
+
+        {/* 詳しい解説 */}
+        {article && (
+          <section className="mb-10">
+            <h2 className="flex items-center gap-2 text-base font-bold text-slate-900 mb-3 pb-2 border-b border-slate-200">
+              <BookOpen size={15} className="text-[#1a365d]" />
+              詳しい解説
+            </h2>
+            <p className="text-sm text-slate-700 leading-relaxed mb-6">{article.lead}</p>
+            {article.sections.map((s) => (
+              <div key={s.heading} className="mb-6">
+                <h3 className="text-sm font-bold text-slate-900 mb-2">{s.heading}</h3>
+                <p className="text-sm text-slate-700 leading-relaxed">{s.body}</p>
+              </div>
+            ))}
           </section>
         )}
 
@@ -272,6 +332,24 @@ export default async function ItemPage({
               支払先・交付先
             </h2>
             <RecipientsList group={recipientGroup} />
+          </section>
+        )}
+
+        {/* よくある質問（FAQ） */}
+        {article?.faqs && article.faqs.length > 0 && (
+          <section className="mb-10">
+            <h2 className="flex items-center gap-2 text-base font-bold text-slate-900 mb-3 pb-2 border-b border-slate-200">
+              <HelpCircle size={15} className="text-[#1a365d]" />
+              よくある質問
+            </h2>
+            <div className="space-y-4">
+              {article.faqs.map((f) => (
+                <div key={f.q} className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
+                  <p className="text-sm font-semibold text-slate-900 mb-1.5">Q. {f.q}</p>
+                  <p className="text-sm text-slate-700 leading-relaxed">A. {f.a}</p>
+                </div>
+              ))}
+            </div>
           </section>
         )}
 
