@@ -18,6 +18,7 @@ import BudgetChart from "@/components/BudgetChart";
 import Breadcrumb from "@/components/Breadcrumb";
 import RankingPanel from "@/components/RankingPanel";
 import RecipientsList from "@/components/RecipientsList";
+import HomeContent from "@/components/HomeContent";
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import { ArrowLeft, ExternalLink, FileText, Clock, List, Info, Calculator, TrendingDown, TrendingUp } from "lucide-react";
@@ -443,6 +444,11 @@ export default function Home() {
         )}
 
         {activeTab === "ranking" && <RankingPanel budget={activeData} topN={20} />}
+      </div>
+
+      {/* 解説文＋項目インデックス（SEO・内部リンク） */}
+      <div className="border-t border-slate-100 pt-12 mt-4">
+        <HomeContent />
       </div>
 
       <footer className="max-w-4xl mx-auto px-4 py-6 mt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
