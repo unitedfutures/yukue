@@ -21,7 +21,7 @@ import RecipientsList from "@/components/RecipientsList";
 import HomeContent from "@/components/HomeContent";
 import Link from "next/link";
 import Logo from "@/components/Logo";
-import { ArrowLeft, ExternalLink, FileText, Clock, List, Info, Calculator, TrendingDown, TrendingUp } from "lucide-react";
+import { ArrowLeft, ExternalLink, FileText, Clock, List, Info, Calculator, TrendingDown, TrendingUp, BookOpen } from "lucide-react";
 
 type DataMode = "budget" | "settlement";
 type SideMode = "spending" | "revenue";
@@ -164,6 +164,14 @@ export default function Home() {
           </Link>
 
           <div className="flex items-center gap-2 flex-wrap">
+            {/* 解説コラム */}
+            <Link
+              href="/guide"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-slate-500 hover:text-slate-800 transition-colors"
+            >
+              <BookOpen size={14} />
+              <span>コラム</span>
+            </Link>
             {/* 納税額シミュレーター */}
             <Link
               href="/simulator"
@@ -454,6 +462,7 @@ export default function Home() {
       <footer className="max-w-4xl mx-auto px-4 py-6 mt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
         <span>© {new Date().getFullYear()} YUKUE</span>
         <div className="flex items-center gap-4">
+          <Link href="/guide" className="hover:text-slate-700 transition-colors">解説コラム</Link>
           <Link href="/simulator" className="hover:text-slate-700 transition-colors">納税額シミュレーター</Link>
           <Link href="/about" className="hover:text-slate-700 transition-colors">このサイトについて</Link>
           <a href="https://united-futures.com/contact/" target="_blank" rel="noopener noreferrer" className="hover:text-slate-700 transition-colors">お問い合わせ</a>

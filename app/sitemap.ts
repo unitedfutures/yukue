@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllItemIds } from "@/data/itemIndex";
+import { getAllGuideSlugs } from "@/data/guides";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://yukue.net";
@@ -9,6 +10,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
     priority: 0.5,
   }));
+  const guidePages: MetadataRoute.Sitemap = getAllGuideSlugs().map((slug) => ({
+    url: `${base}/guide/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
   return [
     {
       url: base,
@@ -17,11 +24,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
+      url: `${base}/guide`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
       url: `${base}/simulator`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    ...guidePages,
     {
       url: `${base}/about`,
       lastModified: new Date(),

@@ -134,7 +134,17 @@ export default function HomeContent() {
           <TrendingUp size={17} className="text-[#1a365d]" />
           <h2 className="text-lg font-bold text-slate-900">もっと詳しく知る</h2>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <Link
+            href="/guide"
+            className="rounded-xl border border-slate-200 bg-white hover:border-[#1a365d] hover:shadow-sm transition-all p-5"
+          >
+            <p className="text-sm font-bold text-slate-900 mb-1">税金と予算の解説コラム</p>
+            <p className="text-xs text-slate-500 leading-relaxed">
+              国家予算の全体像、国の借金、防衛費、消費税、社会保障費などを
+              わかりやすく解説する読み物です。
+            </p>
+          </Link>
           <Link
             href="/simulator"
             className="rounded-xl border border-slate-200 bg-white hover:border-[#1a365d] hover:shadow-sm transition-all p-5"
