@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Logo from "@/components/Logo";
+import GuideChart from "@/components/GuideChart";
 import { getGuide, getAllGuideSlugs, guides } from "@/data/guides";
 import { ArrowLeft, Clock, ChevronRight, HelpCircle, BookOpen } from "lucide-react";
 
@@ -128,9 +129,12 @@ export default async function GuidePage({
           {g.title}
         </h1>
 
-        <p className="text-base text-slate-700 leading-relaxed mb-10 pb-8 border-b border-slate-200">
+        <p className="text-base text-slate-700 leading-relaxed mb-8 pb-8 border-b border-slate-200">
           {g.lead}
         </p>
+
+        {/* グラフ（任意） */}
+        {g.chart && <GuideChart chart={g.chart} />}
 
         {/* 本文 */}
         <div className="space-y-10">
