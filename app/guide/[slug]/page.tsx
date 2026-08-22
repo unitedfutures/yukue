@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Logo from "@/components/Logo";
+import Copyright from "@/components/Copyright";
 import GuideChart from "@/components/GuideChart";
 import { getGuide, getAllGuideSlugs, guides } from "@/data/guides";
 import { ArrowLeft, Clock, ChevronRight, HelpCircle, BookOpen } from "lucide-react";
@@ -232,6 +233,9 @@ export default async function GuidePage({
           <Link href="/guide" className="text-slate-500 hover:text-slate-900 transition-colors">
             ← 解説コラム一覧
           </Link>
+          <p className="mt-4">
+            <Copyright />
+          </p>
         </div>
       </article>
     </main>

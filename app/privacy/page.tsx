@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import Copyright from "@/components/Copyright";
 import { ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -198,6 +199,9 @@ export default function PrivacyPage() {
             お問い合わせ
           </a>
         </div>
+        <p className="mt-6 text-xs text-slate-400">
+          <Copyright />
+        </p>
       </div>
     </main>
   );

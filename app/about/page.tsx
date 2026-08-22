@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import Copyright from "@/components/Copyright";
 import { Eye, FileSearch, BookOpen, ArrowLeft, ExternalLink, MessageSquare } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -167,6 +168,9 @@ export default function AboutPage() {
             掲載データに誤りを見つけた場合はご連絡ください。
           </p>
         </div>
+        <p className="mt-6 text-xs text-slate-400">
+          <Copyright />
+        </p>
       </div>
     </main>
   );

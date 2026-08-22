@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import Copyright from "@/components/Copyright";
 import { guides } from "@/data/guides";
 import { ArrowLeft, BookOpen, Clock, ChevronRight } from "lucide-react";
 
@@ -104,6 +105,9 @@ export default function GuideIndexPage() {
             <ArrowLeft size={14} />
             ダッシュボードに戻る
           </Link>
+          <p className="mt-4 text-xs text-slate-400">
+            <Copyright />
+          </p>
         </div>
       </div>
     </main>

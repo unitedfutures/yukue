@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Logo from "@/components/Logo";
+import Copyright from "@/components/Copyright";
 import RecipientsList from "@/components/RecipientsList";
 import { formatAmount } from "@/data/budget";
 import { itemDescriptions, itemSourceUrls } from "@/data/descriptions";
@@ -393,7 +394,7 @@ export default async function ItemPage({
 
         {/* フッター */}
         <div className="pt-8 mt-10 border-t border-slate-200 flex items-center justify-between flex-wrap gap-4 text-xs text-slate-400">
-          <span>© {new Date().getFullYear()} YUKUE</span>
+          <Copyright />
           <div className="flex items-center gap-4">
             <Link href="/simulator" className="hover:text-slate-700 transition-colors">
               納税額シミュレーター

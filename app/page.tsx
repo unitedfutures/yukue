@@ -19,6 +19,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import RankingPanel from "@/components/RankingPanel";
 import RecipientsList from "@/components/RecipientsList";
 import HomeContent from "@/components/HomeContent";
+import Copyright from "@/components/Copyright";
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import { ArrowLeft, ExternalLink, FileText, Clock, List, Info, Calculator, TrendingDown, TrendingUp, BookOpen } from "lucide-react";
@@ -460,7 +461,7 @@ export default function Home() {
       </div>
 
       <footer className="max-w-4xl mx-auto px-4 py-6 mt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
-        <span>© {new Date().getFullYear()} YUKUE</span>
+        <Copyright />
         <div className="flex items-center gap-4">
           <Link href="/guide" className="hover:text-slate-700 transition-colors">解説コラム</Link>
           <Link href="/simulator" className="hover:text-slate-700 transition-colors">納税額シミュレーター</Link>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import Copyright from "@/components/Copyright";
 import TaxSimulator from "@/components/TaxSimulator";
 import { ArrowLeft } from "lucide-react";
 
@@ -60,6 +61,9 @@ export default function SimulatorPage() {
             <ArrowLeft size={14} />
             ダッシュボードに戻る
           </Link>
+          <p className="mt-4 text-xs text-slate-400">
+            <Copyright />
+          </p>
         </div>
       </div>
     </main>
