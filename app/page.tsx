@@ -22,7 +22,7 @@ import HomeContent from "@/components/HomeContent";
 import Copyright from "@/components/Copyright";
 import Link from "next/link";
 import Logo from "@/components/Logo";
-import { ArrowLeft, ExternalLink, FileText, Clock, List, Info, Calculator, TrendingDown, TrendingUp, BookOpen } from "lucide-react";
+import { ArrowLeft, ExternalLink, FileText, Clock, List, Info, Calculator, TrendingDown, TrendingUp, BookOpen, Layers } from "lucide-react";
 
 type DataMode = "budget" | "settlement";
 type SideMode = "spending" | "revenue";
@@ -165,6 +165,14 @@ export default function Home() {
           </Link>
 
           <div className="flex items-center gap-2 flex-wrap">
+            {/* 支出の性質別分類 */}
+            <Link
+              href="/breakdown"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-slate-500 hover:text-slate-800 transition-colors"
+            >
+              <Layers size={14} />
+              <span>性質別</span>
+            </Link>
             {/* 解説コラム */}
             <Link
               href="/guide"
@@ -463,6 +471,7 @@ export default function Home() {
       <footer className="max-w-4xl mx-auto px-4 py-6 mt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
         <Copyright />
         <div className="flex items-center gap-4">
+          <Link href="/breakdown" className="hover:text-slate-700 transition-colors">支出の性質別分類</Link>
           <Link href="/guide" className="hover:text-slate-700 transition-colors">解説コラム</Link>
           <Link href="/simulator" className="hover:text-slate-700 transition-colors">納税額シミュレーター</Link>
           <Link href="/about" className="hover:text-slate-700 transition-colors">このサイトについて</Link>

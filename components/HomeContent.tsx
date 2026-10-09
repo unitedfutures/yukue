@@ -134,7 +134,17 @@ export default function HomeContent() {
           <TrendingUp size={17} className="text-[#1a365d]" />
           <h2 className="text-lg font-bold text-slate-900">もっと詳しく知る</h2>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <Link
+            href="/breakdown"
+            className="rounded-xl border border-slate-200 bg-white hover:border-[#1a365d] hover:shadow-sm transition-all p-5"
+          >
+            <p className="text-sm font-bold text-slate-900 mb-1">支出の性質別分類</p>
+            <p className="text-xs text-slate-500 leading-relaxed">
+              税金を「個人への給付・補助金・直接支出・人件費」など、
+              お金の性質で分類し直して集計しました。
+            </p>
+          </Link>
           <Link
             href="/guide"
             className="rounded-xl border border-slate-200 bg-white hover:border-[#1a365d] hover:shadow-sm transition-all p-5"
